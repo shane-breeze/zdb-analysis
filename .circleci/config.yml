@@ -1,0 +1,28 @@
+# Python CircleCI 2.1 configuration file
+version: 2.1
+orbs:
+    codecov: codecov/codecov@1.0.4
+jobs:
+    build:
+        docker:
+            - image: circleci/python:2.7.15
+        working_directory: ~/repo
+        environment:
+            NUMBA_DISABLE_JIT: 1
+            CODECOV_TOKEN: "9a0dee71-741b-4d72-89c7-bcdc54e12668"
+        steps:
+            - checkout
+            - run:
+                name: install dependencies
+                command: pip install --user -r requirements.txt
+
+            - run:
+                name: run tests
+                command: |
+                    source setup.sh
+                    python -m pytest --cov-report=xml --cov-report html:cov_html --cov=zdb tests/
+            - store_artifacts:
+                path: cov_html
+
+            - codecov/upload:
+                file: coverage.xml
