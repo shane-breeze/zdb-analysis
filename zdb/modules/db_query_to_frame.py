@@ -11,4 +11,5 @@ def db_query_to_frame(path, queries):
         df = pd.read_sql(query, engine)
         df["selection"] = label
         dfs.append(df)
-    return pd.concat(dfs)
+
+    return (pd.concat(dfs),)

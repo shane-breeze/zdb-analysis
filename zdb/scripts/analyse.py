@@ -26,6 +26,9 @@ def parse_args():
         "-j", "--ncores", default=0, type=int,
         help="Number of cores for 'multiprocessing' jobs",
     )
+    parser.add_argument(
+        "-o", "--output", default="output.csv", type=str, help="Output file",
+    )
     return parser.parse_args()
 
 def main():
@@ -35,6 +38,7 @@ def main():
     cfg = yaml_read(options.config)
     cfg_q = cfg["query"]
     hist_dict = cfg_q["histograms"]["METnoX_pt"]
+    print("Setup jobs args")
     queries = create_query_string(
         cfg_q["template"], hist_dict, aliases=cfg_q["aliases"],
     )
@@ -45,10 +49,11 @@ def main():
 
     parallel = build_parallel(
         options.mode, processes=options.ncores, quiet=False,
-        dispatcher_options={},
+        dispatcher_options={"vmem": 6, "walltime": 3*60*60},
     )
     parallel.begin()
     try:
+        print("Submitting jobs")
         parallel.communicationChannel.put_multiple([{
             'task': db_query_to_frame,
             'args': sub_args,
@@ -61,17 +66,17 @@ def main():
 
     df = None
     for result in results:
-        result = result.set_index(["selection", "parent", "METnoX_pt_low"])
+        dfr = result[0].set_index(cfg_q["index"])
         if df is None:
-            df = result
+            df = dfr
         else:
             df = (
-                df.reindex_like(df+result).fillna(0)
-                + result.reindex_like(df+result).fillna(0)
+                df.reindex_like(df+dfr).fillna(0)
+                + dfr.reindex_like(df+dfr).fillna(0)
             )
 
     print(df)
-    df.to_csv("output.csv", float_format="%.12f")
+    df.to_csv(options.output, float_format="%.12f")
 
 if __name__ == "__main__":
     main()
