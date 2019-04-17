@@ -13,3 +13,18 @@ def db_query_to_frame(path, queries):
         dfs.append(df)
 
     return (pd.concat(dfs),)
+
+def merge_results(results, index=None):
+    df = None
+    for result in results:
+        dfr = result[0].set_index(index)
+
+        if df is None:
+            df = dfr
+        else:
+            df = (
+                df.reindex_like(df+dfr).fillna(0)
+                + dfr.reindex_like(df+dfr).fillna(0)
+            )
+
+    return df.reset_index()
