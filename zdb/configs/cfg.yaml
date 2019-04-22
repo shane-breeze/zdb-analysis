@@ -1,5 +1,5 @@
 query:
-    index: ["selection", "parent", "METnoX_pt_low"]
+    index: ["selection", "parent", "LeptonIsElectron", "LeptonIsMuon", "LeptonIsTau", "nGenTauL", "METnoX_pt_low"]
     template: "SELECT {columns} FROM Events WHERE {selection} GROUP BY {groupby}"
     aliases:
         Weight_Baseline:
@@ -21,7 +21,7 @@ query:
     histograms:
         METnoX_pt:
             columns:
-                - "parent, CAST(METnoX_pt/10. as int)*10 as METnoX_pt_low"
+                - "parent, LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL, CAST(METnoX_pt/10. as int)*10 as METnoX_pt_low"
                 - "SUM({Weight}) as sum_w"
                 - "SUM({Weight}*{Weight}) as sum_ww"
                 - "SUM({Weight}*LHEScaleWeight0) as qcdscale0"
@@ -165,7 +165,7 @@ query:
                     selection: "Cutflow_SingleTau==1"
                     weights: "{Weight_Baseline}*WeightMETTrig*{Weight_VetoElectrons}*{Weight_VetoMuons}*{Weight_SelectTaus}*{Weight_VetoPhotonsBJets}"
             groupby:
-                "parent, CAST(METnoX_pt/10. as int)*10"
+                "parent, LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL, CAST(METnoX_pt/10. as int)*10"
 database:
     - "/vols/cms/sdb15/Analysis/ZinvWidth/databases/201904_Apr/06_MCPdfVariations/sqlite_collector/DYJetsToLL/result_00000.db"
     - "/vols/cms/sdb15/Analysis/ZinvWidth/databases/201904_Apr/06_MCPdfVariations/sqlite_collector/DYJetsToLL/result_00001.db"
