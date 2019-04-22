@@ -8,8 +8,7 @@ jobs:
             - image: circleci/python:2.7.15
         working_directory: ~/repo
         environment:
-            NUMBA_DISABLE_JIT: 1
-            CODECOV_TOKEN: "9a0dee71-741b-4d72-89c7-bcdc54e12668"
+            CODECOV_TOKEN: "0fe7267f-08ce-4059-85a5-aa048b999962"
         steps:
             - checkout
             - run:
@@ -20,9 +19,7 @@ jobs:
                 name: run tests
                 command: |
                     source setup.sh
-                    python -m pytest --cov-report=xml --cov-report html:cov_html --cov=zdb tests/
-            - store_artifacts:
-                path: cov_html
+                    python -m pytest --cov-report=xml --cov=zdb tests/
 
             - codecov/upload:
                 file: coverage.xml
