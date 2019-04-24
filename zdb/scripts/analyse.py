@@ -12,9 +12,11 @@ from atsge.build_parallel import build_parallel
 import logging
 logging.getLogger(__name__).setLevel(logging.INFO)
 logging.getLogger("atsge.SGEJobSubmitter").setLevel(logging.INFO)
+logging.getLogger("atsge.WorkingArea").setLevel(logging.INFO)
 
 logging.getLogger(__name__).propagate = False
 logging.getLogger("atsge.SGEJobSubmitter").propagate = False
+logging.getLogger("atsge.WorkingArea").propagate = False
 
 def parse_args():
     parser = argparse.ArgumentParser()
@@ -28,57 +30,64 @@ def parse_args():
         help="Number of cores for 'multiprocessing' jobs",
     )
     parser.add_argument(
-        "-o", "--output", default="output.csv", type=str, help="Output file",
+        "-n", "--nfiles", default=-1, type=int,
+        help="Number of files to process. -1 = all",
+    )
+    parser.add_argument(
+        "-o", "--output", default="output.pkl", type=str, help="Output file",
     )
     return parser.parse_args()
 
 def main():
     options = parse_args()
-    njobs = 1 if options.mode in ["multiprocessing"] else options.ncores
+    njobs = options.ncores
 
     # setup queries
     cfg = yaml_read(options.config)
     cfg_q = cfg["query"]
 
+    queries = []
     for hist_label, hist_dict in cfg_q["histograms"].items():
-        print("Setup jobs args")
-        queries = create_query_string(
+        queries.extend(create_query_string(
             cfg_q["template"], hist_dict, aliases=cfg_q["aliases"],
-        )
-        jobs = [
-            (db_query_to_frame, (dbpath, queries))
-            for dbpath in cfg["database"]
-        ]
+        ))
+    queries = " UNION ".join(queries)
 
-        # group jobs
-        jobs = [
-            jobs[i:i+len(jobs)/njobs+1]
-            for i in xrange(0, len(jobs), len(jobs)/njobs+1)
-        ]
+    databases = cfg["database"]
+    if options.nfiles >= 0 and options.nfiles < len(databases):
+        databases = databases[:options.nfiles]
+    jobs = [
+        (db_query_to_frame, (dbpath, queries))
+        for dbpath in databases
+    ]
 
-        parallel = build_parallel(
-            options.mode, processes=options.ncores, quiet=False,
-            dispatcher_options={"vmem": 6, "walltime": 3*60*60},
-        )
-        parallel.begin()
-        try:
-            print("Submitting jobs")
-            parallel.communicationChannel.put_multiple([{
-                'task': multirun,
-                'args': args,
-                'kwargs': {"index": cfg_q["index"]},
-            } for args in jobs])
-            results = parallel.communicationChannel.receive()
-        except KeyboardInterrupt:
-            parallel.terminate()
-        parallel.end()
+    # group jobs
+    if options.mode in ["multiprocessing"]:
+        njobs = len(jobs)+1
+    jobs = [
+        jobs[i:i+len(jobs)//njobs+1]
+        for i in xrange(0, len(jobs), len(jobs)//njobs+1)
+    ]
 
-        df = (
-            merge_results(results, cfg_q["index"])
-            .set_index(cfg_q["index"])
-        )
-        print(df)
-        df.to_csv(options.output.format(hist_label), float_format="%.12f")
+    parallel = build_parallel(
+        options.mode, processes=options.ncores, quiet=False,
+        dispatcher_options={"vmem": 6, "walltime": 3*60*60},
+    )
+    parallel.begin()
+    try:
+        parallel.communicationChannel.put_multiple([{
+            'task': multirun,
+            'args': args,
+            'kwargs': {"index": cfg_q["index"]},
+        } for args in jobs])
+        results = parallel.communicationChannel.receive()
+    except KeyboardInterrupt:
+        parallel.terminate()
+    parallel.end()
+
+    df = merge_results(results, cfg_q["index"]).set_index(cfg_q["index"])
+    print(df)
+    df.to_pickle(options.output)
 
 if __name__ == "__main__":
     main()

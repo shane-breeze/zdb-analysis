@@ -1,23 +1,20 @@
 import pandas as pd
 import sqlalchemy as sqla
 
-def db_query_to_frame(path, queries):
+def db_query_to_frame(path, query):
     print(path)
     engine = sqla.create_engine("sqlite:///{}".format(path))
-    # print(engine.execute("SELECT * FROM Events LIMIT 1"))
+    return (pd.read_sql(query, engine),)
 
-    dfs = []
-    for label, query in queries.items():
-        df = pd.read_sql(query, engine)
-        df["selection"] = label
-        dfs.append(df)
-
-    return (pd.concat(dfs),)
-
-def merge_results(results, index=None):
+def merge_results(results, index):
     df = None
     for result in results:
         dfr = result[0].set_index(index)
+
+        if df is not None and df.duplicated().any():
+            print(df.loc[df.duplicated(), :].to_string())
+        if dfr is not None and dfr.duplicated().any():
+            print(dfr.loc[dfr.duplicated(), :].to_string())
 
         if df is None:
             df = dfr
