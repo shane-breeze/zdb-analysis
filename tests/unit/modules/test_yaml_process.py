@@ -22,7 +22,7 @@ def data_string():
         """                - "idx1, idx2"\n"""
         """                - "item1 as it1"\n"""
         """                - "item2 as it2"\n"""
-        """                - "{Weight} as w"\n"""
+        """                - "{weight} as w"\n"""
         """            selection:\n"""
         """                sele1:\n"""
         """                    selection: "cut1==1"\n"""
@@ -53,7 +53,7 @@ def data_dict():
                         "idx1, idx2",
                         "item1 as it1",
                         "item2 as it2",
-                        "{Weight} as w",
+                        "{weight} as w",
                     ],
                     "selection": {
                         "sele1": {
@@ -83,10 +83,10 @@ def test_yaml_read(data_string, data_dict, path):
 
 @pytest.mark.parametrize(
     "hist,queries", ([
-        "hist1", {
-            "sele1": "SELECT idx1, idx2, item1 as it1, item2 as it2, weight1*weight2 as w FROM Events WHERE cut1==1 GROUP BY idx1, idx2",
-            "sele2": "SELECT idx1, idx2, item1 as it1, item2 as it2, weight2*weight3*unalias1 as w FROM Events WHERE cut2==1 GROUP BY idx1, idx2",
-        },
+        "hist1", [
+            "SELECT idx1, idx2, item1 as it1, item2 as it2, weight1*weight2 as w FROM Events WHERE cut1==1 GROUP BY idx1, idx2",
+            "SELECT idx1, idx2, item1 as it1, item2 as it2, weight2*weight3*unalias1 as w FROM Events WHERE cut2==1 GROUP BY idx1, idx2",
+        ]
     ],)
 )
 def test_create_query_string(data_dict, hist, queries):
@@ -95,4 +95,4 @@ def test_create_query_string(data_dict, hist, queries):
     result = create_query_string(
         query["template"], hist_dict, aliases=query["aliases"],
     )
-    assert queries == result
+    assert sorted(queries) == sorted(result)
