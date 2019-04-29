@@ -1,80 +1,1358 @@
 query:
     index: ["varname", "selection", "parent", "binvar"]
     template: "SELECT {columns} FROM Events WHERE {selection} GROUP BY {groupby}"
-    aliases: {}
+    aliases:
+        Cutflow_Monojet:
+            "IsCertified AND IsMETTriggered AND Flag_goodVertices>0.5 AND Flag_globalSuperTightHalo2016Filter>0.5 AND Flag_HBHENoiseFilter>0.5 AND Flag_HBHENoiseIsoFilter>0.5 AND Flag_EcalDeadCellTriggerPrimitiveFilter>0.5 AND Flag_BadPFMuonFilter>0.5 AND Flag_BadGlobalMuon>0.5 AND Flag_CloneGlobalMuon>0.5 AND Flag_eeBadScFilter>0.5 AND METnoX_pt>200. AND MET_dCaloMET<0.6 AND nJetSelection>0 AND nJetSelection==nJetVeto AND LeadJetSelection_pt>200. AND LeadJetSelection_chHEF>0.1 AND LeadJetSelection_chHEF<0.95 AND nPhotonVeto==0 AND nBJetVeto==0 AND MinDPhiJ1234METnoX>0.5 AND nMuonVeto==0 AND nElectronVeto==0 AND nTauVeto==0"
+        Cutflow_MonojetQCD:
+            "IsCertified AND IsMETTriggered AND Flag_goodVertices>0.5 AND Flag_globalSuperTightHalo2016Filter>0.5 AND Flag_HBHENoiseFilter>0.5 AND Flag_HBHENoiseIsoFilter>0.5 AND Flag_EcalDeadCellTriggerPrimitiveFilter>0.5 AND Flag_BadPFMuonFilter>0.5 AND Flag_BadGlobalMuon>0.5 AND Flag_CloneGlobalMuon>0.5 AND Flag_eeBadScFilter>0.5 AND METnoX_pt>200. AND MET_dCaloMET<0.6 AND nJetSelection>0 AND nJetSelection==nJetVeto AND LeadJetSelection_pt>200. AND LeadJetSelection_chHEF>0.1 AND LeadJetSelection_chHEF<0.95 AND nPhotonVeto==0 AND nBJetVeto==0 AND MinDPhiJ1234METnoX<=0.5 AND nMuonVeto==0 AND nElectronVeto==0 AND nTauVeto==0"
+        Cutflow_SingleMuon:
+            "IsCertified AND IsMETTriggered AND Flag_goodVertices>0.5 AND Flag_globalSuperTightHalo2016Filter>0.5 AND Flag_HBHENoiseFilter>0.5 AND Flag_HBHENoiseIsoFilter>0.5 AND Flag_EcalDeadCellTriggerPrimitiveFilter>0.5 AND Flag_BadPFMuonFilter>0.5 AND Flag_BadGlobalMuon>0.5 AND Flag_CloneGlobalMuon>0.5 AND Flag_eeBadScFilter>0.5 AND METnoX_pt>200. AND MET_dCaloMET<0.6 AND nJetSelection>0 AND nJetSelection==nJetVeto AND LeadJetSelection_pt>200. AND LeadJetSelection_chHEF>0.1 AND LeadJetSelection_chHEF<0.95 AND nPhotonVeto==0 AND nBJetVeto==0 AND MinDPhiJ1234METnoX>0.5 AND nMuonVeto==1 AND nElectronVeto==0 AND nTauVeto==0 AND nMuonSelection==1 AND MTW>=30. AND MTW<125."
+        Cutflow_SingleMuonQCD:
+            "IsCertified AND IsMETTriggered AND Flag_goodVertices>0.5 AND Flag_globalSuperTightHalo2016Filter>0.5 AND Flag_HBHENoiseFilter>0.5 AND Flag_HBHENoiseIsoFilter>0.5 AND Flag_EcalDeadCellTriggerPrimitiveFilter>0.5 AND Flag_BadPFMuonFilter>0.5 AND Flag_BadGlobalMuon>0.5 AND Flag_CloneGlobalMuon>0.5 AND Flag_eeBadScFilter>0.5 AND METnoX_pt>200. AND MET_dCaloMET<0.6 AND nJetSelection>0 AND nJetSelection==nJetVeto AND LeadJetSelection_pt>200. AND LeadJetSelection_chHEF>0.1 AND LeadJetSelection_chHEF<0.95 AND nPhotonVeto==0 AND nBJetVeto==0 AND MinDPhiJ1234METnoX<=0.5 AND nMuonVeto==1 AND nElectronVeto==0 AND nTauVeto==0 AND nMuonSelection==1 AND MTW>=30. AND MTW<125."
+        Cutflow_DoubleMuon:
+            "IsCertified AND IsMETTriggered AND Flag_goodVertices>0.5 AND Flag_globalSuperTightHalo2016Filter>0.5 AND Flag_HBHENoiseFilter>0.5 AND Flag_HBHENoiseIsoFilter>0.5 AND Flag_EcalDeadCellTriggerPrimitiveFilter>0.5 AND Flag_BadPFMuonFilter>0.5 AND Flag_BadGlobalMuon>0.5 AND Flag_CloneGlobalMuon>0.5 AND Flag_eeBadScFilter>0.5 AND METnoX_pt>200. AND MET_dCaloMET<0.6 AND nJetSelection>0 AND nJetSelection==nJetVeto AND LeadJetSelection_pt>200. AND LeadJetSelection_chHEF>0.1 AND LeadJetSelection_chHEF<0.95 AND nPhotonVeto==0 AND nBJetVeto==0 AND MinDPhiJ1234METnoX>0.5 AND nMuonVeto==2 AND nElectronVeto==0 AND nTauVeto==0 AND nMuonSelection==2 AND MLL>=71. AND MLL<111."
+        Cutflow_SingleElectron:
+            "IsCertified AND IsSingleElectronTriggered AND Flag_goodVertices>0.5 AND Flag_globalSuperTightHalo2016Filter>0.5 AND Flag_HBHENoiseFilter>0.5 AND Flag_HBHENoiseIsoFilter>0.5 AND Flag_EcalDeadCellTriggerPrimitiveFilter>0.5 AND Flag_BadPFMuonFilter>0.5 AND Flag_BadGlobalMuon>0.5 AND Flag_CloneGlobalMuon>0.5 AND Flag_eeBadScFilter>0.5 AND METnoX_pt>200. AND MET_dCaloMET<0.6 AND nJetSelection>0 AND nJetSelection==nJetVeto AND LeadJetSelection_pt>200. AND LeadJetSelection_chHEF>0.1 AND LeadJetSelection_chHEF<0.95 AND nPhotonVeto==0 AND nBJetVeto==0 AND MinDPhiJ1234METnoX>0.5 AND nMuonVeto==0 AND nElectronVeto==1 AND nTauVeto==0 AND nElectronSelection==1 AND MTW>=30. AND MTW<125. AND MET_pt>100."
+        Cutflow_SingleElectronQCD:
+            "IsCertified AND IsSingleElectronTriggered AND Flag_goodVertices>0.5 AND Flag_globalSuperTightHalo2016Filter>0.5 AND Flag_HBHENoiseFilter>0.5 AND Flag_HBHENoiseIsoFilter>0.5 AND Flag_EcalDeadCellTriggerPrimitiveFilter>0.5 AND Flag_BadPFMuonFilter>0.5 AND Flag_BadGlobalMuon>0.5 AND Flag_CloneGlobalMuon>0.5 AND Flag_eeBadScFilter>0.5 AND METnoX_pt>200. AND MET_dCaloMET<0.6 AND nJetSelection>0 AND nJetSelection==nJetVeto AND LeadJetSelection_pt>200. AND LeadJetSelection_chHEF>0.1 AND LeadJetSelection_chHEF<0.95 AND nPhotonVeto==0 AND nBJetVeto==0 AND MinDPhiJ1234METnoX<=0.5 AND nMuonVeto==0 AND nElectronVeto==1 AND nTauVeto==0 AND nElectronSelection==1 AND MTW>=30. AND MTW<125. AND MET_pt>100."
+        Cutflow_DoubleElectron:
+            "IsCertified AND IsSingleElectronTriggered AND Flag_goodVertices>0.5 AND Flag_globalSuperTightHalo2016Filter>0.5 AND Flag_HBHENoiseFilter>0.5 AND Flag_HBHENoiseIsoFilter>0.5 AND Flag_EcalDeadCellTriggerPrimitiveFilter>0.5 AND Flag_BadPFMuonFilter>0.5 AND Flag_BadGlobalMuon>0.5 AND Flag_CloneGlobalMuon>0.5 AND Flag_eeBadScFilter>0.5 AND METnoX_pt>200. AND MET_dCaloMET<0.6 AND nJetSelection>0 AND nJetSelection==nJetVeto AND LeadJetSelection_pt>200. AND LeadJetSelection_chHEF>0.1 AND LeadJetSelection_chHEF<0.95 AND nPhotonVeto==0 AND nBJetVeto==0 AND MinDPhiJ1234METnoX>0.5 AND nMuonVeto==0 AND nElectronVeto==2 AND nTauVeto==0 AND nElectronSelection==2 AND MLL>=71. AND MLL<111."
+        Cutflow_SingleTau:
+            "IsCertified AND IsMETTriggered AND Flag_goodVertices>0.5 AND Flag_globalSuperTightHalo2016Filter>0.5 AND Flag_HBHENoiseFilter>0.5 AND Flag_HBHENoiseIsoFilter>0.5 AND Flag_EcalDeadCellTriggerPrimitiveFilter>0.5 AND Flag_BadPFMuonFilter>0.5 AND Flag_BadGlobalMuon>0.5 AND Flag_CloneGlobalMuon>0.5 AND Flag_eeBadScFilter>0.5 AND METnoX_pt>200. AND MET_dCaloMET<0.6 AND nJetSelection>0 AND nJetSelection==nJetVeto AND LeadJetSelection_pt>200. AND LeadJetSelection_chHEF>0.1 AND LeadJetSelection_chHEF<0.95 AND nPhotonVeto==0 AND nBJetVeto==0 AND MinDPhiJ1234METnoX>0.5 AND nMuonVeto==0 AND nElectronVeto==0 AND nTauVeto==1 AND nTauSelection==1"
     histograms:
         METnoX_pt:
             columns:
                 - "'METnoX_pt' as varname, '{selection_name}' as selection, parent"
-                - "CAST(METnoX_pt/10. as int)*10 as binvar"
+                - "CAST(METnoX_pt/5. as int)*5 as binvar"
                 - "SUM({weight}) as sum_w"
                 - "SUM({weight}*{weight}) as sum_ww"
             selection:
                 Monojet:
-                    selection: "Cutflow_Monojet==1"
+                    selection: "{Cutflow_Monojet}"
                     weights: "1."
                 MonojetQCD:
-                    selection: "Cutflow_MonojetQCD==1"
+                    selection: "{Cutflow_MonojetQCD}"
                     weights: "1."
                 SingleMuon:
-                    selection: "Cutflow_SingleMuon==1"
+                    selection: "{Cutflow_SingleMuon}"
                     weights: "1."
                 SingleMuonQCD:
-                    selection: "Cutflow_SingleMuonQCD==1"
+                    selection: "{Cutflow_SingleMuonQCD}"
                     weights: "1."
                 DoubleMuon:
-                    selection: "Cutflow_DoubleMuon==1"
+                    selection: "{Cutflow_DoubleMuon}"
                     weights: "1."
                 SingleElectron:
-                    selection: "Cutflow_SingleElectron==1"
+                    selection: "{Cutflow_SingleElectron}"
                     weights: "1."
                 SingleElectronQCD:
-                    selection: "Cutflow_SingleElectronQCD==1"
+                    selection: "{Cutflow_SingleElectronQCD}"
                     weights: "1."
                 DoubleElectron:
-                    selection: "Cutflow_DoubleElectron==1"
+                    selection: "{Cutflow_DoubleElectron}"
                     weights: "1."
                 SingleTau:
-                    selection: "Cutflow_SingleTau==1"
+                    selection: "{Cutflow_SingleTau}"
                     weights: "1."
             groupby:
-                "parent, CAST(METnoX_pt/10. as int)*10"
+                "parent, CAST(METnoX_pt/5. as int)*5"
         METnoX_phi:
             columns:
                 - "'METnoX_phi' as varname, '{selection_name}' as selection, parent"
-                - "CAST(METnoX_phi/0.05 as int)*0.05 as binvar"
+                - "CAST(METnoX_phi/0.06283 as int)*0.06283 as binvar"
                 - "SUM({weight}) as sum_w"
                 - "SUM({weight}*{weight}) as sum_ww"
             selection:
                 Monojet:
-                    selection: "Cutflow_Monojet==1"
+                    selection: "{Cutflow_Monojet}"
                     weights: "1."
                 MonojetQCD:
-                    selection: "Cutflow_MonojetQCD==1"
+                    selection: "{Cutflow_MonojetQCD}"
                     weights: "1."
                 SingleMuon:
-                    selection: "Cutflow_SingleMuon==1"
+                    selection: "{Cutflow_SingleMuon}"
                     weights: "1."
                 SingleMuonQCD:
-                    selection: "Cutflow_SingleMuonQCD==1"
+                    selection: "{Cutflow_SingleMuonQCD}"
                     weights: "1."
                 DoubleMuon:
-                    selection: "Cutflow_DoubleMuon==1"
+                    selection: "{Cutflow_DoubleMuon}"
                     weights: "1."
                 SingleElectron:
-                    selection: "Cutflow_SingleElectron==1"
+                    selection: "{Cutflow_SingleElectron}"
                     weights: "1."
                 SingleElectronQCD:
-                    selection: "Cutflow_SingleElectronQCD==1"
+                    selection: "{Cutflow_SingleElectronQCD}"
                     weights: "1."
                 DoubleElectron:
-                    selection: "Cutflow_DoubleElectron==1"
+                    selection: "{Cutflow_DoubleElectron}"
                     weights: "1."
                 SingleTau:
-                    selection: "Cutflow_SingleTau==1"
+                    selection: "{Cutflow_SingleTau}"
                     weights: "1."
             groupby:
-                "parent, CAST(METnoX_phi/0.05 as int)*0.05"
+                "parent, CAST(METnoX_phi/0.06283 as int)*0.06283"
+        MET_pt:
+            columns:
+                - "'MET_pt' as varname, '{selection_name}' as selection, parent"
+                - "CAST(MET_pt/5 as int)*5 as binvar"
+                - "SUM({weight}) as sum_w"
+                - "SUM({weight}*{weight}) as sum_ww"
+            selection:
+                Monojet:
+                    selection: "{Cutflow_Monojet}"
+                    weights: "1."
+                MonojetQCD:
+                    selection: "{Cutflow_MonojetQCD}"
+                    weights: "1."
+                SingleMuon:
+                    selection: "{Cutflow_SingleMuon}"
+                    weights: "1."
+                SingleMuonQCD:
+                    selection: "{Cutflow_SingleMuonQCD}"
+                    weights: "1."
+                DoubleMuon:
+                    selection: "{Cutflow_DoubleMuon}"
+                    weights: "1."
+                SingleElectron:
+                    selection: "{Cutflow_SingleElectron}"
+                    weights: "1."
+                SingleElectronQCD:
+                    selection: "{Cutflow_SingleElectronQCD}"
+                    weights: "1."
+                DoubleElectron:
+                    selection: "{Cutflow_DoubleElectron}"
+                    weights: "1."
+                SingleTau:
+                    selection: "{Cutflow_SingleTau}"
+                    weights: "1."
+            groupby:
+                "parent, CAST(MET_pt/5 as int)*5"
+        MET_phi:
+            columns:
+                - "'MET_phi' as varname, '{selection_name}' as selection, parent"
+                - "CAST(MET_phi/0.06283 as int)*0.06283 as binvar"
+                - "SUM({weight}) as sum_w"
+                - "SUM({weight}*{weight}) as sum_ww"
+            selection:
+                Monojet:
+                    selection: "{Cutflow_Monojet}"
+                    weights: "1."
+                MonojetQCD:
+                    selection: "{Cutflow_MonojetQCD}"
+                    weights: "1."
+                SingleMuon:
+                    selection: "{Cutflow_SingleMuon}"
+                    weights: "1."
+                SingleMuonQCD:
+                    selection: "{Cutflow_SingleMuonQCD}"
+                    weights: "1."
+                DoubleMuon:
+                    selection: "{Cutflow_DoubleMuon}"
+                    weights: "1."
+                SingleElectron:
+                    selection: "{Cutflow_SingleElectron}"
+                    weights: "1."
+                SingleElectronQCD:
+                    selection: "{Cutflow_SingleElectronQCD}"
+                    weights: "1."
+                DoubleElectron:
+                    selection: "{Cutflow_DoubleElectron}"
+                    weights: "1."
+                SingleTau:
+                    selection: "{Cutflow_SingleTau}"
+                    weights: "1."
+            groupby:
+                "parent, CAST(MET_phi/0.06283 as int)*0.06283"
+        CaloMET_pt:
+            columns:
+                - "'CaloMET_pt' as varname, '{selection_name}' as selection, parent"
+                - "CAST(CaloMET_pt/5. as int)*5 as binvar"
+                - "SUM({weight}) as sum_w"
+                - "SUM({weight}*{weight}) as sum_ww"
+            selection:
+                Monojet:
+                    selection: "{Cutflow_Monojet}"
+                    weights: "1."
+                MonojetQCD:
+                    selection: "{Cutflow_MonojetQCD}"
+                    weights: "1."
+                SingleMuon:
+                    selection: "{Cutflow_SingleMuon}"
+                    weights: "1."
+                SingleMuonQCD:
+                    selection: "{Cutflow_SingleMuonQCD}"
+                    weights: "1."
+                DoubleMuon:
+                    selection: "{Cutflow_DoubleMuon}"
+                    weights: "1."
+                SingleElectron:
+                    selection: "{Cutflow_SingleElectron}"
+                    weights: "1."
+                SingleElectronQCD:
+                    selection: "{Cutflow_SingleElectronQCD}"
+                    weights: "1."
+                DoubleElectron:
+                    selection: "{Cutflow_DoubleElectron}"
+                    weights: "1."
+                SingleTau:
+                    selection: "{Cutflow_SingleTau}"
+                    weights: "1."
+            groupby:
+                "parent, CAST(CaloMET_pt/5. as int)*5"
+        CaloMET_phi:
+            columns:
+                - "'CaloMET_phi' as varname, '{selection_name}' as selection, parent"
+                - "CAST(CaloMET_phi/0.06283 as int)*0.06283 as binvar"
+                - "SUM({weight}) as sum_w"
+                - "SUM({weight}*{weight}) as sum_ww"
+            selection:
+                Monojet:
+                    selection: "{Cutflow_Monojet}"
+                    weights: "1."
+                MonojetQCD:
+                    selection: "{Cutflow_MonojetQCD}"
+                    weights: "1."
+                SingleMuon:
+                    selection: "{Cutflow_SingleMuon}"
+                    weights: "1."
+                SingleMuonQCD:
+                    selection: "{Cutflow_SingleMuonQCD}"
+                    weights: "1."
+                DoubleMuon:
+                    selection: "{Cutflow_DoubleMuon}"
+                    weights: "1."
+                SingleElectron:
+                    selection: "{Cutflow_SingleElectron}"
+                    weights: "1."
+                SingleElectronQCD:
+                    selection: "{Cutflow_SingleElectronQCD}"
+                    weights: "1."
+                DoubleElectron:
+                    selection: "{Cutflow_DoubleElectron}"
+                    weights: "1."
+                SingleTau:
+                    selection: "{Cutflow_SingleTau}"
+                    weights: "1."
+            groupby:
+                "parent, CAST(CaloMET_phi/0.06283 as int)*0.06283"
+        MET_dCaloMET:
+            columns:
+                - "'MET_dCaloMET' as varname, '{selection_name}' as selection, parent"
+                - "CAST(MET_dCaloMET/0.02 as int)*0.02 as binvar"
+                - "SUM({weight}) as sum_w"
+                - "SUM({weight}*{weight}) as sum_ww"
+            selection:
+                Monojet:
+                    selection: "{Cutflow_Monojet}"
+                    weights: "1."
+                MonojetQCD:
+                    selection: "{Cutflow_MonojetQCD}"
+                    weights: "1."
+                SingleMuon:
+                    selection: "{Cutflow_SingleMuon}"
+                    weights: "1."
+                SingleMuonQCD:
+                    selection: "{Cutflow_SingleMuonQCD}"
+                    weights: "1."
+                DoubleMuon:
+                    selection: "{Cutflow_DoubleMuon}"
+                    weights: "1."
+                SingleElectron:
+                    selection: "{Cutflow_SingleElectron}"
+                    weights: "1."
+                SingleElectronQCD:
+                    selection: "{Cutflow_SingleElectronQCD}"
+                    weights: "1."
+                DoubleElectron:
+                    selection: "{Cutflow_DoubleElectron}"
+                    weights: "1."
+                SingleTau:
+                    selection: "{Cutflow_SingleTau}"
+                    weights: "1."
+            groupby:
+                "parent, CAST(MET_dCaloMET/0.02 as int)*0.02"
+        MinDPhiJ1234METnoX:
+            columns:
+                - "'MinDPhiJ1234METnoX' as varname, '{selection_name}' as selection, parent"
+                - "CAST(MinDPhiJ1234METnoX/0.05 as int)*0.05 as binvar"
+                - "SUM({weight}) as sum_w"
+                - "SUM({weight}*{weight}) as sum_ww"
+            selection:
+                Monojet:
+                    selection: "{Cutflow_Monojet}"
+                    weights: "1."
+                MonojetQCD:
+                    selection: "{Cutflow_MonojetQCD}"
+                    weights: "1."
+                SingleMuon:
+                    selection: "{Cutflow_SingleMuon}"
+                    weights: "1."
+                SingleMuonQCD:
+                    selection: "{Cutflow_SingleMuonQCD}"
+                    weights: "1."
+                DoubleMuon:
+                    selection: "{Cutflow_DoubleMuon}"
+                    weights: "1."
+                SingleElectron:
+                    selection: "{Cutflow_SingleElectron}"
+                    weights: "1."
+                SingleElectronQCD:
+                    selection: "{Cutflow_SingleElectronQCD}"
+                    weights: "1."
+                DoubleElectron:
+                    selection: "{Cutflow_DoubleElectron}"
+                    weights: "1."
+                SingleTau:
+                    selection: "{Cutflow_SingleTau}"
+                    weights: "1."
+            groupby:
+                "parent, CAST(MinDPhiJ1234METnoX/0.05 as int)*0.05"
+        MTW:
+            columns:
+                - "'MTW' as varname, '{selection_name}' as selection, parent"
+                - "CAST(MTW/4. as int)*4 as binvar"
+                - "SUM({weight}) as sum_w"
+                - "SUM({weight}*{weight}) as sum_ww"
+            selection:
+                SingleMuon:
+                    selection: "{Cutflow_SingleMuon}"
+                    weights: "1."
+                SingleMuonQCD:
+                    selection: "{Cutflow_SingleMuonQCD}"
+                    weights: "1."
+                SingleElectron:
+                    selection: "{Cutflow_SingleElectron}"
+                    weights: "1."
+                SingleElectronQCD:
+                    selection: "{Cutflow_SingleElectronQCD}"
+                    weights: "1."
+            groupby:
+                "parent, CAST(MTW/4 as int)*4"
+        MLL:
+            columns:
+                - "'MLL' as varname, '{selection_name}' as selection, parent"
+                - "CAST(MLL/0.5 as int)*0.5 as binvar"
+                - "SUM({weight}) as sum_w"
+                - "SUM({weight}*{weight}) as sum_ww"
+            selection:
+                DoubleMuon:
+                    selection: "{Cutflow_DoubleMuon}"
+                    weights: "1."
+                DoubleElectron:
+                    selection: "{Cutflow_DoubleElectron}"
+                    weights: "1."
+            groupby:
+                "parent, CAST(MLL/0.5 as int)*0.5"
+        nJetVeto:
+            columns:
+                - "'nJetVeto' as varname, '{selection_name}' as selection, parent"
+                - "CAST(nJetVeto+0.5 as int) as binvar"
+                - "SUM({weight}) as sum_w"
+                - "SUM({weight}*{weight}) as sum_ww"
+            selection:
+                Monojet:
+                    selection: "{Cutflow_Monojet}"
+                    weights: "1."
+                MonojetQCD:
+                    selection: "{Cutflow_MonojetQCD}"
+                    weights: "1."
+                SingleMuon:
+                    selection: "{Cutflow_SingleMuon}"
+                    weights: "1."
+                SingleMuonQCD:
+                    selection: "{Cutflow_SingleMuonQCD}"
+                    weights: "1."
+                DoubleMuon:
+                    selection: "{Cutflow_DoubleMuon}"
+                    weights: "1."
+                SingleElectron:
+                    selection: "{Cutflow_SingleElectron}"
+                    weights: "1."
+                SingleElectronQCD:
+                    selection: "{Cutflow_SingleElectronQCD}"
+                    weights: "1."
+                DoubleElectron:
+                    selection: "{Cutflow_DoubleElectron}"
+                    weights: "1."
+                SingleTau:
+                    selection: "{Cutflow_SingleTau}"
+                    weights: "1."
+            groupby:
+                "parent, CAST(nJetVeto+0.5 as int)"
+        nJetSelection:
+            columns:
+                - "'nJetSelection' as varname, '{selection_name}' as selection, parent"
+                - "CAST(nJetSelection+0.5 as int) as binvar"
+                - "SUM({weight}) as sum_w"
+                - "SUM({weight}*{weight}) as sum_ww"
+            selection:
+                Monojet:
+                    selection: "{Cutflow_Monojet}"
+                    weights: "1."
+                MonojetQCD:
+                    selection: "{Cutflow_MonojetQCD}"
+                    weights: "1."
+                SingleMuon:
+                    selection: "{Cutflow_SingleMuon}"
+                    weights: "1."
+                SingleMuonQCD:
+                    selection: "{Cutflow_SingleMuonQCD}"
+                    weights: "1."
+                DoubleMuon:
+                    selection: "{Cutflow_DoubleMuon}"
+                    weights: "1."
+                SingleElectron:
+                    selection: "{Cutflow_SingleElectron}"
+                    weights: "1."
+                SingleElectronQCD:
+                    selection: "{Cutflow_SingleElectronQCD}"
+                    weights: "1."
+                DoubleElectron:
+                    selection: "{Cutflow_DoubleElectron}"
+                    weights: "1."
+                SingleTau:
+                    selection: "{Cutflow_SingleTau}"
+                    weights: "1."
+            groupby:
+                "parent, CAST(nJetSelection+0.5 as int)"
+        LeadJetSelection_pt:
+            columns:
+                - "'LeadJetSelection_pt' as varname, '{selection_name}' as selection, parent"
+                - "CAST(LeadJetSelection_pt/5. as int)*5 as binvar"
+                - "SUM({weight}) as sum_w"
+                - "SUM({weight}*{weight}) as sum_ww"
+            selection:
+                Monojet:
+                    selection: "{Cutflow_Monojet}"
+                    weights: "1."
+                MonojetQCD:
+                    selection: "{Cutflow_MonojetQCD}"
+                    weights: "1."
+                SingleMuon:
+                    selection: "{Cutflow_SingleMuon}"
+                    weights: "1."
+                SingleMuonQCD:
+                    selection: "{Cutflow_SingleMuonQCD}"
+                    weights: "1."
+                DoubleMuon:
+                    selection: "{Cutflow_DoubleMuon}"
+                    weights: "1."
+                SingleElectron:
+                    selection: "{Cutflow_SingleElectron}"
+                    weights: "1."
+                SingleElectronQCD:
+                    selection: "{Cutflow_SingleElectronQCD}"
+                    weights: "1."
+                DoubleElectron:
+                    selection: "{Cutflow_DoubleElectron}"
+                    weights: "1."
+                SingleTau:
+                    selection: "{Cutflow_SingleTau}"
+                    weights: "1."
+            groupby:
+                "parent, CAST(LeadJetSelection_pt/5. as int)*5"
+        LeadJetSelection_eta:
+            columns:
+                - "'LeadJetSelection_eta' as varname, '{selection_name}' as selection, parent"
+                - "CAST(LeadJetSelection_eta/0.1 as int)*0.1 as binvar"
+                - "SUM({weight}) as sum_w"
+                - "SUM({weight}*{weight}) as sum_ww"
+            selection:
+                Monojet:
+                    selection: "{Cutflow_Monojet}"
+                    weights: "1."
+                MonojetQCD:
+                    selection: "{Cutflow_MonojetQCD}"
+                    weights: "1."
+                SingleMuon:
+                    selection: "{Cutflow_SingleMuon}"
+                    weights: "1."
+                SingleMuonQCD:
+                    selection: "{Cutflow_SingleMuonQCD}"
+                    weights: "1."
+                DoubleMuon:
+                    selection: "{Cutflow_DoubleMuon}"
+                    weights: "1."
+                SingleElectron:
+                    selection: "{Cutflow_SingleElectron}"
+                    weights: "1."
+                SingleElectronQCD:
+                    selection: "{Cutflow_SingleElectronQCD}"
+                    weights: "1."
+                DoubleElectron:
+                    selection: "{Cutflow_DoubleElectron}"
+                    weights: "1."
+                SingleTau:
+                    selection: "{Cutflow_SingleTau}"
+                    weights: "1."
+            groupby:
+                "parent, CAST(LeadJetSelection_eta/0.1 as int)*0.1"
+        LeadJetSelection_phi:
+            columns:
+                - "'LeadJetSelection_phi' as varname, '{selection_name}' as selection, parent"
+                - "CAST(LeadJetSelection_phi/0.06283 as int)*0.06283 as binvar"
+                - "SUM({weight}) as sum_w"
+                - "SUM({weight}*{weight}) as sum_ww"
+            selection:
+                Monojet:
+                    selection: "{Cutflow_Monojet}"
+                    weights: "1."
+                MonojetQCD:
+                    selection: "{Cutflow_MonojetQCD}"
+                    weights: "1."
+                SingleMuon:
+                    selection: "{Cutflow_SingleMuon}"
+                    weights: "1."
+                SingleMuonQCD:
+                    selection: "{Cutflow_SingleMuonQCD}"
+                    weights: "1."
+                DoubleMuon:
+                    selection: "{Cutflow_DoubleMuon}"
+                    weights: "1."
+                SingleElectron:
+                    selection: "{Cutflow_SingleElectron}"
+                    weights: "1."
+                SingleElectronQCD:
+                    selection: "{Cutflow_SingleElectronQCD}"
+                    weights: "1."
+                DoubleElectron:
+                    selection: "{Cutflow_DoubleElectron}"
+                    weights: "1."
+                SingleTau:
+                    selection: "{Cutflow_SingleTau}"
+                    weights: "1."
+            groupby:
+                "parent, CAST(LeadJetSelection_phi/0.06283 as int)*0.06283"
+        LeadJetSelection_chHEF:
+            columns:
+                - "'LeadJetSelection_chHEF' as varname, '{selection_name}' as selection, parent"
+                - "CAST(LeadJetSelection_chHEF/0.01 as int)*0.01 as binvar"
+                - "SUM({weight}) as sum_w"
+                - "SUM({weight}*{weight}) as sum_ww"
+            selection:
+                Monojet:
+                    selection: "{Cutflow_Monojet}"
+                    weights: "1."
+                MonojetQCD:
+                    selection: "{Cutflow_MonojetQCD}"
+                    weights: "1."
+                SingleMuon:
+                    selection: "{Cutflow_SingleMuon}"
+                    weights: "1."
+                SingleMuonQCD:
+                    selection: "{Cutflow_SingleMuonQCD}"
+                    weights: "1."
+                DoubleMuon:
+                    selection: "{Cutflow_DoubleMuon}"
+                    weights: "1."
+                SingleElectron:
+                    selection: "{Cutflow_SingleElectron}"
+                    weights: "1."
+                SingleElectronQCD:
+                    selection: "{Cutflow_SingleElectronQCD}"
+                    weights: "1."
+                DoubleElectron:
+                    selection: "{Cutflow_DoubleElectron}"
+                    weights: "1."
+                SingleTau:
+                    selection: "{Cutflow_SingleTau}"
+                    weights: "1."
+            groupby:
+                "parent, CAST(LeadJetSelection_chHEF/0.01 as int)*0.01"
+        LeadJetFwdSelection_pt:
+            columns:
+                - "'LeadJetFwdSelection_pt' as varname, '{selection_name}' as selection, parent"
+                - "CAST(IFNULL(LeadJetFwdSelection_pt, -999) as int) as binvar"
+                - "SUM({weight}) as sum_w"
+                - "SUM({weight}*{weight}) as sum_ww"
+            selection:
+                Monojet:
+                    selection: "{Cutflow_Monojet}"
+                    weights: "1."
+                MonojetQCD:
+                    selection: "{Cutflow_MonojetQCD}"
+                    weights: "1."
+                SingleMuon:
+                    selection: "{Cutflow_SingleMuon}"
+                    weights: "1."
+                SingleMuonQCD:
+                    selection: "{Cutflow_SingleMuonQCD}"
+                    weights: "1."
+                DoubleMuon:
+                    selection: "{Cutflow_DoubleMuon}"
+                    weights: "1."
+                SingleElectron:
+                    selection: "{Cutflow_SingleElectron}"
+                    weights: "1."
+                SingleElectronQCD:
+                    selection: "{Cutflow_SingleElectronQCD}"
+                    weights: "1."
+                DoubleElectron:
+                    selection: "{Cutflow_DoubleElectron}"
+                    weights: "1."
+                SingleTau:
+                    selection: "{Cutflow_SingleTau}"
+                    weights: "1."
+            groupby:
+                "parent, CAST(IFNULL(LeadJetFwdSelection_pt, -999) as int)"
+        LeadJetFwdSelection_eta:
+            columns:
+                - "'LeadJetFwdSelection_eta' as varname, '{selection_name}' as selection, parent"
+                - "CAST(IFNULL(LeadJetFwdSelection_eta, -999)/0.1 as int)*0.1 as binvar"
+                - "SUM({weight}) as sum_w"
+                - "SUM({weight}*{weight}) as sum_ww"
+            selection:
+                Monojet:
+                    selection: "{Cutflow_Monojet}"
+                    weights: "1."
+                MonojetQCD:
+                    selection: "{Cutflow_MonojetQCD}"
+                    weights: "1."
+                SingleMuon:
+                    selection: "{Cutflow_SingleMuon}"
+                    weights: "1."
+                SingleMuonQCD:
+                    selection: "{Cutflow_SingleMuonQCD}"
+                    weights: "1."
+                DoubleMuon:
+                    selection: "{Cutflow_DoubleMuon}"
+                    weights: "1."
+                SingleElectron:
+                    selection: "{Cutflow_SingleElectron}"
+                    weights: "1."
+                SingleElectronQCD:
+                    selection: "{Cutflow_SingleElectronQCD}"
+                    weights: "1."
+                DoubleElectron:
+                    selection: "{Cutflow_DoubleElectron}"
+                    weights: "1."
+                SingleTau:
+                    selection: "{Cutflow_SingleTau}"
+                    weights: "1."
+            groupby:
+                "parent, CAST(IFNULL(LeadJetFwdSelection_eta, -999)/0.1 as int)*0.1"
+        LeadJetFwdSelection_phi:
+            columns:
+                - "'LeadJetFwdSelection_phi' as varname, '{selection_name}' as selection, parent"
+                - "CAST(IFNULL(LeadJetFwdSelection_phi, -999)/0.06283 as int)*0.06283 as binvar"
+                - "SUM({weight}) as sum_w"
+                - "SUM({weight}*{weight}) as sum_ww"
+            selection:
+                Monojet:
+                    selection: "{Cutflow_Monojet}"
+                    weights: "1."
+                MonojetQCD:
+                    selection: "{Cutflow_MonojetQCD}"
+                    weights: "1."
+                SingleMuon:
+                    selection: "{Cutflow_SingleMuon}"
+                    weights: "1."
+                SingleMuonQCD:
+                    selection: "{Cutflow_SingleMuonQCD}"
+                    weights: "1."
+                DoubleMuon:
+                    selection: "{Cutflow_DoubleMuon}"
+                    weights: "1."
+                SingleElectron:
+                    selection: "{Cutflow_SingleElectron}"
+                    weights: "1."
+                SingleElectronQCD:
+                    selection: "{Cutflow_SingleElectronQCD}"
+                    weights: "1."
+                DoubleElectron:
+                    selection: "{Cutflow_DoubleElectron}"
+                    weights: "1."
+                SingleTau:
+                    selection: "{Cutflow_SingleTau}"
+                    weights: "1."
+            groupby:
+                "parent, CAST(IFNULL(LeadJetFwdSelection_phi, -999)/0.06283 as int)*0.06283"
+        SecondJetSelection_pt:
+            columns:
+                - "'SecondJetSelection_pt' as varname, '{selection_name}' as selection, parent"
+                - "CAST(IFNULL(SecondJetSelection_pt, -999)/5. as int)*5 as binvar"
+                - "SUM({weight}) as sum_w"
+                - "SUM({weight}*{weight}) as sum_ww"
+            selection:
+                Monojet:
+                    selection: "{Cutflow_Monojet}"
+                    weights: "1."
+                MonojetQCD:
+                    selection: "{Cutflow_MonojetQCD}"
+                    weights: "1."
+                SingleMuon:
+                    selection: "{Cutflow_SingleMuon}"
+                    weights: "1."
+                SingleMuonQCD:
+                    selection: "{Cutflow_SingleMuonQCD}"
+                    weights: "1."
+                DoubleMuon:
+                    selection: "{Cutflow_DoubleMuon}"
+                    weights: "1."
+                SingleElectron:
+                    selection: "{Cutflow_SingleElectron}"
+                    weights: "1."
+                SingleElectronQCD:
+                    selection: "{Cutflow_SingleElectronQCD}"
+                    weights: "1."
+                DoubleElectron:
+                    selection: "{Cutflow_DoubleElectron}"
+                    weights: "1."
+                SingleTau:
+                    selection: "{Cutflow_SingleTau}"
+                    weights: "1."
+            groupby:
+                "parent, CAST(IFNULL(SecondJetSelection_pt, -999)/5. as int)*5"
+        SecondJetSelection_eta:
+            columns:
+                - "'SecondJetSelection_eta' as varname, '{selection_name}' as selection, parent"
+                - "CAST(IFNULL(SecondJetSelection_eta, -999)/0.1 as int)*0.1 as binvar"
+                - "SUM({weight}) as sum_w"
+                - "SUM({weight}*{weight}) as sum_ww"
+            selection:
+                Monojet:
+                    selection: "{Cutflow_Monojet}"
+                    weights: "1."
+                MonojetQCD:
+                    selection: "{Cutflow_MonojetQCD}"
+                    weights: "1."
+                SingleMuon:
+                    selection: "{Cutflow_SingleMuon}"
+                    weights: "1."
+                SingleMuonQCD:
+                    selection: "{Cutflow_SingleMuonQCD}"
+                    weights: "1."
+                DoubleMuon:
+                    selection: "{Cutflow_DoubleMuon}"
+                    weights: "1."
+                SingleElectron:
+                    selection: "{Cutflow_SingleElectron}"
+                    weights: "1."
+                SingleElectronQCD:
+                    selection: "{Cutflow_SingleElectronQCD}"
+                    weights: "1."
+                DoubleElectron:
+                    selection: "{Cutflow_DoubleElectron}"
+                    weights: "1."
+                SingleTau:
+                    selection: "{Cutflow_SingleTau}"
+                    weights: "1."
+            groupby:
+                "parent, CAST(IFNULL(SecondJetSelection_eta, -999)/0.1 as int)*0.1"
+        SecondJetSelection_phi:
+            columns:
+                - "'SecondJetSelection_phi' as varname, '{selection_name}' as selection, parent"
+                - "CAST(IFNULL(SecondJetSelection_phi, -999)/0.06283 as int)*0.06283 as binvar"
+                - "SUM({weight}) as sum_w"
+                - "SUM({weight}*{weight}) as sum_ww"
+            selection:
+                Monojet:
+                    selection: "{Cutflow_Monojet}"
+                    weights: "1."
+                MonojetQCD:
+                    selection: "{Cutflow_MonojetQCD}"
+                    weights: "1."
+                SingleMuon:
+                    selection: "{Cutflow_SingleMuon}"
+                    weights: "1."
+                SingleMuonQCD:
+                    selection: "{Cutflow_SingleMuonQCD}"
+                    weights: "1."
+                DoubleMuon:
+                    selection: "{Cutflow_DoubleMuon}"
+                    weights: "1."
+                SingleElectron:
+                    selection: "{Cutflow_SingleElectron}"
+                    weights: "1."
+                SingleElectronQCD:
+                    selection: "{Cutflow_SingleElectronQCD}"
+                    weights: "1."
+                DoubleElectron:
+                    selection: "{Cutflow_DoubleElectron}"
+                    weights: "1."
+                SingleTau:
+                    selection: "{Cutflow_SingleTau}"
+                    weights: "1."
+            groupby:
+                "parent, CAST(IFNULL(SecondJetSelection_phi, -999)/0.06283 as int)*0.06283"
+        nMuonVeto:
+            columns:
+                - "'nMuonVeto' as varname, '{selection_name}' as selection, parent"
+                - "CAST(nMuonVeto+0.5 as int) as binvar"
+                - "SUM({weight}) as sum_w"
+                - "SUM({weight}*{weight}) as sum_ww"
+            selection:
+                Monojet:
+                    selection: "{Cutflow_Monojet}"
+                    weights: "1."
+                MonojetQCD:
+                    selection: "{Cutflow_MonojetQCD}"
+                    weights: "1."
+                SingleMuon:
+                    selection: "{Cutflow_SingleMuon}"
+                    weights: "1."
+                SingleMuonQCD:
+                    selection: "{Cutflow_SingleMuonQCD}"
+                    weights: "1."
+                DoubleMuon:
+                    selection: "{Cutflow_DoubleMuon}"
+                    weights: "1."
+                SingleElectron:
+                    selection: "{Cutflow_SingleElectron}"
+                    weights: "1."
+                SingleElectronQCD:
+                    selection: "{Cutflow_SingleElectronQCD}"
+                    weights: "1."
+                DoubleElectron:
+                    selection: "{Cutflow_DoubleElectron}"
+                    weights: "1."
+                SingleTau:
+                    selection: "{Cutflow_SingleTau}"
+                    weights: "1."
+            groupby:
+                "parent, CAST(nMuonVeto+0.5 as int)"
+        nMuonSelection:
+            columns:
+                - "'nMuonSelection' as varname, '{selection_name}' as selection, parent"
+                - "CAST(nMuonSelection+0.5 as int) as binvar"
+                - "SUM({weight}) as sum_w"
+                - "SUM({weight}*{weight}) as sum_ww"
+            selection:
+                Monojet:
+                    selection: "{Cutflow_Monojet}"
+                    weights: "1."
+                MonojetQCD:
+                    selection: "{Cutflow_MonojetQCD}"
+                    weights: "1."
+                SingleMuon:
+                    selection: "{Cutflow_SingleMuon}"
+                    weights: "1."
+                SingleMuonQCD:
+                    selection: "{Cutflow_SingleMuonQCD}"
+                    weights: "1."
+                DoubleMuon:
+                    selection: "{Cutflow_DoubleMuon}"
+                    weights: "1."
+                SingleElectron:
+                    selection: "{Cutflow_SingleElectron}"
+                    weights: "1."
+                SingleElectronQCD:
+                    selection: "{Cutflow_SingleElectronQCD}"
+                    weights: "1."
+                DoubleElectron:
+                    selection: "{Cutflow_DoubleElectron}"
+                    weights: "1."
+                SingleTau:
+                    selection: "{Cutflow_SingleTau}"
+                    weights: "1."
+            groupby:
+                "parent, CAST(nMuonSelection+0.5 as int)"
+        LeadMuonSelection_pt:
+            columns:
+                - "'LeadMuonSelection_pt' as varname, '{selection_name}' as selection, parent"
+                - "CAST(LeadMuonSelection_pt/5. as int)*5 as binvar"
+                - "SUM({weight}) as sum_w"
+                - "SUM({weight}*{weight}) as sum_ww"
+            selection:
+                SingleMuon:
+                    selection: "{Cutflow_SingleMuon}"
+                    weights: "1."
+                SingleMuonQCD:
+                    selection: "{Cutflow_SingleMuonQCD}"
+                    weights: "1."
+                DoubleMuon:
+                    selection: "{Cutflow_DoubleMuon}"
+                    weights: "1."
+            groupby:
+                "parent, CAST(LeadMuonSelection_pt/5. as int)*5"
+        LeadMuonSelection_eta:
+            columns:
+                - "'LeadMuonSelection_eta' as varname, '{selection_name}' as selection, parent"
+                - "CAST(LeadMuonSelection_eta/0.1 as int)*0.1 as binvar"
+                - "SUM({weight}) as sum_w"
+                - "SUM({weight}*{weight}) as sum_ww"
+            selection:
+                SingleMuon:
+                    selection: "{Cutflow_SingleMuon}"
+                    weights: "1."
+                SingleMuonQCD:
+                    selection: "{Cutflow_SingleMuonQCD}"
+                    weights: "1."
+                DoubleMuon:
+                    selection: "{Cutflow_DoubleMuon}"
+                    weights: "1."
+            groupby:
+                "parent, CAST(LeadMuonSelection_eta/0.1 as int)*0.1"
+        LeadMuonSelection_phi:
+            columns:
+                - "'LeadMuonSelection_phi' as varname, '{selection_name}' as selection, parent"
+                - "CAST(LeadMuonSelection_phi/0.06283 as int)*0.06283 as binvar"
+                - "SUM({weight}) as sum_w"
+                - "SUM({weight}*{weight}) as sum_ww"
+            selection:
+                SingleMuon:
+                    selection: "{Cutflow_SingleMuon}"
+                    weights: "1."
+                SingleMuonQCD:
+                    selection: "{Cutflow_SingleMuonQCD}"
+                    weights: "1."
+                DoubleMuon:
+                    selection: "{Cutflow_DoubleMuon}"
+                    weights: "1."
+            groupby:
+                "parent, CAST(LeadMuonSelection_phi/0.06283 as int)*0.06283"
+        SecondMuonSelection_pt:
+            columns:
+                - "'SecondMuonSelection_pt' as varname, '{selection_name}' as selection, parent"
+                - "CAST(SecondMuonSelection_pt/5. as int)*5 as binvar"
+                - "SUM({weight}) as sum_w"
+                - "SUM({weight}*{weight}) as sum_ww"
+            selection:
+                DoubleMuon:
+                    selection: "{Cutflow_DoubleMuon}"
+                    weights: "1."
+            groupby:
+                "parent, CAST(SecondMuonSelection_pt/5. as int)*5"
+        SecondMuonSelection_eta:
+            columns:
+                - "'SecondMuonSelection_eta' as varname, '{selection_name}' as selection, parent"
+                - "CAST(SecondMuonSelection_eta/0.1 as int)*0.1 as binvar"
+                - "SUM({weight}) as sum_w"
+                - "SUM({weight}*{weight}) as sum_ww"
+            selection:
+                DoubleMuon:
+                    selection: "{Cutflow_DoubleMuon}"
+                    weights: "1."
+            groupby:
+                "parent, CAST(SecondMuonSelection_eta/0.1 as int)*0.1"
+        SecondMuonSelection_phi:
+            columns:
+                - "'SecondMuonSelection_phi' as varname, '{selection_name}' as selection, parent"
+                - "CAST(SecondMuonSelection_phi/0.06283 as int)*0.06283 as binvar"
+                - "SUM({weight}) as sum_w"
+                - "SUM({weight}*{weight}) as sum_ww"
+            selection:
+                DoubleMuon:
+                    selection: "{Cutflow_DoubleMuon}"
+                    weights: "1."
+            groupby:
+                "parent, CAST(SecondMuonSelection_phi/0.06283 as int)*0.06283"
+        nElectronSelection:
+            columns:
+                - "'nElectronSelection' as varname, '{selection_name}' as selection, parent"
+                - "CAST(nElectronSelection+0.5 as int) as binvar"
+                - "SUM({weight}) as sum_w"
+                - "SUM({weight}*{weight}) as sum_ww"
+            selection:
+                Monojet:
+                    selection: "{Cutflow_Monojet}"
+                    weights: "1."
+                MonojetQCD:
+                    selection: "{Cutflow_MonojetQCD}"
+                    weights: "1."
+                SingleMuon:
+                    selection: "{Cutflow_SingleMuon}"
+                    weights: "1."
+                SingleMuonQCD:
+                    selection: "{Cutflow_SingleMuonQCD}"
+                    weights: "1."
+                DoubleMuon:
+                    selection: "{Cutflow_DoubleMuon}"
+                    weights: "1."
+                SingleElectron:
+                    selection: "{Cutflow_SingleElectron}"
+                    weights: "1."
+                SingleElectronQCD:
+                    selection: "{Cutflow_SingleElectronQCD}"
+                    weights: "1."
+                DoubleElectron:
+                    selection: "{Cutflow_DoubleElectron}"
+                    weights: "1."
+                SingleTau:
+                    selection: "{Cutflow_SingleTau}"
+                    weights: "1."
+            groupby:
+                "parent, CAST(nElectronSelection+0.5 as int)"
+        nElectronSelection:
+            columns:
+                - "'nElectronSelection' as varname, '{selection_name}' as selection, parent"
+                - "CAST(nElectronSelection+0.5 as int) as binvar"
+                - "SUM({weight}) as sum_w"
+                - "SUM({weight}*{weight}) as sum_ww"
+            selection:
+                Monojet:
+                    selection: "{Cutflow_Monojet}"
+                    weights: "1."
+                MonojetQCD:
+                    selection: "{Cutflow_MonojetQCD}"
+                    weights: "1."
+                SingleMuon:
+                    selection: "{Cutflow_SingleMuon}"
+                    weights: "1."
+                SingleMuonQCD:
+                    selection: "{Cutflow_SingleMuonQCD}"
+                    weights: "1."
+                DoubleMuon:
+                    selection: "{Cutflow_DoubleMuon}"
+                    weights: "1."
+                SingleElectron:
+                    selection: "{Cutflow_SingleElectron}"
+                    weights: "1."
+                SingleElectronQCD:
+                    selection: "{Cutflow_SingleElectronQCD}"
+                    weights: "1."
+                DoubleElectron:
+                    selection: "{Cutflow_DoubleElectron}"
+                    weights: "1."
+                SingleTau:
+                    selection: "{Cutflow_SingleTau}"
+                    weights: "1."
+            groupby:
+                "parent, CAST(nElectronSelection+0.5 as int)"
+        LeadElectronSelection_pt:
+            columns:
+                - "'LeadElectronSelection_pt' as varname, '{selection_name}' as selection, parent"
+                - "CAST(LeadElectronSelection_pt/5. as int)*5 as binvar"
+                - "SUM({weight}) as sum_w"
+                - "SUM({weight}*{weight}) as sum_ww"
+            selection:
+                SingleElectron:
+                    selection: "{Cutflow_SingleElectron}"
+                    weights: "1."
+                SingleElectronQCD:
+                    selection: "{Cutflow_SingleElectronQCD}"
+                    weights: "1."
+                DoubleElectron:
+                    selection: "{Cutflow_DoubleElectron}"
+                    weights: "1."
+            groupby:
+                "parent, CAST(LeadElectronSelection_pt/5. as int)*5"
+        LeadElectronSelection_eta:
+            columns:
+                - "'LeadElectronSelection_eta' as varname, '{selection_name}' as selection, parent"
+                - "CAST(LeadElectronSelection_eta/0.1 as int)*0.1 as binvar"
+                - "SUM({weight}) as sum_w"
+                - "SUM({weight}*{weight}) as sum_ww"
+            selection:
+                SingleElectron:
+                    selection: "{Cutflow_SingleElectron}"
+                    weights: "1."
+                SingleElectronQCD:
+                    selection: "{Cutflow_SingleElectronQCD}"
+                    weights: "1."
+                DoubleElectron:
+                    selection: "{Cutflow_DoubleElectron}"
+                    weights: "1."
+            groupby:
+                "parent, CAST(LeadElectronSelection_eta/0.1 as int)*0.1"
+        LeadElectronSelection_phi:
+            columns:
+                - "'LeadElectronSelection_phi' as varname, '{selection_name}' as selection, parent"
+                - "CAST(LeadElectronSelection_phi/0.06283 as int)*0.06283 as binvar"
+                - "SUM({weight}) as sum_w"
+                - "SUM({weight}*{weight}) as sum_ww"
+            selection:
+                SingleElectron:
+                    selection: "{Cutflow_SingleElectron}"
+                    weights: "1."
+                SingleElectronQCD:
+                    selection: "{Cutflow_SingleElectronQCD}"
+                    weights: "1."
+                DoubleElectron:
+                    selection: "{Cutflow_DoubleElectron}"
+                    weights: "1."
+            groupby:
+                "parent, CAST(LeadElectronSelection_phi/0.06283 as int)*0.06283"
+        SecondElectronSelection_pt:
+            columns:
+                - "'SecondElectronSelection_pt' as varname, '{selection_name}' as selection, parent"
+                - "CAST(SecondElectronSelection_pt/5. as int)*5 as binvar"
+                - "SUM({weight}) as sum_w"
+                - "SUM({weight}*{weight}) as sum_ww"
+            selection:
+                DoubleElectron:
+                    selection: "{Cutflow_DoubleElectron}"
+                    weights: "1."
+            groupby:
+                "parent, CAST(SecondElectronSelection_pt/5. as int)*5"
+        SecondElectronSelection_eta:
+            columns:
+                - "'SecondElectronSelection_eta' as varname, '{selection_name}' as selection, parent"
+                - "CAST(SecondElectronSelection_eta/0.1 as int)*0.1 as binvar"
+                - "SUM({weight}) as sum_w"
+                - "SUM({weight}*{weight}) as sum_ww"
+            selection:
+                DoubleElectron:
+                    selection: "{Cutflow_DoubleElectron}"
+                    weights: "1."
+            groupby:
+                "parent, CAST(SecondElectronSelection_eta/0.1 as int)*0.1"
+        SecondElectronSelection_phi:
+            columns:
+                - "'SecondElectronSelection_phi' as varname, '{selection_name}' as selection, parent"
+                - "CAST(SecondElectronSelection_phi/0.06283 as int)*0.06283 as binvar"
+                - "SUM({weight}) as sum_w"
+                - "SUM({weight}*{weight}) as sum_ww"
+            selection:
+                DoubleElectron:
+                    selection: "{Cutflow_DoubleElectron}"
+                    weights: "1."
+            groupby:
+                "parent, CAST(SecondElectronSelection_phi/0.06283 as int)*0.06283"
+        nTauVeto:
+            columns:
+                - "'nTauVeto' as varname, '{selection_name}' as selection, parent"
+                - "CAST(nTauVeto+0.5 as int) as binvar"
+                - "SUM({weight}) as sum_w"
+                - "SUM({weight}*{weight}) as sum_ww"
+            selection:
+                Monojet:
+                    selection: "{Cutflow_Monojet}"
+                    weights: "1."
+                MonojetQCD:
+                    selection: "{Cutflow_MonojetQCD}"
+                    weights: "1."
+                SingleMuon:
+                    selection: "{Cutflow_SingleMuon}"
+                    weights: "1."
+                SingleMuonQCD:
+                    selection: "{Cutflow_SingleMuonQCD}"
+                    weights: "1."
+                DoubleMuon:
+                    selection: "{Cutflow_DoubleMuon}"
+                    weights: "1."
+                SingleElectron:
+                    selection: "{Cutflow_SingleElectron}"
+                    weights: "1."
+                SingleElectronQCD:
+                    selection: "{Cutflow_SingleElectronQCD}"
+                    weights: "1."
+                DoubleElectron:
+                    selection: "{Cutflow_DoubleElectron}"
+                    weights: "1."
+                SingleTau:
+                    selection: "{Cutflow_SingleTau}"
+                    weights: "1."
+            groupby:
+                "parent, CAST(nTauVeto+0.5 as int)"
+        nTauSelection:
+            columns:
+                - "'nTauSelection' as varname, '{selection_name}' as selection, parent"
+                - "CAST(nTauSelection+0.5 as int) as binvar"
+                - "SUM({weight}) as sum_w"
+                - "SUM({weight}*{weight}) as sum_ww"
+            selection:
+                Monojet:
+                    selection: "{Cutflow_Monojet}"
+                    weights: "1."
+                MonojetQCD:
+                    selection: "{Cutflow_MonojetQCD}"
+                    weights: "1."
+                SingleMuon:
+                    selection: "{Cutflow_SingleMuon}"
+                    weights: "1."
+                SingleMuonQCD:
+                    selection: "{Cutflow_SingleMuonQCD}"
+                    weights: "1."
+                DoubleMuon:
+                    selection: "{Cutflow_DoubleMuon}"
+                    weights: "1."
+                SingleElectron:
+                    selection: "{Cutflow_SingleElectron}"
+                    weights: "1."
+                SingleElectronQCD:
+                    selection: "{Cutflow_SingleElectronQCD}"
+                    weights: "1."
+                DoubleElectron:
+                    selection: "{Cutflow_DoubleElectron}"
+                    weights: "1."
+                SingleTau:
+                    selection: "{Cutflow_SingleTau}"
+                    weights: "1."
+            groupby:
+                "parent, CAST(nTauSelection+0.5 as int)"
+        LeadTauSelection_pt:
+            columns:
+                - "'LeadTauSelection_pt' as varname, '{selection_name}' as selection, parent"
+                - "CAST(LeadTauSelection_pt/5. as int)*5 as binvar"
+                - "SUM({weight}) as sum_w"
+                - "SUM({weight}*{weight}) as sum_ww"
+            selection:
+                SingleTau:
+                    selection: "{Cutflow_SingleTau}"
+                    weights: "1."
+            groupby:
+                "parent, CAST(LeadTauSelection_pt/5. as int)*5"
+        LeadTauSelection_eta:
+            columns:
+                - "'LeadTauSelection_eta' as varname, '{selection_name}' as selection, parent"
+                - "CAST(LeadTauSelection_eta/0.1 as int)*0.1 as binvar"
+                - "SUM({weight}) as sum_w"
+                - "SUM({weight}*{weight}) as sum_ww"
+            selection:
+                SingleTau:
+                    selection: "{Cutflow_SingleTau}"
+                    weights: "1."
+            groupby:
+                "parent, CAST(LeadTauSelection_eta/0.1 as int)*0.1"
+        LeadTauSelection_phi:
+            columns:
+                - "'LeadTauSelection_phi' as varname, '{selection_name}' as selection, parent"
+                - "CAST(LeadTauSelection_phi/0.06283 as int)*0.06283 as binvar"
+                - "SUM({weight}) as sum_w"
+                - "SUM({weight}*{weight}) as sum_ww"
+            selection:
+                SingleTau:
+                    selection: "{Cutflow_SingleTau}"
+                    weights: "1."
+            groupby:
+                "parent, CAST(LeadTauSelection_phi/0.06283 as int)*0.06283"
+        nPhotonVeto:
+            columns:
+                - "'nPhotonVeto' as varname, '{selection_name}' as selection, parent"
+                - "CAST(nPhotonVeto+0.5 as int) as binvar"
+                - "SUM({weight}) as sum_w"
+                - "SUM({weight}*{weight}) as sum_ww"
+            selection:
+                Monojet:
+                    selection: "{Cutflow_Monojet}"
+                    weights: "1."
+                MonojetQCD:
+                    selection: "{Cutflow_MonojetQCD}"
+                    weights: "1."
+                SingleMuon:
+                    selection: "{Cutflow_SingleMuon}"
+                    weights: "1."
+                SingleMuonQCD:
+                    selection: "{Cutflow_SingleMuonQCD}"
+                    weights: "1."
+                DoubleMuon:
+                    selection: "{Cutflow_DoubleMuon}"
+                    weights: "1."
+                SingleElectron:
+                    selection: "{Cutflow_SingleElectron}"
+                    weights: "1."
+                SingleElectronQCD:
+                    selection: "{Cutflow_SingleElectronQCD}"
+                    weights: "1."
+                DoubleElectron:
+                    selection: "{Cutflow_DoubleElectron}"
+                    weights: "1."
+                SingleTau:
+                    selection: "{Cutflow_SingleTau}"
+                    weights: "1."
+            groupby:
+                "parent, CAST(nPhotonVeto+0.5 as int)"
+        nPhotonSelection:
+            columns:
+                - "'nPhotonSelection' as varname, '{selection_name}' as selection, parent"
+                - "CAST(nPhotonSelection+0.5 as int) as binvar"
+                - "SUM({weight}) as sum_w"
+                - "SUM({weight}*{weight}) as sum_ww"
+            selection:
+                Monojet:
+                    selection: "{Cutflow_Monojet}"
+                    weights: "1."
+                MonojetQCD:
+                    selection: "{Cutflow_MonojetQCD}"
+                    weights: "1."
+                SingleMuon:
+                    selection: "{Cutflow_SingleMuon}"
+                    weights: "1."
+                SingleMuonQCD:
+                    selection: "{Cutflow_SingleMuonQCD}"
+                    weights: "1."
+                DoubleMuon:
+                    selection: "{Cutflow_DoubleMuon}"
+                    weights: "1."
+                SingleElectron:
+                    selection: "{Cutflow_SingleElectron}"
+                    weights: "1."
+                SingleElectronQCD:
+                    selection: "{Cutflow_SingleElectronQCD}"
+                    weights: "1."
+                DoubleElectron:
+                    selection: "{Cutflow_DoubleElectron}"
+                    weights: "1."
+                SingleTau:
+                    selection: "{Cutflow_SingleTau}"
+                    weights: "1."
+            groupby:
+                "parent, CAST(nPhotonSelection+0.5 as int)"
+        nBJetVeto:
+            columns:
+                - "'nBJetVeto' as varname, '{selection_name}' as selection, parent"
+                - "CAST(nBJetVeto+0.5 as int) as binvar"
+                - "SUM({weight}) as sum_w"
+                - "SUM({weight}*{weight}) as sum_ww"
+            selection:
+                Monojet:
+                    selection: "{Cutflow_Monojet}"
+                    weights: "1."
+                MonojetQCD:
+                    selection: "{Cutflow_MonojetQCD}"
+                    weights: "1."
+                SingleMuon:
+                    selection: "{Cutflow_SingleMuon}"
+                    weights: "1."
+                SingleMuonQCD:
+                    selection: "{Cutflow_SingleMuonQCD}"
+                    weights: "1."
+                DoubleMuon:
+                    selection: "{Cutflow_DoubleMuon}"
+                    weights: "1."
+                SingleElectron:
+                    selection: "{Cutflow_SingleElectron}"
+                    weights: "1."
+                SingleElectronQCD:
+                    selection: "{Cutflow_SingleElectronQCD}"
+                    weights: "1."
+                DoubleElectron:
+                    selection: "{Cutflow_DoubleElectron}"
+                    weights: "1."
+                SingleTau:
+                    selection: "{Cutflow_SingleTau}"
+                    weights: "1."
+            groupby:
+                "parent, CAST(nBJetVeto+0.5 as int)"
+        PV_npvsGood:
+            columns:
+                - "'PV_npvsGood' as varname, '{selection_name}' as selection, parent"
+                - "CAST(PV_npvsGood+0.5 as int) as binvar"
+                - "SUM({weight}) as sum_w"
+                - "SUM({weight}*{weight}) as sum_ww"
+            selection:
+                Monojet:
+                    selection: "{Cutflow_Monojet}"
+                    weights: "1."
+                MonojetQCD:
+                    selection: "{Cutflow_MonojetQCD}"
+                    weights: "1."
+                SingleMuon:
+                    selection: "{Cutflow_SingleMuon}"
+                    weights: "1."
+                SingleMuonQCD:
+                    selection: "{Cutflow_SingleMuonQCD}"
+                    weights: "1."
+                DoubleMuon:
+                    selection: "{Cutflow_DoubleMuon}"
+                    weights: "1."
+                SingleElectron:
+                    selection: "{Cutflow_SingleElectron}"
+                    weights: "1."
+                SingleElectronQCD:
+                    selection: "{Cutflow_SingleElectronQCD}"
+                    weights: "1."
+                DoubleElectron:
+                    selection: "{Cutflow_DoubleElectron}"
+                    weights: "1."
+                SingleTau:
+                    selection: "{Cutflow_SingleTau}"
+                    weights: "1."
+            groupby:
+                "parent, CAST(PV_npvsGood+0.5 as int)"
 database:
     - "/vols/cms/sdb15/Analysis/ZinvWidth/databases/201904_Apr/21_FinalDatabases/Data/result_00000.db"
     - "/vols/cms/sdb15/Analysis/ZinvWidth/databases/201904_Apr/21_FinalDatabases/Data/result_00001.db"
