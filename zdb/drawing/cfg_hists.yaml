@@ -1,11 +1,293 @@
 METnoX_pt:
-    binning: [0., 1501., 20.]
+    binning: [0., 1501., 50.]
     outpath: "metnox_pt.pdf"
     label: "$p_{\\mathrm{T}}^{\\mathrm{miss}}$ (GeV)"
 METnoX_phi:
-    binning: [-3.2, 3.201, 0.1]
+    binning: [-3.20433, 3.20431, 0.12566]
     outpath: "metnox_phi.pdf"
     label: "$p_{\\mathrm{T}}^{\\mathrm{miss}}\\ \\phi$"
+MET_pt:
+    binning: [0., 1501., 50.]
+    outpath: "met_pt.pdf"
+    label: "$p_{\\mathrm{T,PF}}^{\\mathrm{miss}}$ (GeV)"
+MET_phi:
+    binning: [-3.20433, 3.20431, 0.12566]
+    outpath: "met_phi.pdf"
+    label: "$p_{\\mathrm{T,PF}}^{\\mathrm{miss}}\\ \\phi$"
+MET_dpt:
+    binning: [0., 1.001, 0.05]
+    outpath: "met_dpt.pdf"
+    label: "$p_{\\mathrm{T,PF}}^{\\mathrm{miss}}\\ \\delta p_{\\mathrm{T}}$"
+    blind: True
+MET_dphi:
+    binning: [0., 1.001, 0.05]
+    outpath: "met_dphi.pdf"
+    label: "$p_{\\mathrm{T},\\mathrm{PF}}^{\\mathrm{miss}}\\ \\delta\\phi$"
+    blind: True
+CaloMET_pt:
+    binning: [0., 1500.1, 50.]
+    outpath: "calomet_pt.pdf"
+    label: "$p_{\\mathrm{T,Calo.}}^{\\mathrm{miss}}$ (GeV)"
+CaloMET_phi:
+    binning: [-3.20433, 3.20431, 0.12566]
+    outpath: "calomet_phi.pdf"
+    label: "$p_{\\mathrm{T,Calo.}}^{\\mathrm{miss}} \\phi$"
+MET_dCaloMET:
+    binning: [0., 1.001, 0.02]
+    outpath: "met_dcalomet.pdf"
+    label: "$|p_{\\mathrm{T,PF}}^{\\mathrm{miss}} - p_{\\mathrm{T,calo}}^{\\mathrm{miss}}| / p_{\\mathrm{T}}^{\\mathrm{miss}}$ (GeV)"
+MinDPhiJ1234METnoX:
+    binning: [0., 3.16, 0.05]
+    outpath: "mindphij1234metnox.pdf"
+    label: "$\\mathrm{min}\\Delta\\phi(j_{0,1,2,3}, p_{\\mathrm{T}}^{\\mathrm{miss}})$"
+MTW:
+    binning: [0., 200.1, 4.]
+    outpath: "mtw.pdf"
+    label: "$m_{\\mathrm{T}}(\\ell, p_{\\mathrm{T}}^{\\mathrm{miss}})$ (GeV)"
+MLL:
+    binning: [66., 116.1, 1.]
+    outpath: "mll.pdf"
+    label: "$m_{\\ell,\\ell}$ (GeV)"
+nJetVeto:
+    binning: [0., 10.1, 1.]
+    outpath: "njetveto.pdf"
+    label: "Jet veto multiplicity"
+nJetSelection:
+    binning: [0., 10.1, 1.]
+    outpath: "njetselection.pdf"
+    label: "Jet selection multiplicity"
+LeadJetSelection_pt:
+    binning: [0., 1000.1, 50.]
+    outpath: "leadjetselection_pt.pdf"
+    label: "$p_{\\mathrm{T}}(j_0)$ (GeV)"
+LeadJetSelection_eta:
+    binning: [-3., 3.01, 0.2]
+    outpath: "leadjetselection_eta.pdf"
+    label: "$\\eta(j_0)$"
+LeadJetSelection_phi:
+    binning: [-3.20433, 3.20431, 0.12566]
+    outpath: "leadjetselection_phi.pdf"
+    label: "$\\phi(j_0)$"
+LeadJetSelection_chHEF:
+    binning: [0., 1., 0.04]
+    outpath: "leadjetselection_chhef.pdf"
+    label: "$\\mathrm{Ch.\\ Had.\\ EF}(j_0)$"
+LeadJetFwdSelection_pt:
+    binning: [0., 100.1, 2.]
+    outpath: "leadjetfwdselection_pt.pdf"
+    label: "$p_{\\mathrm{T}}(j_0^{\\mathrm{fwd}})$ (GeV)"
+LeadJetFwdSelection_eta:
+    binning: [-6., 6.01, 0.2]
+    outpath: "leadjetfwdselection_eta.pdf"
+    label: "$\\eta(j_0^{\\mathrm{fwd}})$"
+LeadJetFwdSelection_phi:
+    binning: [-3.20433, 3.20431, 0.12566]
+    outpath: "leadjetfwdselection_phi.pdf"
+    label: "$\\phi(j_0^{\\mathrm{fwd}})$"
+SecondJetSelection_pt:
+    binning: [0., 1000.1, 20.]
+    outpath: "secondjetselection_pt.pdf"
+    label: "$p_{\\mathrm{T}}(j_1)$ (GeV)"
+SecondJetSelection_eta:
+    binning: [-5., 5.01, 0.2]
+    outpath: "secondjetselection_eta.pdf"
+    label: "$\\eta(j_1)$"
+SecondJetSelection_phi:
+    binning: [-3.20433, 3.20431, 0.12566]
+    outpath: "secondjetselection_phi.pdf"
+    label: "$\\phi(j_1)$"
+nMuonVeto:
+    binning: [0., 10.1, 1.]
+    outpath: "nmuonveto.pdf"
+    label: "Muon veto multiplicity"
+nMuonSelection:
+    binning: [0., 10.1, 1.]
+    outpath: "nmuonselection.pdf"
+    label: "Muon selection multiplicity"
+LeadMuonSelection_pt:
+    binning: [0., 1000.1, 20.]
+    outpath: "leadmuonselection_pt.pdf"
+    label: "$p_{\\mathrm{T}}(\\mu_0)$ (GeV)"
+LeadMuonSelection_eta:
+    binning: [-3., 3.01, 0.2]
+    outpath: "leadmuonselection_eta.pdf"
+    label: "$\\eta(\\mu_0)$"
+LeadMuonSelection_phi:
+    binning: [-3.20433, 3.20431, 0.12566]
+    outpath: "leadmuonselection_phi.pdf"
+    label: "$\\phi(\\mu_0)$"
+SecondMuonSelection_pt:
+    binning: [0., 1000.1, 20.]
+    outpath: "secondmuonselection_pt.pdf"
+    label: "$p_{\\mathrm{T}}(\\mu_1)$ (GeV)"
+SecondMuonSelection_eta:
+    binning: [-5., 5.01, 0.2]
+    outpath: "secondmuonselection_eta.pdf"
+    label: "$\\eta(\\mu_1)$"
+SecondMuonSelection_phi:
+    binning: [-3.20433, 3.20431, 0.12566]
+    outpath: "secondmuonselection_phi.pdf"
+    label: "$\\phi(\\mu_1)$"
+nElectronVeto:
+    binning: [0., 10.1, 1.]
+    outpath: "nelectronveto.pdf"
+    label: "Electron veto multiplicity"
+nElectronSelection:
+    binning: [0., 10.1, 1.]
+    outpath: "nelectronselection.pdf"
+    label: "Electron selection multiplicity"
+LeadElectronSelection_pt:
+    binning: [0., 1000.1, 20.]
+    outpath: "leadelectronselection_pt.pdf"
+    label: "$p_{\\mathrm{T}}(e_0)$ (GeV)"
+LeadElectronSelection_eta:
+    binning: [-5., 5.01, 0.2]
+    outpath: "leadelectronselection_eta.pdf"
+    label: "$\\eta(e_0)$"
+LeadElectronSelection_phi:
+    binning: [-3.20433, 3.20431, 0.12566]
+    outpath: "leadelectronselection_phi.pdf"
+    label: "$\\phi(e_0)$"
+SecondElectronSelection_pt:
+    binning: [0., 1000.1, 20.]
+    outpath: "secondelectronselection_pt.pdf"
+    label: "$p_{\\mathrm{T}}(e_1)$ (GeV)"
+SecondElectronSelection_eta:
+    binning: [-5., 5.01, 0.2]
+    outpath: "secondelectronselection_eta.pdf"
+    label: "$\\eta(e_1)$"
+SecondElectronSelection_phi:
+    binning: [-3.20433, 3.20431, 0.12566]
+    outpath: "secondelectronselection_phi.pdf"
+    label: "$\\phi(e_1)$"
+nTauVeto:
+    binning: [0., 10.1, 1.]
+    outpath: "ntauveto.pdf"
+    label: "Tau veto multiplicity"
+nTauSelection:
+    binning: [0., 10.1, 1.]
+    outpath: "ntauselection.pdf"
+    label: "Tau selection multiplicity"
+LeadTauSelection_pt:
+    binning: [0., 1000.1, 20.]
+    outpath: "leadtauselection_pt.pdf"
+    label: "$p_{\\mathrm{T}}(\\tau_0)$ (GeV)"
+LeadTauSelection_eta:
+    binning: [-5., 5.01, 0.2]
+    outpath: "leadtauselection_eta.pdf"
+    label: "$\\eta(\\tau_0)$"
+LeadTauSelection_phi:
+    binning: [-3.20433, 3.20431, 0.12566]
+    outpath: "leadtauselection_phi.pdf"
+    label: "$\\phi(\\tau_0)$"
+nPhotonVeto:
+    binning: [0., 10.1, 1.]
+    outpath: "nphotonveto.pdf"
+    label: "Photon veto multiplicity"
+nPhotonSelection:
+    binning: [0., 10.1, 1.]
+    outpath: "nphotonselection.pdf"
+    label: "Photon selection multiplicity"
+nBJetVeto:
+    binning: [0., 10.1, 1.]
+    outpath: "nbjetveto.pdf"
+    label: "B-tagged jet veto multiplicity"
+PV_npvsGood:
+    binning: [0., 100., 2.]
+    outpath: "pv_npvsgood.pdf"
+    label: "Good PV multiplicity"
+WeightXsLumi:
+    binning: [0., 100000.1, 2000.]
+    outpath: "weightxslumi.pdf"
+    label: "XS Lumi weights"
+WeightQcdEwk:
+    binning: [0., 2.001, 0.04]
+    outpath: "weightqcdewk.pdf"
+    label: "$K_{\\mathrm{QCD}} (1 + \\kappa_{\\mathrm{EW}})$"
+WeightPU:
+    binning: [0., 2.001, 0.04]
+    outpath: "weightpu.pdf"
+    label: "Pileup weights"
+WeightPrefiring:
+    binning: [0., 2.001, 0.04]
+    outpath: "weightprefiring.pdf"
+    label: "Prefiring weights"
+WeightElectronSelectionIdIsoTight:
+    binning: [0., 2.001, 0.04]
+    outpath: "weightelectronselectionidisotight.pdf"
+    label: "Electron selection tight ID and Iso. weights"
+WeightElectronSelectionReco:
+    binning: [0., 2.001, 0.04]
+    outpath: "weightelectronselectionreco.pdf"
+    label: "Electron selection reco. weights"
+WeightOneMinusElectronVetoNoSelectionIdIsoVeto:
+    binning: [0., 2.001, 0.04]
+    outpath: "weightoneminuselectronvetonoselectionidisoveto.pdf"
+    label: "Vetoing Electron veto (no selection) veto ID and Iso. weights"
+WeightOneMinusElectronSelectionIdIsoTight:
+    binning: [0., 2.001, 0.04]
+    outpath: "weightoneminuselectronselectionidisotight.pdf"
+    label: "Vetoing Electron selection tight ID and Iso. weights"
+WeightOneMinusElectronVetoReco:
+    binning: [0., 2.001, 0.04]
+    outpath: "weightoneminuselectronvetoreco.pdf"
+    label: "Vetoing Electron veto reco. weights"
+WeightMuonSelectionIdTight:
+    binning: [0., 2.001, 0.04]
+    outpath: "weightmuonselectionidtight.pdf"
+    label: "Muon selection tight ID weights"
+WeightMuonSelectionIsoTight:
+    binning: [0., 2.001, 0.04]
+    outpath: "weightmuonselectionisotight.pdf"
+    label: "Muon selection tight Iso. weights"
+WeightOneMinusMuonVetoNoSelectionIdLoose:
+    binning: [0., 2.001, 0.04]
+    outpath: "weightoneminusmuonvetonoselectionidloose.pdf"
+    label: "Vetoing Muon veto (no selection) loose ID weights"
+WeightOneMinusMuonVetoNoSelectionIsoLoose:
+    binning: [0., 2.001, 0.04]
+    outpath: "weightoneminusmuonvetonoselectionisoloose.pdf"
+    label: "Vetoing Muon veto (no selection) loose Iso. weights"
+WeightOneMinusMuonSelectionIdTight:
+    binning: [0., 2.001, 0.04]
+    outpath: "weightoneminusmuonselectionidtight.pdf"
+    label: "Vetoing Muon selection tight ID weights"
+WeightOneMinusMuonSelectionIsoTight:
+    binning: [0., 2.001, 0.04]
+    outpath: "weightoneminusmuonselectionisotight.pdf"
+    label: "Vetoing Muon selection tight Iso. weights"
+WeightTauSelectionIdTight:
+    binning: [0., 2.001, 0.04]
+    outpath: "weighttauselectionidtight.pdf"
+    label: "Tau selection tight ID weights"
+WeightOneMinusTauSelectionIdTight:
+    binning: [0., 2.001, 0.04]
+    outpath: "weightoneminustauselectionidtight.pdf"
+    label: "Vetoing Tau selection tight ID weights"
+WeightOneMinusPhotonVetoIdLoose:
+    binning: [0., 2.001, 0.04]
+    outpath: "weightoneminusphotonvetoidloose.pdf"
+    label: "Vetoing Photon veto loose ID weights"
+WeightOneMinusPhotonVetoPixelSeedVeto:
+    binning: [0., 2.001, 0.04]
+    outpath: "weightoneminusphotonvetopixelseedveto.pdf"
+    label: "Vetoing Photon veto pixel seed veto weights"
+WeightOneMinusJetBVetoIdMedium:
+    binning: [0., 2.001, 0.04]
+    outpath: "weightoneminusjetbvetoidmedium.pdf"
+    label: "Vetoing b-tagged jets medium ID"
+WeightMETTrig:
+    binning: [0., 2.001, 0.04]
+    outpath: "weightmettrig.pdf"
+    label: "MET trigger weights"
+WeightSingleElectronTrig:
+    binning: [0., 2.001, 0.04]
+    outpath: "weightsingleelectrontrig.pdf"
+    label: "Single Electron trigger weights"
+WeightSingleMuonTrig:
+    binning: [0., 2.001, 0.04]
+    outpath: "weightsinglemuontrig.pdf"
+    label: "Single Muon trigger weights"
 Monojet:
     blind: True
     rename_samples:
@@ -110,7 +392,7 @@ SingleElectronQCD:
         QCD: "Minor"
 defaults:
     rename_samples: {}
-    legend_off_axes: False
+    legend_off_axes: True
     blind: False
     binvar: "binvar"
     counts: "sum_w"
