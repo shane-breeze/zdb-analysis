@@ -10,11 +10,14 @@ def merge_results(results, index):
     df = None
     for result in results:
         dfr = result[0].set_index(index)
+        dfr = dfr.loc[dfr.index.dropna(),:]
 
-        if df is not None and df.duplicated().any():
-            print(df.loc[df.duplicated(), :].to_string())
-        if dfr is not None and dfr.duplicated().any():
-            print(dfr.loc[dfr.duplicated(), :].to_string())
+        if df is not None and df.index.duplicated().any():
+            print("Duplicates in df")
+            print(df.loc[df.index.duplicated(keep=False), :].to_string())
+        if dfr is not None and dfr.index.duplicated().any():
+            print("Duplicates in dfr")
+            print(dfr.loc[dfr.index.duplicated(keep=False), :].to_string())
 
         if df is None:
             df = dfr
