@@ -16,9 +16,9 @@ def process_mc(df, cfg):
     binning = np.arange(*cfg["binning"])
     indexes = df.index.names
     df = df.reset_index()
-    mask = df[cfg["binvar"]] < binning[0]
+    mask = (df[cfg["binvar"]] < binning[0])
     df.loc[mask,cfg["binvar"]] = 2*binning[0] - binning[1]
-    df.loc[~mask,cfg["binvar"]] = binning[binning.searchsorted(df[~mask,cfg["binvar"]], side='right')-1]
+    df.loc[~mask,cfg["binvar"]] = binning[binning.searchsorted(df.loc[~mask,cfg["binvar"]], side='right')-1]
     df = df.groupby(indexes).sum()
 
     return df
@@ -53,9 +53,9 @@ def process_data(df, cfg):
     binning = np.arange(*cfg["binning"])
     indexes = df.index.names
     df = df.reset_index()
-    mask = df[cfg["binvar"]] < binning[0]
+    mask = (df[cfg["binvar"]] < binning[0])
     df.loc[mask,cfg["binvar"]] = 2*binning[0] - binning[1]
-    df.loc[~mask,cfg["binvar"]] = binning[binning.searchsorted(df[~mask,cfg["binvar"]], side='right')-1]
+    df.loc[~mask,cfg["binvar"]] = binning[binning.searchsorted(df.loc[~mask,cfg["binvar"]], side='right')-1]
     df = df.groupby(indexes).sum()
 
     return df

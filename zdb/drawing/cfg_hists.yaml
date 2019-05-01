@@ -15,12 +15,12 @@ MET_phi:
     outpath: "met_phi.pdf"
     label: "$p_{\\mathrm{T,PF}}^{\\mathrm{miss}}\\ \\phi$"
 MET_dpt:
-    binning: [0., 1.001, 0.05]
+    binning: [-1., 1.001, 0.05]
     outpath: "met_dpt.pdf"
     label: "$p_{\\mathrm{T,PF}}^{\\mathrm{miss}}\\ \\delta p_{\\mathrm{T}}$"
     blind: True
 MET_dphi:
-    binning: [0., 1.001, 0.05]
+    binning: [-1., 1.001, 0.05]
     outpath: "met_dphi.pdf"
     label: "$p_{\\mathrm{T},\\mathrm{PF}}^{\\mathrm{miss}}\\ \\delta\\phi$"
     blind: True
@@ -84,6 +84,18 @@ LeadJetFwdSelection_phi:
     binning: [-3.20433, 3.20431, 0.12566]
     outpath: "leadjetfwdselection_phi.pdf"
     label: "$\\phi(j_0^{\\mathrm{fwd}})$"
+NearestJetSelectionMET_pt:
+    binning: [0., 1000.1, 20.]
+    outpath: "nearestjetselectionmet_pt.pdf"
+    label: "$p_{\\mathrm{T}}(j_1)$ (GeV)"
+NearestJetSelectionMET_eta:
+    binning: [-5., 5.01, 0.2]
+    outpath: "nearestjetselectionmet_eta.pdf"
+    label: "$\\eta(j_1)$"
+NearestJetSelectionMET_phi:
+    binning: [-3.20433, 3.20431, 0.12566]
+    outpath: "nearestjetselectionmet_phi.pdf"
+    label: "$\\phi(j_1)$"
 SecondJetSelection_pt:
     binning: [0., 1000.1, 20.]
     outpath: "secondjetselection_pt.pdf"
@@ -180,6 +192,10 @@ LeadTauSelection_phi:
     binning: [-3.20433, 3.20431, 0.12566]
     outpath: "leadtauselection_phi.pdf"
     label: "$\\phi(\\tau_0)$"
+LeadTauSelection_dphiMET:
+    binning: [0., 3.16, 0.05]
+    outpath: "leadtauselection_dphiMET.pdf"
+    label: "$\\Delta\\phi(\\tau_0, p_{\\mathrm{T}}^{\\mathrm{miss}})$"
 nPhotonVeto:
     binning: [0., 10.1, 1.]
     outpath: "nphotonveto.pdf"
@@ -325,7 +341,6 @@ SingleTau:
         SingleTop: "Minor"
         DYJetsToEE: "Minor"
         DYJetsToMuMu: "Minor"
-        DYJetsToTauHTauH: "Minor"
         DYJetsToTauHTauL: "Minor"
         DYJetsToTauLTauL: "Minor"
         WJetsToMuNu: "Minor"
