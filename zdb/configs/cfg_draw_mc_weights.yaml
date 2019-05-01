@@ -39,11 +39,11 @@ query:
         Weight_SingleTau:
             "WeightXsLumi*WeightQcdEwk*WeightPU*WeightPreFiring*WeightMETTrig*WeightOneMinusElectronVetoNoSelectionIdIsoVeto*WeightOneMinusElectronSelectionIdIsoTight*WeightOneMinusElectronVetoReco*WeightOneMinusMuonVetoNoSelectionIdLoose*WeightOneMinusMuonVetoNoSelectionIsoLoose*WeightOneMinusMuonSelectionIdTight*WeightOneMinusMuonSelectionIsoTight*WeightTauSelectionIdTight*WeightOneMinusPhotonVetoIdLoose*WeightOneMinusPhotonVetoPixelSeedVeto*WeightOneMinusJetBVetoIdMedium"
     histograms:
-        METnoX_pt:
+        WeightXsLumi:
             columns:
-                - "'METnoX_pt' as varname, '{selection_name}' as selection, parent"
+                - "'WeightXsLumi' as varname, '{selection_name}' as selection, parent"
                 - "LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL"
-                - "CAST(METnoX_pt/5. as int)*5 as binvar"
+                - "CAST(WeightXsLumi as int) as binvar"
                 - "SUM({weight}) as sum_w"
                 - "SUM({weight}*{weight}) as sum_ww"
             selection:
@@ -75,12 +75,12 @@ query:
                     selection: "{Cutflow_SingleTau}"
                     weights: "{Weight_SingleTau}"
             groupby:
-                "parent, LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL, CAST(METnoX_pt/5. as int)*5"
-        METnoX_phi:
+                "parent, LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL, CAST(WeightXsLumi as int)"
+        WeightQcdEwk:
             columns:
-                - "'METnoX_phi' as varname, '{selection_name}' as selection, parent"
+                - "'WeightQcdEwk' as varname, '{selection_name}' as selection, parent"
                 - "LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL"
-                - "CAST(METnoX_phi/0.06283 as int)*0.06283 as binvar"
+                - "CAST(WeightQcdEwk/0.01 as int)*0.01 as binvar"
                 - "SUM({weight}) as sum_w"
                 - "SUM({weight}*{weight}) as sum_ww"
             selection:
@@ -112,12 +112,12 @@ query:
                     selection: "{Cutflow_SingleTau}"
                     weights: "{Weight_SingleTau}"
             groupby:
-                "parent, LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL, CAST(METnoX_phi/0.06283 as int)*0.06283"
-        MET_pt:
+                "parent, LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL, CAST(WeightQcdEwk/0.01 as int)*0.01"
+        WeightPU:
             columns:
-                - "'MET_pt' as varname, '{selection_name}' as selection, parent"
+                - "'WeightPU' as varname, '{selection_name}' as selection, parent"
                 - "LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL"
-                - "CAST(MET_pt/5 as int)*5 as binvar"
+                - "CAST(WeightPU/0.01 as int)*0.01 as binvar"
                 - "SUM({weight}) as sum_w"
                 - "SUM({weight}*{weight}) as sum_ww"
             selection:
@@ -149,12 +149,12 @@ query:
                     selection: "{Cutflow_SingleTau}"
                     weights: "{Weight_SingleTau}"
             groupby:
-                "parent, LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL, CAST(MET_pt/5 as int)*5"
-        MET_phi:
+                "parent, LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL, CAST(WeightPU/0.01 as int)*0.01"
+        WeightPrefiring:
             columns:
-                - "'MET_phi' as varname, '{selection_name}' as selection, parent"
+                - "'WeightPrefiring' as varname, '{selection_name}' as selection, parent"
                 - "LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL"
-                - "CAST(MET_phi/0.06283 as int)*0.06283 as binvar"
+                - "CAST(WeightPrefiring/0.01 as int)*0.01 as binvar"
                 - "SUM({weight}) as sum_w"
                 - "SUM({weight}*{weight}) as sum_ww"
             selection:
@@ -186,12 +186,12 @@ query:
                     selection: "{Cutflow_SingleTau}"
                     weights: "{Weight_SingleTau}"
             groupby:
-                "parent, LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL, CAST(MET_phi/0.06283 as int)*0.06283"
-        MET_dpt:
+                "parent, LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL, CAST(WeightPrefiring/0.01 as int)*0.01"
+        WeightElectronSelectionIdIsoTight:
             columns:
-                - "'MET_dpt' as varname, '{selection_name}' as selection, parent"
+                - "'WeightElectronSelectionIdIsoTight' as varname, '{selection_name}' as selection, parent"
                 - "LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL"
-                - "CAST(MET_dpt/0.04 as int)*0.04 as binvar"
+                - "CAST(WeightElectronSelectionIdIsoTight/0.01 as int)*0.01 as binvar"
                 - "SUM({weight}) as sum_w"
                 - "SUM({weight}*{weight}) as sum_ww"
             selection:
@@ -223,12 +223,12 @@ query:
                     selection: "{Cutflow_SingleTau}"
                     weights: "{Weight_SingleTau}"
             groupby:
-                "parent, LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL, CAST(MET_dpt/0.04 as int)*0.04"
-        MET_dphi:
+                "parent, LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL, CAST(WeightElectronSelectionIdIsoTight/0.01 as int)*0.01"
+        WeightElectronSelectionReco:
             columns:
-                - "'MET_dphi' as varname, '{selection_name}' as selection, parent"
+                - "'WeightElectronSelectionReco' as varname, '{selection_name}' as selection, parent"
                 - "LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL"
-                - "CAST(MET_dphi/0.04 as int)*0.04 as binvar"
+                - "CAST(WeightElectronSelectionReco/0.01 as int)*0.01 as binvar"
                 - "SUM({weight}) as sum_w"
                 - "SUM({weight}*{weight}) as sum_ww"
             selection:
@@ -260,12 +260,12 @@ query:
                     selection: "{Cutflow_SingleTau}"
                     weights: "{Weight_SingleTau}"
             groupby:
-                "parent, LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL, CAST(MET_dphi/0.04 as int)*0.04"
-        CaloMET_pt:
+                "parent, LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL, CAST(WeightElectronSelectionReco/0.01 as int)*0.01"
+        WeightOneMinusElectronVetoNoSelectionIdIsoVeto:
             columns:
-                - "'CaloMET_pt' as varname, '{selection_name}' as selection, parent"
+                - "'WeightOneMinusElectronVetoNoSelectionIdIsoVeto' as varname, '{selection_name}' as selection, parent"
                 - "LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL"
-                - "CAST(CaloMET_pt/5. as int)*5 as binvar"
+                - "CAST(WeightOneMinusElectronVetoNoSelectionIdIsoVeto/0.01 as int)*0.01 as binvar"
                 - "SUM({weight}) as sum_w"
                 - "SUM({weight}*{weight}) as sum_ww"
             selection:
@@ -297,12 +297,12 @@ query:
                     selection: "{Cutflow_SingleTau}"
                     weights: "{Weight_SingleTau}"
             groupby:
-                "parent, LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL, CAST(CaloMET_pt/5. as int)*5"
-        CaloMET_phi:
+                "parent, LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL, CAST(WeightOneMinusElectronVetoNoSelectionIdIsoVeto/0.01 as int)*0.01"
+        WeightOneMinusElectronSelectionIdIsoTight:
             columns:
-                - "'CaloMET_phi' as varname, '{selection_name}' as selection, parent"
+                - "'WeightOneMinusElectronSelectionIdIsoTight' as varname, '{selection_name}' as selection, parent"
                 - "LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL"
-                - "CAST(CaloMET_phi/0.06283 as int)*0.06283 as binvar"
+                - "CAST(WeightOneMinusElectronSelectionIdIsoTight/0.01 as int)*0.01 as binvar"
                 - "SUM({weight}) as sum_w"
                 - "SUM({weight}*{weight}) as sum_ww"
             selection:
@@ -334,12 +334,12 @@ query:
                     selection: "{Cutflow_SingleTau}"
                     weights: "{Weight_SingleTau}"
             groupby:
-                "parent, LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL, CAST(CaloMET_phi/0.06283 as int)*0.06283"
-        MET_dCaloMET:
+                "parent, LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL, CAST(WeightOneMinusElectronSelectionIdIsoTight/0.01 as int)*0.01"
+        WeightOneMinusElectronVetoReco:
             columns:
-                - "'MET_dCaloMET' as varname, '{selection_name}' as selection, parent"
+                - "'WeightOneMinusElectronVetoReco' as varname, '{selection_name}' as selection, parent"
                 - "LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL"
-                - "CAST(MET_dCaloMET/0.02 as int)*0.02 as binvar"
+                - "CAST(WeightOneMinusElectronVetoReco/0.01 as int)*0.01 as binvar"
                 - "SUM({weight}) as sum_w"
                 - "SUM({weight}*{weight}) as sum_ww"
             selection:
@@ -371,12 +371,12 @@ query:
                     selection: "{Cutflow_SingleTau}"
                     weights: "{Weight_SingleTau}"
             groupby:
-                "parent, LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL, CAST(MET_dCaloMET/0.02 as int)*0.02"
-        MinDPhiJ1234METnoX:
+                "parent, LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL, CAST(WeightOneMinusElectronVetoReco/0.01 as int)*0.01"
+        WeightMuonSelectionIdTight:
             columns:
-                - "'MinDPhiJ1234METnoX' as varname, '{selection_name}' as selection, parent"
+                - "'WeightMuonSelectionIdTight' as varname, '{selection_name}' as selection, parent"
                 - "LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL"
-                - "CAST(MinDPhiJ1234METnoX/0.05 as int)*0.05 as binvar"
+                - "CAST(WeightMuonSelectionIdTight/0.01 as int)*0.01 as binvar"
                 - "SUM({weight}) as sum_w"
                 - "SUM({weight}*{weight}) as sum_ww"
             selection:
@@ -408,50 +408,12 @@ query:
                     selection: "{Cutflow_SingleTau}"
                     weights: "{Weight_SingleTau}"
             groupby:
-                "parent, LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL, CAST(MinDPhiJ1234METnoX/0.05 as int)*0.05"
-        MTW:
+                "parent, LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL, CAST(WeightMuonSelectionIdTight/0.01 as int)*0.01"
+        WeightMuonSelectionIsoTight:
             columns:
-                - "'MTW' as varname, '{selection_name}' as selection, parent"
+                - "'WeightMuonSelectionIsoTight' as varname, '{selection_name}' as selection, parent"
                 - "LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL"
-                - "CAST(MTW/4. as int)*4 as binvar"
-                - "SUM({weight}) as sum_w"
-                - "SUM({weight}*{weight}) as sum_ww"
-            selection:
-                SingleMuon:
-                    selection: "{Cutflow_SingleMuon}"
-                    weights: "{Weight_SingleMuon}"
-                SingleMuonQCD:
-                    selection: "{Cutflow_SingleMuonQCD}"
-                    weights: "{Weight_SingleMuonQCD}"
-                SingleElectron:
-                    selection: "{Cutflow_SingleElectron}"
-                    weights: "{Weight_SingleElectron}"
-                SingleElectronQCD:
-                    selection: "{Cutflow_SingleElectronQCD}"
-                    weights: "{Weight_SingleElectronQCD}"
-            groupby:
-                "parent, LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL, CAST(MTW/4 as int)*4"
-        MLL:
-            columns:
-                - "'MLL' as varname, '{selection_name}' as selection, parent"
-                - "LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL"
-                - "CAST(MLL/0.5 as int)*0.5 as binvar"
-                - "SUM({weight}) as sum_w"
-                - "SUM({weight}*{weight}) as sum_ww"
-            selection:
-                DoubleMuon:
-                    selection: "{Cutflow_DoubleMuon}"
-                    weights: "{Weight_DoubleMuon}"
-                DoubleElectron:
-                    selection: "{Cutflow_DoubleElectron}"
-                    weights: "{Weight_DoubleElectron}"
-            groupby:
-                "parent, LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL, CAST(MLL/0.5 as int)*0.5"
-        nJetVeto:
-            columns:
-                - "'nJetVeto' as varname, '{selection_name}' as selection, parent"
-                - "LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL"
-                - "CAST(nJetVeto+0.5 as int) as binvar"
+                - "CAST(WeightMuonSelectionIsoTight/0.01 as int)*0.01 as binvar"
                 - "SUM({weight}) as sum_w"
                 - "SUM({weight}*{weight}) as sum_ww"
             selection:
@@ -483,12 +445,12 @@ query:
                     selection: "{Cutflow_SingleTau}"
                     weights: "{Weight_SingleTau}"
             groupby:
-                "parent, LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL, CAST(nJetVeto+0.5 as int)"
-        nJetSelection:
+                "parent, LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL, CAST(WeightMuonSelectionIsoTight/0.01 as int)*0.01"
+        WeightOneMinusMuonVetoNoSelectionIdLoose:
             columns:
-                - "'nJetSelection' as varname, '{selection_name}' as selection, parent"
+                - "'WeightOneMinusMuonVetoNoSelectionIdLoose' as varname, '{selection_name}' as selection, parent"
                 - "LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL"
-                - "CAST(nJetSelection+0.5 as int) as binvar"
+                - "CAST(WeightOneMinusMuonVetoNoSelectionIdLoose/0.01 as int)*0.01 as binvar"
                 - "SUM({weight}) as sum_w"
                 - "SUM({weight}*{weight}) as sum_ww"
             selection:
@@ -520,12 +482,12 @@ query:
                     selection: "{Cutflow_SingleTau}"
                     weights: "{Weight_SingleTau}"
             groupby:
-                "parent, LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL, CAST(nJetSelection+0.5 as int)"
-        LeadJetSelection_pt:
+                "parent, LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL, CAST(WeightOneMinusMuonVetoNoSelectionIdLoose/0.01 as int)*0.01"
+        WeightOneMinusMuonVetoNoSelectionIsoLoose:
             columns:
-                - "'LeadJetSelection_pt' as varname, '{selection_name}' as selection, parent"
+                - "'WeightOneMinusMuonVetoNoSelectionIsoLoose' as varname, '{selection_name}' as selection, parent"
                 - "LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL"
-                - "CAST(LeadJetSelection_pt/5. as int)*5 as binvar"
+                - "CAST(WeightOneMinusMuonVetoNoSelectionIsoLoose/0.01 as int)*0.01 as binvar"
                 - "SUM({weight}) as sum_w"
                 - "SUM({weight}*{weight}) as sum_ww"
             selection:
@@ -557,12 +519,12 @@ query:
                     selection: "{Cutflow_SingleTau}"
                     weights: "{Weight_SingleTau}"
             groupby:
-                "parent, LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL, CAST(LeadJetSelection_pt/5. as int)*5"
-        LeadJetSelection_eta:
+                "parent, LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL, CAST(WeightOneMinusMuonVetoNoSelectionIsoLoose/0.01 as int)*0.01"
+        WeightOneMinusMuonSelectionIdTight:
             columns:
-                - "'LeadJetSelection_eta' as varname, '{selection_name}' as selection, parent"
+                - "'WeightOneMinusMuonSelectionIdTight' as varname, '{selection_name}' as selection, parent"
                 - "LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL"
-                - "CAST(LeadJetSelection_eta/0.1 as int)*0.1 as binvar"
+                - "CAST(WeightOneMinusMuonSelectionIdTight/0.01 as int)*0.01 as binvar"
                 - "SUM({weight}) as sum_w"
                 - "SUM({weight}*{weight}) as sum_ww"
             selection:
@@ -594,12 +556,12 @@ query:
                     selection: "{Cutflow_SingleTau}"
                     weights: "{Weight_SingleTau}"
             groupby:
-                "parent, LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL, CAST(LeadJetSelection_eta/0.1 as int)*0.1"
-        LeadJetSelection_phi:
+                "parent, LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL, CAST(WeightOneMinusMuonSelectionIdTight/0.01 as int)*0.01"
+        WeightOneMinusMuonSelectionIsoTight:
             columns:
-                - "'LeadJetSelection_phi' as varname, '{selection_name}' as selection, parent"
+                - "'WeightOneMinusMuonSelectionIsoTight' as varname, '{selection_name}' as selection, parent"
                 - "LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL"
-                - "CAST(LeadJetSelection_phi/0.06283 as int)*0.06283 as binvar"
+                - "CAST(WeightOneMinusMuonSelectionIsoTight/0.01 as int)*0.01 as binvar"
                 - "SUM({weight}) as sum_w"
                 - "SUM({weight}*{weight}) as sum_ww"
             selection:
@@ -631,12 +593,12 @@ query:
                     selection: "{Cutflow_SingleTau}"
                     weights: "{Weight_SingleTau}"
             groupby:
-                "parent, LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL, CAST(LeadJetSelection_phi/0.06283 as int)*0.06283"
-        LeadJetSelection_chHEF:
+                "parent, LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL, CAST(WeightOneMinusMuonSelectionIsoTight/0.01 as int)*0.01"
+        WeightTauSelectionIdTight:
             columns:
-                - "'LeadJetSelection_chHEF' as varname, '{selection_name}' as selection, parent"
+                - "'WeightTauSelectionIdTight' as varname, '{selection_name}' as selection, parent"
                 - "LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL"
-                - "CAST(LeadJetSelection_chHEF/0.01 as int)*0.01 as binvar"
+                - "CAST(WeightTauSelectionIdTight/0.01 as int)*0.01 as binvar"
                 - "SUM({weight}) as sum_w"
                 - "SUM({weight}*{weight}) as sum_ww"
             selection:
@@ -668,12 +630,12 @@ query:
                     selection: "{Cutflow_SingleTau}"
                     weights: "{Weight_SingleTau}"
             groupby:
-                "parent, LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL, CAST(LeadJetSelection_chHEF/0.01 as int)*0.01"
-        LeadJetFwdSelection_pt:
+                "parent, LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL, CAST(WeightTauSelectionIdTight/0.01 as int)*0.01"
+        WeightOneMinusTauSelectionIdTight:
             columns:
-                - "'LeadJetFwdSelection_pt' as varname, '{selection_name}' as selection, parent"
+                - "'WeightOneMinusTauSelectionIdTight' as varname, '{selection_name}' as selection, parent"
                 - "LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL"
-                - "CAST(LeadJetFwdSelection_pt as int) as binvar"
+                - "CAST(WeightOneMinusTauSelectionIdTight/0.01 as int)*0.01 as binvar"
                 - "SUM({weight}) as sum_w"
                 - "SUM({weight}*{weight}) as sum_ww"
             selection:
@@ -705,12 +667,12 @@ query:
                     selection: "{Cutflow_SingleTau}"
                     weights: "{Weight_SingleTau}"
             groupby:
-                "parent, LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL, CAST(LeadJetFwdSelection_pt as int)"
-        LeadJetFwdSelection_eta:
+                "parent, LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL, CAST(WeightOneMinusTauSelectionIdTight/0.01 as int)*0.01"
+        WeightOneMinusPhotonVetoIdLoose:
             columns:
-                - "'LeadJetFwdSelection_eta' as varname, '{selection_name}' as selection, parent"
+                - "'WeightOneMinusPhotonVetoIdLoose' as varname, '{selection_name}' as selection, parent"
                 - "LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL"
-                - "CAST(LeadJetFwdSelection_eta/0.1 as int)*0.1 as binvar"
+                - "CAST(WeightOneMinusPhotonVetoIdLoose/0.01 as int)*0.01 as binvar"
                 - "SUM({weight}) as sum_w"
                 - "SUM({weight}*{weight}) as sum_ww"
             selection:
@@ -742,12 +704,12 @@ query:
                     selection: "{Cutflow_SingleTau}"
                     weights: "{Weight_SingleTau}"
             groupby:
-                "parent, LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL, CAST(LeadJetFwdSelection_eta/0.1 as int)*0.1"
-        LeadJetFwdSelection_phi:
+                "parent, LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL, CAST(WeightOneMinusPhotonVetoIdLoose/0.01 as int)*0.01"
+        WeightOneMinusPhotonVetoPixelSeedVeto:
             columns:
-                - "'LeadJetFwdSelection_phi' as varname, '{selection_name}' as selection, parent"
+                - "'WeightOneMinusPhotonVetoPixelSeedVeto' as varname, '{selection_name}' as selection, parent"
                 - "LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL"
-                - "CAST(LeadJetFwdSelection_phi/0.06283 as int)*0.06283 as binvar"
+                - "CAST(WeightOneMinusPhotonVetoPixelSeedVeto/0.01 as int)*0.01 as binvar"
                 - "SUM({weight}) as sum_w"
                 - "SUM({weight}*{weight}) as sum_ww"
             selection:
@@ -779,12 +741,12 @@ query:
                     selection: "{Cutflow_SingleTau}"
                     weights: "{Weight_SingleTau}"
             groupby:
-                "parent, LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL, CAST(LeadJetFwdSelection_phi/0.06283 as int)*0.06283"
-        NearestJetSelectionMET_pt:
+                "parent, LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL, CAST(WeightOneMinusPhotonVetoPixelSeedVeto/0.01 as int)*0.01"
+        WeightOneMinusJetBVetoIdMedium:
             columns:
-                - "'NearestJetSelectionMET_pt' as varname, '{selection_name}' as selection, parent"
+                - "'WeightOneMinusJetBVetoIdMedium' as varname, '{selection_name}' as selection, parent"
                 - "LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL"
-                - "CAST(NearestJetSelectionMET_pt as int) as binvar"
+                - "CAST(WeightOneMinusJetBVetoIdMedium/0.01 as int)*0.01 as binvar"
                 - "SUM({weight}) as sum_w"
                 - "SUM({weight}*{weight}) as sum_ww"
             selection:
@@ -816,12 +778,12 @@ query:
                     selection: "{Cutflow_SingleTau}"
                     weights: "{Weight_SingleTau}"
             groupby:
-                "parent, LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL, CAST(NearestJetSelectionMET_pt as int)"
-        NearestJetSelectionMET_eta:
+                "parent, LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL, CAST(WeightOneMinusJetBVetoIdMedium/0.01 as int)*0.01"
+        WeightMETTrig:
             columns:
-                - "'NearestJetSelectionMET_eta' as varname, '{selection_name}' as selection, parent"
+                - "'WeightMETTrig' as varname, '{selection_name}' as selection, parent"
                 - "LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL"
-                - "CAST(NearestJetSelectionMET_eta/0.1 as int)*0.1 as binvar"
+                - "CAST(WeightMETTrig/0.01 as int)*0.01 as binvar"
                 - "SUM({weight}) as sum_w"
                 - "SUM({weight}*{weight}) as sum_ww"
             selection:
@@ -853,12 +815,12 @@ query:
                     selection: "{Cutflow_SingleTau}"
                     weights: "{Weight_SingleTau}"
             groupby:
-                "parent, LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL, CAST(NearestJetSelectionMET_eta/0.1 as int)*0.1"
-        NearestJetSelectionMET_phi:
+                "parent, LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL, CAST(WeightMETTrig/0.01 as int)*0.01"
+        WeightSingleElectronTrig:
             columns:
-                - "'NearestJetSelectionMET_phi' as varname, '{selection_name}' as selection, parent"
+                - "'WeightSingleElectronTrig' as varname, '{selection_name}' as selection, parent"
                 - "LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL"
-                - "CAST(NearestJetSelectionMET_phi/0.06283 as int)*0.06283 as binvar"
+                - "CAST(WeightSingleElectronTrig/0.01 as int)*0.01 as binvar"
                 - "SUM({weight}) as sum_w"
                 - "SUM({weight}*{weight}) as sum_ww"
             selection:
@@ -890,12 +852,12 @@ query:
                     selection: "{Cutflow_SingleTau}"
                     weights: "{Weight_SingleTau}"
             groupby:
-                "parent, LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL, CAST(NearestJetSelectionMET_phi/0.06283 as int)*0.06283"
-        SecondJetSelection_pt:
+                "parent, LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL, CAST(WeightSingleElectronTrig/0.01 as int)*0.01"
+        WeightSingleMuonTrig:
             columns:
-                - "'SecondJetSelection_pt' as varname, '{selection_name}' as selection, parent"
+                - "'WeightSingleMuonTrig' as varname, '{selection_name}' as selection, parent"
                 - "LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL"
-                - "CAST(SecondJetSelection_pt/5. as int)*5 as binvar"
+                - "CAST(WeightSingleMuonTrig/0.01 as int)*0.01 as binvar"
                 - "SUM({weight}) as sum_w"
                 - "SUM({weight}*{weight}) as sum_ww"
             selection:
@@ -927,695 +889,7 @@ query:
                     selection: "{Cutflow_SingleTau}"
                     weights: "{Weight_SingleTau}"
             groupby:
-                "parent, LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL, CAST(SecondJetSelection_pt/5. as int)*5"
-        SecondJetSelection_eta:
-            columns:
-                - "'SecondJetSelection_eta' as varname, '{selection_name}' as selection, parent"
-                - "LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL"
-                - "CAST(SecondJetSelection_eta/0.1 as int)*0.1 as binvar"
-                - "SUM({weight}) as sum_w"
-                - "SUM({weight}*{weight}) as sum_ww"
-            selection:
-                Monojet:
-                    selection: "{Cutflow_Monojet}"
-                    weights: "{Weight_Monojet}"
-                MonojetQCD:
-                    selection: "{Cutflow_MonojetQCD}"
-                    weights: "{Weight_MonojetQCD}"
-                SingleMuon:
-                    selection: "{Cutflow_SingleMuon}"
-                    weights: "{Weight_SingleMuon}"
-                SingleMuonQCD:
-                    selection: "{Cutflow_SingleMuonQCD}"
-                    weights: "{Weight_SingleMuonQCD}"
-                DoubleMuon:
-                    selection: "{Cutflow_DoubleMuon}"
-                    weights: "{Weight_DoubleMuon}"
-                SingleElectron:
-                    selection: "{Cutflow_SingleElectron}"
-                    weights: "{Weight_SingleElectron}"
-                SingleElectronQCD:
-                    selection: "{Cutflow_SingleElectronQCD}"
-                    weights: "{Weight_SingleElectronQCD}"
-                DoubleElectron:
-                    selection: "{Cutflow_DoubleElectron}"
-                    weights: "{Weight_DoubleElectron}"
-                SingleTau:
-                    selection: "{Cutflow_SingleTau}"
-                    weights: "{Weight_SingleTau}"
-            groupby:
-                "parent, LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL, CAST(SecondJetSelection_eta/0.1 as int)*0.1"
-        SecondJetSelection_phi:
-            columns:
-                - "'SecondJetSelection_phi' as varname, '{selection_name}' as selection, parent"
-                - "LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL"
-                - "CAST(SecondJetSelection_phi/0.06283 as int)*0.06283 as binvar"
-                - "SUM({weight}) as sum_w"
-                - "SUM({weight}*{weight}) as sum_ww"
-            selection:
-                Monojet:
-                    selection: "{Cutflow_Monojet}"
-                    weights: "{Weight_Monojet}"
-                MonojetQCD:
-                    selection: "{Cutflow_MonojetQCD}"
-                    weights: "{Weight_MonojetQCD}"
-                SingleMuon:
-                    selection: "{Cutflow_SingleMuon}"
-                    weights: "{Weight_SingleMuon}"
-                SingleMuonQCD:
-                    selection: "{Cutflow_SingleMuonQCD}"
-                    weights: "{Weight_SingleMuonQCD}"
-                DoubleMuon:
-                    selection: "{Cutflow_DoubleMuon}"
-                    weights: "{Weight_DoubleMuon}"
-                SingleElectron:
-                    selection: "{Cutflow_SingleElectron}"
-                    weights: "{Weight_SingleElectron}"
-                SingleElectronQCD:
-                    selection: "{Cutflow_SingleElectronQCD}"
-                    weights: "{Weight_SingleElectronQCD}"
-                DoubleElectron:
-                    selection: "{Cutflow_DoubleElectron}"
-                    weights: "{Weight_DoubleElectron}"
-                SingleTau:
-                    selection: "{Cutflow_SingleTau}"
-                    weights: "{Weight_SingleTau}"
-            groupby:
-                "parent, LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL, CAST(SecondJetSelection_phi/0.06283 as int)*0.06283"
-        nMuonVeto:
-            columns:
-                - "'nMuonVeto' as varname, '{selection_name}' as selection, parent"
-                - "LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL"
-                - "CAST(nMuonVeto+0.5 as int) as binvar"
-                - "SUM({weight}) as sum_w"
-                - "SUM({weight}*{weight}) as sum_ww"
-            selection:
-                Monojet:
-                    selection: "{Cutflow_Monojet}"
-                    weights: "{Weight_Monojet}"
-                MonojetQCD:
-                    selection: "{Cutflow_MonojetQCD}"
-                    weights: "{Weight_MonojetQCD}"
-                SingleMuon:
-                    selection: "{Cutflow_SingleMuon}"
-                    weights: "{Weight_SingleMuon}"
-                SingleMuonQCD:
-                    selection: "{Cutflow_SingleMuonQCD}"
-                    weights: "{Weight_SingleMuonQCD}"
-                DoubleMuon:
-                    selection: "{Cutflow_DoubleMuon}"
-                    weights: "{Weight_DoubleMuon}"
-                SingleElectron:
-                    selection: "{Cutflow_SingleElectron}"
-                    weights: "{Weight_SingleElectron}"
-                SingleElectronQCD:
-                    selection: "{Cutflow_SingleElectronQCD}"
-                    weights: "{Weight_SingleElectronQCD}"
-                DoubleElectron:
-                    selection: "{Cutflow_DoubleElectron}"
-                    weights: "{Weight_DoubleElectron}"
-                SingleTau:
-                    selection: "{Cutflow_SingleTau}"
-                    weights: "{Weight_SingleTau}"
-            groupby:
-                "parent, LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL, CAST(nMuonVeto+0.5 as int)"
-        nMuonSelection:
-            columns:
-                - "'nMuonSelection' as varname, '{selection_name}' as selection, parent"
-                - "LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL"
-                - "CAST(nMuonSelection+0.5 as int) as binvar"
-                - "SUM({weight}) as sum_w"
-                - "SUM({weight}*{weight}) as sum_ww"
-            selection:
-                Monojet:
-                    selection: "{Cutflow_Monojet}"
-                    weights: "{Weight_Monojet}"
-                MonojetQCD:
-                    selection: "{Cutflow_MonojetQCD}"
-                    weights: "{Weight_MonojetQCD}"
-                SingleMuon:
-                    selection: "{Cutflow_SingleMuon}"
-                    weights: "{Weight_SingleMuon}"
-                SingleMuonQCD:
-                    selection: "{Cutflow_SingleMuonQCD}"
-                    weights: "{Weight_SingleMuonQCD}"
-                DoubleMuon:
-                    selection: "{Cutflow_DoubleMuon}"
-                    weights: "{Weight_DoubleMuon}"
-                SingleElectron:
-                    selection: "{Cutflow_SingleElectron}"
-                    weights: "{Weight_SingleElectron}"
-                SingleElectronQCD:
-                    selection: "{Cutflow_SingleElectronQCD}"
-                    weights: "{Weight_SingleElectronQCD}"
-                DoubleElectron:
-                    selection: "{Cutflow_DoubleElectron}"
-                    weights: "{Weight_DoubleElectron}"
-                SingleTau:
-                    selection: "{Cutflow_SingleTau}"
-                    weights: "{Weight_SingleTau}"
-            groupby:
-                "parent, LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL, CAST(nMuonSelection+0.5 as int)"
-        LeadMuonSelection_pt:
-            columns:
-                - "'LeadMuonSelection_pt' as varname, '{selection_name}' as selection, parent"
-                - "LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL"
-                - "CAST(LeadMuonSelection_pt/5. as int)*5 as binvar"
-                - "SUM({weight}) as sum_w"
-                - "SUM({weight}*{weight}) as sum_ww"
-            selection:
-                SingleMuon:
-                    selection: "{Cutflow_SingleMuon}"
-                    weights: "{Weight_SingleMuon}"
-                SingleMuonQCD:
-                    selection: "{Cutflow_SingleMuonQCD}"
-                    weights: "{Weight_SingleMuonQCD}"
-                DoubleMuon:
-                    selection: "{Cutflow_DoubleMuon}"
-                    weights: "{Weight_DoubleMuon}"
-            groupby:
-                "parent, LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL, CAST(LeadMuonSelection_pt/5. as int)*5"
-        LeadMuonSelection_eta:
-            columns:
-                - "'LeadMuonSelection_eta' as varname, '{selection_name}' as selection, parent"
-                - "LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL"
-                - "CAST(LeadMuonSelection_eta/0.1 as int)*0.1 as binvar"
-                - "SUM({weight}) as sum_w"
-                - "SUM({weight}*{weight}) as sum_ww"
-            selection:
-                SingleMuon:
-                    selection: "{Cutflow_SingleMuon}"
-                    weights: "{Weight_SingleMuon}"
-                SingleMuonQCD:
-                    selection: "{Cutflow_SingleMuonQCD}"
-                    weights: "{Weight_SingleMuonQCD}"
-                DoubleMuon:
-                    selection: "{Cutflow_DoubleMuon}"
-                    weights: "{Weight_DoubleMuon}"
-            groupby:
-                "parent, LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL, CAST(LeadMuonSelection_eta/0.1 as int)*0.1"
-        LeadMuonSelection_phi:
-            columns:
-                - "'LeadMuonSelection_phi' as varname, '{selection_name}' as selection, parent"
-                - "LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL"
-                - "CAST(LeadMuonSelection_phi/0.06283 as int)*0.06283 as binvar"
-                - "SUM({weight}) as sum_w"
-                - "SUM({weight}*{weight}) as sum_ww"
-            selection:
-                SingleMuon:
-                    selection: "{Cutflow_SingleMuon}"
-                    weights: "{Weight_SingleMuon}"
-                SingleMuonQCD:
-                    selection: "{Cutflow_SingleMuonQCD}"
-                    weights: "{Weight_SingleMuonQCD}"
-                DoubleMuon:
-                    selection: "{Cutflow_DoubleMuon}"
-                    weights: "{Weight_DoubleMuon}"
-            groupby:
-                "parent, LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL, CAST(LeadMuonSelection_phi/0.06283 as int)*0.06283"
-        SecondMuonSelection_pt:
-            columns:
-                - "'SecondMuonSelection_pt' as varname, '{selection_name}' as selection, parent"
-                - "LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL"
-                - "CAST(SecondMuonSelection_pt/5. as int)*5 as binvar"
-                - "SUM({weight}) as sum_w"
-                - "SUM({weight}*{weight}) as sum_ww"
-            selection:
-                DoubleMuon:
-                    selection: "{Cutflow_DoubleMuon}"
-                    weights: "{Weight_DoubleMuon}"
-            groupby:
-                "parent, LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL, CAST(SecondMuonSelection_pt/5. as int)*5"
-        SecondMuonSelection_eta:
-            columns:
-                - "'SecondMuonSelection_eta' as varname, '{selection_name}' as selection, parent"
-                - "LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL"
-                - "CAST(SecondMuonSelection_eta/0.1 as int)*0.1 as binvar"
-                - "SUM({weight}) as sum_w"
-                - "SUM({weight}*{weight}) as sum_ww"
-            selection:
-                DoubleMuon:
-                    selection: "{Cutflow_DoubleMuon}"
-                    weights: "{Weight_DoubleMuon}"
-            groupby:
-                "parent, LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL, CAST(SecondMuonSelection_eta/0.1 as int)*0.1"
-        SecondMuonSelection_phi:
-            columns:
-                - "'SecondMuonSelection_phi' as varname, '{selection_name}' as selection, parent"
-                - "LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL"
-                - "CAST(SecondMuonSelection_phi/0.06283 as int)*0.06283 as binvar"
-                - "SUM({weight}) as sum_w"
-                - "SUM({weight}*{weight}) as sum_ww"
-            selection:
-                DoubleMuon:
-                    selection: "{Cutflow_DoubleMuon}"
-                    weights: "{Weight_DoubleMuon}"
-            groupby:
-                "parent, LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL, CAST(SecondMuonSelection_phi/0.06283 as int)*0.06283"
-        nElectronSelection:
-            columns:
-                - "'nElectronSelection' as varname, '{selection_name}' as selection, parent"
-                - "LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL"
-                - "CAST(nElectronSelection+0.5 as int) as binvar"
-                - "SUM({weight}) as sum_w"
-                - "SUM({weight}*{weight}) as sum_ww"
-            selection:
-                Monojet:
-                    selection: "{Cutflow_Monojet}"
-                    weights: "{Weight_Monojet}"
-                MonojetQCD:
-                    selection: "{Cutflow_MonojetQCD}"
-                    weights: "{Weight_MonojetQCD}"
-                SingleMuon:
-                    selection: "{Cutflow_SingleMuon}"
-                    weights: "{Weight_SingleMuon}"
-                SingleMuonQCD:
-                    selection: "{Cutflow_SingleMuonQCD}"
-                    weights: "{Weight_SingleMuonQCD}"
-                DoubleMuon:
-                    selection: "{Cutflow_DoubleMuon}"
-                    weights: "{Weight_DoubleMuon}"
-                SingleElectron:
-                    selection: "{Cutflow_SingleElectron}"
-                    weights: "{Weight_SingleElectron}"
-                SingleElectronQCD:
-                    selection: "{Cutflow_SingleElectronQCD}"
-                    weights: "{Weight_SingleElectronQCD}"
-                DoubleElectron:
-                    selection: "{Cutflow_DoubleElectron}"
-                    weights: "{Weight_DoubleElectron}"
-                SingleTau:
-                    selection: "{Cutflow_SingleTau}"
-                    weights: "{Weight_SingleTau}"
-            groupby:
-                "parent, LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL, CAST(nElectronSelection+0.5 as int)"
-        nElectronSelection:
-            columns:
-                - "'nElectronSelection' as varname, '{selection_name}' as selection, parent"
-                - "LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL"
-                - "CAST(nElectronSelection+0.5 as int) as binvar"
-                - "SUM({weight}) as sum_w"
-                - "SUM({weight}*{weight}) as sum_ww"
-            selection:
-                Monojet:
-                    selection: "{Cutflow_Monojet}"
-                    weights: "{Weight_Monojet}"
-                MonojetQCD:
-                    selection: "{Cutflow_MonojetQCD}"
-                    weights: "{Weight_MonojetQCD}"
-                SingleMuon:
-                    selection: "{Cutflow_SingleMuon}"
-                    weights: "{Weight_SingleMuon}"
-                SingleMuonQCD:
-                    selection: "{Cutflow_SingleMuonQCD}"
-                    weights: "{Weight_SingleMuonQCD}"
-                DoubleMuon:
-                    selection: "{Cutflow_DoubleMuon}"
-                    weights: "{Weight_DoubleMuon}"
-                SingleElectron:
-                    selection: "{Cutflow_SingleElectron}"
-                    weights: "{Weight_SingleElectron}"
-                SingleElectronQCD:
-                    selection: "{Cutflow_SingleElectronQCD}"
-                    weights: "{Weight_SingleElectronQCD}"
-                DoubleElectron:
-                    selection: "{Cutflow_DoubleElectron}"
-                    weights: "{Weight_DoubleElectron}"
-                SingleTau:
-                    selection: "{Cutflow_SingleTau}"
-                    weights: "{Weight_SingleTau}"
-            groupby:
-                "parent, LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL, CAST(nElectronSelection+0.5 as int)"
-        LeadElectronSelection_pt:
-            columns:
-                - "'LeadElectronSelection_pt' as varname, '{selection_name}' as selection, parent"
-                - "LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL"
-                - "CAST(LeadElectronSelection_pt/5. as int)*5 as binvar"
-                - "SUM({weight}) as sum_w"
-                - "SUM({weight}*{weight}) as sum_ww"
-            selection:
-                SingleElectron:
-                    selection: "{Cutflow_SingleElectron}"
-                    weights: "{Weight_SingleElectron}"
-                SingleElectronQCD:
-                    selection: "{Cutflow_SingleElectronQCD}"
-                    weights: "{Weight_SingleElectronQCD}"
-                DoubleElectron:
-                    selection: "{Cutflow_DoubleElectron}"
-                    weights: "{Weight_DoubleElectron}"
-            groupby:
-                "parent, LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL, CAST(LeadElectronSelection_pt/5. as int)*5"
-        LeadElectronSelection_eta:
-            columns:
-                - "'LeadElectronSelection_eta' as varname, '{selection_name}' as selection, parent"
-                - "LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL"
-                - "CAST(LeadElectronSelection_eta/0.1 as int)*0.1 as binvar"
-                - "SUM({weight}) as sum_w"
-                - "SUM({weight}*{weight}) as sum_ww"
-            selection:
-                SingleElectron:
-                    selection: "{Cutflow_SingleElectron}"
-                    weights: "{Weight_SingleElectron}"
-                SingleElectronQCD:
-                    selection: "{Cutflow_SingleElectronQCD}"
-                    weights: "{Weight_SingleElectronQCD}"
-                DoubleElectron:
-                    selection: "{Cutflow_DoubleElectron}"
-                    weights: "{Weight_DoubleElectron}"
-            groupby:
-                "parent, LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL, CAST(LeadElectronSelection_eta/0.1 as int)*0.1"
-        LeadElectronSelection_phi:
-            columns:
-                - "'LeadElectronSelection_phi' as varname, '{selection_name}' as selection, parent"
-                - "LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL"
-                - "CAST(LeadElectronSelection_phi/0.06283 as int)*0.06283 as binvar"
-                - "SUM({weight}) as sum_w"
-                - "SUM({weight}*{weight}) as sum_ww"
-            selection:
-                SingleElectron:
-                    selection: "{Cutflow_SingleElectron}"
-                    weights: "{Weight_SingleElectron}"
-                SingleElectronQCD:
-                    selection: "{Cutflow_SingleElectronQCD}"
-                    weights: "{Weight_SingleElectronQCD}"
-                DoubleElectron:
-                    selection: "{Cutflow_DoubleElectron}"
-                    weights: "{Weight_DoubleElectron}"
-            groupby:
-                "parent, LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL, CAST(LeadElectronSelection_phi/0.06283 as int)*0.06283"
-        SecondElectronSelection_pt:
-            columns:
-                - "'SecondElectronSelection_pt' as varname, '{selection_name}' as selection, parent"
-                - "LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL"
-                - "CAST(SecondElectronSelection_pt/5. as int)*5 as binvar"
-                - "SUM({weight}) as sum_w"
-                - "SUM({weight}*{weight}) as sum_ww"
-            selection:
-                DoubleElectron:
-                    selection: "{Cutflow_DoubleElectron}"
-                    weights: "{Weight_DoubleElectron}"
-            groupby:
-                "parent, LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL, CAST(SecondElectronSelection_pt/5. as int)*5"
-        SecondElectronSelection_eta:
-            columns:
-                - "'SecondElectronSelection_eta' as varname, '{selection_name}' as selection, parent"
-                - "LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL"
-                - "CAST(SecondElectronSelection_eta/0.1 as int)*0.1 as binvar"
-                - "SUM({weight}) as sum_w"
-                - "SUM({weight}*{weight}) as sum_ww"
-            selection:
-                DoubleElectron:
-                    selection: "{Cutflow_DoubleElectron}"
-                    weights: "{Weight_DoubleElectron}"
-            groupby:
-                "parent, LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL, CAST(SecondElectronSelection_eta/0.1 as int)*0.1"
-        SecondElectronSelection_phi:
-            columns:
-                - "'SecondElectronSelection_phi' as varname, '{selection_name}' as selection, parent"
-                - "LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL"
-                - "CAST(SecondElectronSelection_phi/0.06283 as int)*0.06283 as binvar"
-                - "SUM({weight}) as sum_w"
-                - "SUM({weight}*{weight}) as sum_ww"
-            selection:
-                DoubleElectron:
-                    selection: "{Cutflow_DoubleElectron}"
-                    weights: "{Weight_DoubleElectron}"
-            groupby:
-                "parent, LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL, CAST(SecondElectronSelection_phi/0.06283 as int)*0.06283"
-        nTauVeto:
-            columns:
-                - "'nTauVeto' as varname, '{selection_name}' as selection, parent"
-                - "LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL"
-                - "CAST(nTauVeto+0.5 as int) as binvar"
-                - "SUM({weight}) as sum_w"
-                - "SUM({weight}*{weight}) as sum_ww"
-            selection:
-                Monojet:
-                    selection: "{Cutflow_Monojet}"
-                    weights: "{Weight_Monojet}"
-                MonojetQCD:
-                    selection: "{Cutflow_MonojetQCD}"
-                    weights: "{Weight_MonojetQCD}"
-                SingleMuon:
-                    selection: "{Cutflow_SingleMuon}"
-                    weights: "{Weight_SingleMuon}"
-                SingleMuonQCD:
-                    selection: "{Cutflow_SingleMuonQCD}"
-                    weights: "{Weight_SingleMuonQCD}"
-                DoubleMuon:
-                    selection: "{Cutflow_DoubleMuon}"
-                    weights: "{Weight_DoubleMuon}"
-                SingleElectron:
-                    selection: "{Cutflow_SingleElectron}"
-                    weights: "{Weight_SingleElectron}"
-                SingleElectronQCD:
-                    selection: "{Cutflow_SingleElectronQCD}"
-                    weights: "{Weight_SingleElectronQCD}"
-                DoubleElectron:
-                    selection: "{Cutflow_DoubleElectron}"
-                    weights: "{Weight_DoubleElectron}"
-                SingleTau:
-                    selection: "{Cutflow_SingleTau}"
-                    weights: "{Weight_SingleTau}"
-            groupby:
-                "parent, LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL, CAST(nTauVeto+0.5 as int)"
-        nTauSelection:
-            columns:
-                - "'nTauSelection' as varname, '{selection_name}' as selection, parent"
-                - "LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL"
-                - "CAST(nTauSelection+0.5 as int) as binvar"
-                - "SUM({weight}) as sum_w"
-                - "SUM({weight}*{weight}) as sum_ww"
-            selection:
-                Monojet:
-                    selection: "{Cutflow_Monojet}"
-                    weights: "{Weight_Monojet}"
-                MonojetQCD:
-                    selection: "{Cutflow_MonojetQCD}"
-                    weights: "{Weight_MonojetQCD}"
-                SingleMuon:
-                    selection: "{Cutflow_SingleMuon}"
-                    weights: "{Weight_SingleMuon}"
-                SingleMuonQCD:
-                    selection: "{Cutflow_SingleMuonQCD}"
-                    weights: "{Weight_SingleMuonQCD}"
-                DoubleMuon:
-                    selection: "{Cutflow_DoubleMuon}"
-                    weights: "{Weight_DoubleMuon}"
-                SingleElectron:
-                    selection: "{Cutflow_SingleElectron}"
-                    weights: "{Weight_SingleElectron}"
-                SingleElectronQCD:
-                    selection: "{Cutflow_SingleElectronQCD}"
-                    weights: "{Weight_SingleElectronQCD}"
-                DoubleElectron:
-                    selection: "{Cutflow_DoubleElectron}"
-                    weights: "{Weight_DoubleElectron}"
-                SingleTau:
-                    selection: "{Cutflow_SingleTau}"
-                    weights: "{Weight_SingleTau}"
-            groupby:
-                "parent, LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL, CAST(nTauSelection+0.5 as int)"
-        LeadTauSelection_pt:
-            columns:
-                - "'LeadTauSelection_pt' as varname, '{selection_name}' as selection, parent"
-                - "LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL"
-                - "CAST(LeadTauSelection_pt/5. as int)*5 as binvar"
-                - "SUM({weight}) as sum_w"
-                - "SUM({weight}*{weight}) as sum_ww"
-            selection:
-                SingleTau:
-                    selection: "{Cutflow_SingleTau}"
-                    weights: "{Weight_SingleTau}"
-            groupby:
-                "parent, LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL, CAST(LeadTauSelection_pt/5. as int)*5"
-        LeadTauSelection_eta:
-            columns:
-                - "'LeadTauSelection_eta' as varname, '{selection_name}' as selection, parent"
-                - "LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL"
-                - "CAST(LeadTauSelection_eta/0.1 as int)*0.1 as binvar"
-                - "SUM({weight}) as sum_w"
-                - "SUM({weight}*{weight}) as sum_ww"
-            selection:
-                SingleTau:
-                    selection: "{Cutflow_SingleTau}"
-                    weights: "{Weight_SingleTau}"
-            groupby:
-                "parent, LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL, CAST(LeadTauSelection_eta/0.1 as int)*0.1"
-        LeadTauSelection_phi:
-            columns:
-                - "'LeadTauSelection_phi' as varname, '{selection_name}' as selection, parent"
-                - "LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL"
-                - "CAST(LeadTauSelection_phi/0.06283 as int)*0.06283 as binvar"
-                - "SUM({weight}) as sum_w"
-                - "SUM({weight}*{weight}) as sum_ww"
-            selection:
-                SingleTau:
-                    selection: "{Cutflow_SingleTau}"
-                    weights: "{Weight_SingleTau}"
-            groupby:
-                "parent, LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL, CAST(LeadTauSelection_phi/0.06283 as int)*0.06283"
-        LeadTauSelection_dphiMET:
-            columns:
-                - "'LeadTauSelection_dphiMET' as varname, '{selection_name}' as selection, parent"
-                - "LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL"
-                - "CAST(LeadTauSelection_dphiMET/0.05 as int)*0.05 as binvar"
-                - "SUM({weight}) as sum_w"
-                - "SUM({weight}*{weight}) as sum_ww"
-            selection:
-                SingleTau:
-                    selection: "{Cutflow_SingleTau}"
-                    weights: "{Weight_SingleTau}"
-            groupby:
-                "parent, LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL, CAST(LeadTauSelection_dphiMET/0.05 as int)*0.05"
-        nPhotonVeto:
-            columns:
-                - "'nPhotonVeto' as varname, '{selection_name}' as selection, parent"
-                - "LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL"
-                - "CAST(nPhotonVeto+0.5 as int) as binvar"
-                - "SUM({weight}) as sum_w"
-                - "SUM({weight}*{weight}) as sum_ww"
-            selection:
-                Monojet:
-                    selection: "{Cutflow_Monojet}"
-                    weights: "{Weight_Monojet}"
-                MonojetQCD:
-                    selection: "{Cutflow_MonojetQCD}"
-                    weights: "{Weight_MonojetQCD}"
-                SingleMuon:
-                    selection: "{Cutflow_SingleMuon}"
-                    weights: "{Weight_SingleMuon}"
-                SingleMuonQCD:
-                    selection: "{Cutflow_SingleMuonQCD}"
-                    weights: "{Weight_SingleMuonQCD}"
-                DoubleMuon:
-                    selection: "{Cutflow_DoubleMuon}"
-                    weights: "{Weight_DoubleMuon}"
-                SingleElectron:
-                    selection: "{Cutflow_SingleElectron}"
-                    weights: "{Weight_SingleElectron}"
-                SingleElectronQCD:
-                    selection: "{Cutflow_SingleElectronQCD}"
-                    weights: "{Weight_SingleElectronQCD}"
-                DoubleElectron:
-                    selection: "{Cutflow_DoubleElectron}"
-                    weights: "{Weight_DoubleElectron}"
-                SingleTau:
-                    selection: "{Cutflow_SingleTau}"
-                    weights: "{Weight_SingleTau}"
-            groupby:
-                "parent, LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL, CAST(nPhotonVeto+0.5 as int)"
-        nPhotonSelection:
-            columns:
-                - "'nPhotonSelection' as varname, '{selection_name}' as selection, parent"
-                - "LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL"
-                - "CAST(nPhotonSelection+0.5 as int) as binvar"
-                - "SUM({weight}) as sum_w"
-                - "SUM({weight}*{weight}) as sum_ww"
-            selection:
-                Monojet:
-                    selection: "{Cutflow_Monojet}"
-                    weights: "{Weight_Monojet}"
-                MonojetQCD:
-                    selection: "{Cutflow_MonojetQCD}"
-                    weights: "{Weight_MonojetQCD}"
-                SingleMuon:
-                    selection: "{Cutflow_SingleMuon}"
-                    weights: "{Weight_SingleMuon}"
-                SingleMuonQCD:
-                    selection: "{Cutflow_SingleMuonQCD}"
-                    weights: "{Weight_SingleMuonQCD}"
-                DoubleMuon:
-                    selection: "{Cutflow_DoubleMuon}"
-                    weights: "{Weight_DoubleMuon}"
-                SingleElectron:
-                    selection: "{Cutflow_SingleElectron}"
-                    weights: "{Weight_SingleElectron}"
-                SingleElectronQCD:
-                    selection: "{Cutflow_SingleElectronQCD}"
-                    weights: "{Weight_SingleElectronQCD}"
-                DoubleElectron:
-                    selection: "{Cutflow_DoubleElectron}"
-                    weights: "{Weight_DoubleElectron}"
-                SingleTau:
-                    selection: "{Cutflow_SingleTau}"
-                    weights: "{Weight_SingleTau}"
-            groupby:
-                "parent, LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL, CAST(nPhotonSelection+0.5 as int)"
-        nBJetVeto:
-            columns:
-                - "'nBJetVeto' as varname, '{selection_name}' as selection, parent"
-                - "LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL"
-                - "CAST(nBJetVeto+0.5 as int) as binvar"
-                - "SUM({weight}) as sum_w"
-                - "SUM({weight}*{weight}) as sum_ww"
-            selection:
-                Monojet:
-                    selection: "{Cutflow_Monojet}"
-                    weights: "{Weight_Monojet}"
-                MonojetQCD:
-                    selection: "{Cutflow_MonojetQCD}"
-                    weights: "{Weight_MonojetQCD}"
-                SingleMuon:
-                    selection: "{Cutflow_SingleMuon}"
-                    weights: "{Weight_SingleMuon}"
-                SingleMuonQCD:
-                    selection: "{Cutflow_SingleMuonQCD}"
-                    weights: "{Weight_SingleMuonQCD}"
-                DoubleMuon:
-                    selection: "{Cutflow_DoubleMuon}"
-                    weights: "{Weight_DoubleMuon}"
-                SingleElectron:
-                    selection: "{Cutflow_SingleElectron}"
-                    weights: "{Weight_SingleElectron}"
-                SingleElectronQCD:
-                    selection: "{Cutflow_SingleElectronQCD}"
-                    weights: "{Weight_SingleElectronQCD}"
-                DoubleElectron:
-                    selection: "{Cutflow_DoubleElectron}"
-                    weights: "{Weight_DoubleElectron}"
-                SingleTau:
-                    selection: "{Cutflow_SingleTau}"
-                    weights: "{Weight_SingleTau}"
-            groupby:
-                "parent, LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL, CAST(nBJetVeto+0.5 as int)"
-        PV_npvsGood:
-            columns:
-                - "'PV_npvsGood' as varname, '{selection_name}' as selection, parent"
-                - "LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL"
-                - "CAST(PV_npvsGood+0.5 as int) as binvar"
-                - "SUM({weight}) as sum_w"
-                - "SUM({weight}*{weight}) as sum_ww"
-            selection:
-                Monojet:
-                    selection: "{Cutflow_Monojet}"
-                    weights: "{Weight_Monojet}"
-                MonojetQCD:
-                    selection: "{Cutflow_MonojetQCD}"
-                    weights: "{Weight_MonojetQCD}"
-                SingleMuon:
-                    selection: "{Cutflow_SingleMuon}"
-                    weights: "{Weight_SingleMuon}"
-                SingleMuonQCD:
-                    selection: "{Cutflow_SingleMuonQCD}"
-                    weights: "{Weight_SingleMuonQCD}"
-                DoubleMuon:
-                    selection: "{Cutflow_DoubleMuon}"
-                    weights: "{Weight_DoubleMuon}"
-                SingleElectron:
-                    selection: "{Cutflow_SingleElectron}"
-                    weights: "{Weight_SingleElectron}"
-                SingleElectronQCD:
-                    selection: "{Cutflow_SingleElectronQCD}"
-                    weights: "{Weight_SingleElectronQCD}"
-                DoubleElectron:
-                    selection: "{Cutflow_DoubleElectron}"
-                    weights: "{Weight_DoubleElectron}"
-                SingleTau:
-                    selection: "{Cutflow_SingleTau}"
-                    weights: "{Weight_SingleTau}"
-            groupby:
-                "parent, LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL, CAST(PV_npvsGood+0.5 as int)"
+                "parent, LeptonIsElectron, LeptonIsMuon, LeptonIsTau, nGenTauL, CAST(WeightSingleMuonTrig/0.01 as int)*0.01"
 database:
     - "/vols/cms/sdb15/Analysis/ZinvWidth/databases/201904_Apr/30_FinalDatabases_v3/MC/result_00000.db"
     - "/vols/cms/sdb15/Analysis/ZinvWidth/databases/201904_Apr/30_FinalDatabases_v3/MC/result_00001.db"
