@@ -11,6 +11,7 @@ def create_query_string(template, hist_dict, aliases={}):
                 weight = selection["weights"],
                 selection_name = label,
             ),
+            table = hist_dict["table"],
             selection = selection["selection"],
             groupby = hist_dict["groupby"],
         ).format(**aliases)
