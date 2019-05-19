@@ -1,23 +1,16 @@
 #!/usr/bin/env python
 import os
 import argparse
+import numpy as np
 import pandas as pd
 import importlib
 import yaml
 import copy
+import pysge
 
 from zdb.modules.multirun import multidraw
 
-from atsge.build_parallel import build_parallel
-
 import logging
-logging.getLogger(__name__).setLevel(logging.INFO)
-logging.getLogger("atsge.SGEJobSubmitter").setLevel(logging.INFO)
-logging.getLogger("atsge.WorkingArea").setLevel(logging.INFO)
-
-logging.getLogger(__name__).propagate = False
-logging.getLogger("atsge.SGEJobSubmitter").propagate = False
-logging.getLogger("atsge.WorkingArea").propagate = False
 
 def parse_args():
     parser = argparse.ArgumentParser()
@@ -36,6 +29,10 @@ def parse_args():
     parser.add_argument(
         "-j", "--ncores", default=0, type=int,
         help="Number of cores for 'multiprocessing' jobs",
+    )
+    parser.add_argument(
+        "--sge-opts", default="-q hep.q", type=str,
+        help="Options to pass onto qsub",
     )
     parser.add_argument(
         "-n", "--nplots", default=-1, type=int,
@@ -59,30 +56,28 @@ def parallel_draw(draw, jobs, options):
     if len(jobs)==0:
         return
 
+    mode = options.mode
     njobs = options.ncores
     if options.mode in ["multiprocessing"]:
         njobs = len(jobs)+1
 
-    jobs = [
-        jobs[i:i+len(jobs)//njobs+1]
-        for i in xrange(0, len(jobs), len(jobs)//njobs+1)
+    jobs = [list(x) for x in np.array_split(jobs, njobs)]
+    tasks = [
+        {"task": multidraw, "args": (draw, args), "kwargs": {}}
+        for args in jobs
     ]
 
-    parallel = build_parallel(
-        options.mode, processes=options.ncores, quiet=False,
-        dispatcher_options={"vmem": 6, "walltime": 3*60*60},
-    )
-    parallel.begin()
-    try:
-        parallel.communicationChannel.put_multiple([{
-            'task': multidraw,
-            'args': (draw, args),
-            'kwargs': {},
-        } for args in jobs])
-        results = parallel.communicationChannel.receive()
-    except KeyboardInterrupt:
-        parallel.terminate()
-    parallel.end()
+    if mode=="multiprocessing" and options.ncores==0:
+        results = pysge.local_submit(tasks)
+    elif mode=="multiprocessing":
+        results = pysge.mp_submit(tasks, ncores=options.ncores)
+    elif mode=="sge":
+        results = pysge.sge_submit(
+            "zdb", "_ccsp_temp/", tasks=tasks,
+            options=options.sge_opts, request_resubmission_options=True,
+        )
+    else:
+        results = []
 
 def main():
     options = parse_args()

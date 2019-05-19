@@ -1,14 +1,17 @@
 import pandas as pd
 import sqlalchemy as sqla
+import tqdm
 
 def db_query_to_frame(path, query):
-    print(path)
+    #print(path)
     engine = sqla.create_engine("sqlite:///{}".format(path))
     return (pd.read_sql(query, engine),)
 
-def merge_results(results, index):
+def merge_results(results, index, disable=False):
     df = None
-    for result in results:
+    if len(results)==1:
+        return results[0][0]
+    for result in tqdm.tqdm(results, desc="Processing", dynamic_ncols=True, unit="files", disable=disable):
         dfr = result[0].set_index(index)
         dfr = dfr.loc[dfr.index.dropna(),:]
 
