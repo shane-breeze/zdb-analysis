@@ -2,7 +2,7 @@ import yaml
 
 def yaml_read(path):
     with open(path, 'r') as f:
-        return yaml.load(f)
+        return yaml.full_load(f)
 
 def create_query_string(template, hist_dict, aliases={}):
     return [

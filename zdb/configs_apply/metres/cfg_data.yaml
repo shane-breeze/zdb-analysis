@@ -1,88 +1,170 @@
 query:
-    index: ["varname", "selection", "parent", "binvar"]
-    template: "SELECT {columns} FROM {table} WHERE {selection} GROUP BY {groupby}"
+    index: ["varname0", "varname1", "selection", "parent", "binvar0", "binvar1"]
+    template: "SELECT {columns} FROM {table} WHERE {selection}"
     aliases:
-        Cutflow_SingleMuonTriggered_Monojet:
-            "IsCertified AND IsSingleMuonTriggered AND Flag_goodVertices>0.5 AND Flag_globalSuperTightHalo2016Filter>0.5 AND Flag_HBHENoiseFilter>0.5 AND Flag_HBHENoiseIsoFilter>0.5 AND Flag_EcalDeadCellTriggerPrimitiveFilter>0.5 AND Flag_BadPFMuonFilter>0.5 AND Flag_BadGlobalMuon>0.5 AND Flag_CloneGlobalMuon>0.5 AND Flag_eeBadScFilter>0.5 AND METnoX_pt>200. AND MET_dCaloMET<0.6 AND nJetSelection>0 AND nJetSelection==nJetVeto AND LeadJetSelection_pt>200. AND LeadJetSelection_chHEF>0.1 AND LeadJetSelection_chHEF<0.95 AND nPhotonVeto==0 AND nBJetVeto==0 AND MinDPhiJ1234METnoX>0.5 AND nMuonVeto==0 AND nElectronVeto==0 AND nTauVeto==0"
-        Cutflow_SingleMuonTriggered_METTriggered_Monojet:
-            "IsCertified AND IsSingleMuonTriggered AND IsMETTriggered AND Flag_goodVertices>0.5 AND Flag_globalSuperTightHalo2016Filter>0.5 AND Flag_HBHENoiseFilter>0.5 AND Flag_HBHENoiseIsoFilter>0.5 AND Flag_EcalDeadCellTriggerPrimitiveFilter>0.5 AND Flag_BadPFMuonFilter>0.5 AND Flag_BadGlobalMuon>0.5 AND Flag_CloneGlobalMuon>0.5 AND Flag_eeBadScFilter>0.5 AND METnoX_pt>200. AND MET_dCaloMET<0.6 AND nJetSelection>0 AND nJetSelection==nJetVeto AND LeadJetSelection_pt>200. AND LeadJetSelection_chHEF>0.1 AND LeadJetSelection_chHEF<0.95 AND nPhotonVeto==0 AND nBJetVeto==0 AND MinDPhiJ1234METnoX>0.5 AND nMuonVeto==0 AND nElectronVeto==0 AND nTauVeto==0"
-        Cutflow_SingleMuonTriggered_MonojetQCD:
-            "IsCertified AND IsSingleMuonTriggered AND Flag_goodVertices>0.5 AND Flag_globalSuperTightHalo2016Filter>0.5 AND Flag_HBHENoiseFilter>0.5 AND Flag_HBHENoiseIsoFilter>0.5 AND Flag_EcalDeadCellTriggerPrimitiveFilter>0.5 AND Flag_BadPFMuonFilter>0.5 AND Flag_BadGlobalMuon>0.5 AND Flag_CloneGlobalMuon>0.5 AND Flag_eeBadScFilter>0.5 AND METnoX_pt>200. AND MET_dCaloMET<0.6 AND nJetSelection>0 AND nJetSelection==nJetVeto AND LeadJetSelection_pt>200. AND LeadJetSelection_chHEF>0.1 AND LeadJetSelection_chHEF<0.95 AND nPhotonVeto==0 AND nBJetVeto==0 AND MinDPhiJ1234METnoX<=0.5 AND nMuonVeto==0 AND nElectronVeto==0 AND nTauVeto==0"
-        Cutflow_SingleMuonTriggered_METTriggered_MonojetQCD:
-            "IsCertified AND IsSingleMuonTriggered AND IsMETTriggered AND Flag_goodVertices>0.5 AND Flag_globalSuperTightHalo2016Filter>0.5 AND Flag_HBHENoiseFilter>0.5 AND Flag_HBHENoiseIsoFilter>0.5 AND Flag_EcalDeadCellTriggerPrimitiveFilter>0.5 AND Flag_BadPFMuonFilter>0.5 AND Flag_BadGlobalMuon>0.5 AND Flag_CloneGlobalMuon>0.5 AND Flag_eeBadScFilter>0.5 AND METnoX_pt>200. AND MET_dCaloMET<0.6 AND nJetSelection>0 AND nJetSelection==nJetVeto AND LeadJetSelection_pt>200. AND LeadJetSelection_chHEF>0.1 AND LeadJetSelection_chHEF<0.95 AND nPhotonVeto==0 AND nBJetVeto==0 AND MinDPhiJ1234METnoX<=0.5 AND nMuonVeto==0 AND nElectronVeto==0 AND nTauVeto==0"
-        Cutflow_SingleMuonTriggered_SingleMuon:
-            "IsCertified AND IsSingleMuonTriggered AND Flag_goodVertices>0.5 AND Flag_globalSuperTightHalo2016Filter>0.5 AND Flag_HBHENoiseFilter>0.5 AND Flag_HBHENoiseIsoFilter>0.5 AND Flag_EcalDeadCellTriggerPrimitiveFilter>0.5 AND Flag_BadPFMuonFilter>0.5 AND Flag_BadGlobalMuon>0.5 AND Flag_CloneGlobalMuon>0.5 AND Flag_eeBadScFilter>0.5 AND METnoX_pt>200. AND MET_dCaloMET<0.6 AND nJetSelection>0 AND nJetSelection==nJetVeto AND LeadJetSelection_pt>200. AND LeadJetSelection_chHEF>0.1 AND LeadJetSelection_chHEF<0.95 AND nPhotonVeto==0 AND nBJetVeto==0 AND MinDPhiJ1234METnoX>0.5 AND nMuonVeto==1 AND nElectronVeto==0 AND nTauVeto==0 AND nMuonSelection==1"
-        Cutflow_SingleMuonTriggered_METTriggered_SingleMuon:
-            "IsCertified AND IsSingleMuonTriggered AND IsMETTriggered AND Flag_goodVertices>0.5 AND Flag_globalSuperTightHalo2016Filter>0.5 AND Flag_HBHENoiseFilter>0.5 AND Flag_HBHENoiseIsoFilter>0.5 AND Flag_EcalDeadCellTriggerPrimitiveFilter>0.5 AND Flag_BadPFMuonFilter>0.5 AND Flag_BadGlobalMuon>0.5 AND Flag_CloneGlobalMuon>0.5 AND Flag_eeBadScFilter>0.5 AND METnoX_pt>200. AND MET_dCaloMET<0.6 AND nJetSelection>0 AND nJetSelection==nJetVeto AND LeadJetSelection_pt>200. AND LeadJetSelection_chHEF>0.1 AND LeadJetSelection_chHEF<0.95 AND nPhotonVeto==0 AND nBJetVeto==0 AND MinDPhiJ1234METnoX>0.5 AND nMuonVeto==1 AND nElectronVeto==0 AND nTauVeto==0 AND nMuonSelection==1"
-        Cutflow_SingleMuonTriggered_DoubleMuon:
-            "IsCertified AND IsSingleMuonTriggered AND Flag_goodVertices>0.5 AND Flag_globalSuperTightHalo2016Filter>0.5 AND Flag_HBHENoiseFilter>0.5 AND Flag_HBHENoiseIsoFilter>0.5 AND Flag_EcalDeadCellTriggerPrimitiveFilter>0.5 AND Flag_BadPFMuonFilter>0.5 AND Flag_BadGlobalMuon>0.5 AND Flag_CloneGlobalMuon>0.5 AND Flag_eeBadScFilter>0.5 AND METnoX_pt>200. AND MET_dCaloMET<0.6 AND nJetSelection>0 AND nJetSelection==nJetVeto AND LeadJetSelection_pt>200. AND LeadJetSelection_chHEF>0.1 AND LeadJetSelection_chHEF<0.95 AND nPhotonVeto==0 AND nBJetVeto==0 AND MinDPhiJ1234METnoX>0.5 AND nMuonVeto==2 AND nElectronVeto==0 AND nTauVeto==0 AND nMuonSelection==2"
-        Cutflow_SingleMuonTriggered_METTriggered_DoubleMuon:
-            "IsCertified AND IsSingleMuonTriggered AND IsMETTriggered AND Flag_goodVertices>0.5 AND Flag_globalSuperTightHalo2016Filter>0.5 AND Flag_HBHENoiseFilter>0.5 AND Flag_HBHENoiseIsoFilter>0.5 AND Flag_EcalDeadCellTriggerPrimitiveFilter>0.5 AND Flag_BadPFMuonFilter>0.5 AND Flag_BadGlobalMuon>0.5 AND Flag_CloneGlobalMuon>0.5 AND Flag_eeBadScFilter>0.5 AND METnoX_pt>200. AND MET_dCaloMET<0.6 AND nJetSelection>0 AND nJetSelection==nJetVeto AND LeadJetSelection_pt>200. AND LeadJetSelection_chHEF>0.1 AND LeadJetSelection_chHEF<0.95 AND nPhotonVeto==0 AND nBJetVeto==0 AND MinDPhiJ1234METnoX>0.5 AND nMuonVeto==2 AND nElectronVeto==0 AND nTauVeto==0 AND nMuonSelection==2"
-        Cutflow_SingleMuonTriggered_TripleMuon:
-            "IsCertified AND IsSingleMuonTriggered AND Flag_goodVertices>0.5 AND Flag_globalSuperTightHalo2016Filter>0.5 AND Flag_HBHENoiseFilter>0.5 AND Flag_HBHENoiseIsoFilter>0.5 AND Flag_EcalDeadCellTriggerPrimitiveFilter>0.5 AND Flag_BadPFMuonFilter>0.5 AND Flag_BadGlobalMuon>0.5 AND Flag_CloneGlobalMuon>0.5 AND Flag_eeBadScFilter>0.5 AND METnoX_pt>200. AND MET_dCaloMET<0.6 AND nJetSelection>0 AND nJetSelection==nJetVeto AND LeadJetSelection_pt>200. AND LeadJetSelection_chHEF>0.1 AND LeadJetSelection_chHEF<0.95 AND nPhotonVeto==0 AND nBJetVeto==0 AND MinDPhiJ1234METnoX>0.5 AND nMuonVeto==3 AND nElectronVeto==0 AND nTauVeto==0 AND nMuonSelection==3"
-        Cutflow_SingleMuonTriggered_METTriggered_TripleMuon:
-            "IsCertified AND IsSingleMuonTriggered AND IsMETTriggered AND Flag_goodVertices>0.5 AND Flag_globalSuperTightHalo2016Filter>0.5 AND Flag_HBHENoiseFilter>0.5 AND Flag_HBHENoiseIsoFilter>0.5 AND Flag_EcalDeadCellTriggerPrimitiveFilter>0.5 AND Flag_BadPFMuonFilter>0.5 AND Flag_BadGlobalMuon>0.5 AND Flag_CloneGlobalMuon>0.5 AND Flag_eeBadScFilter>0.5 AND METnoX_pt>200. AND MET_dCaloMET<0.6 AND nJetSelection>0 AND nJetSelection==nJetVeto AND LeadJetSelection_pt>200. AND LeadJetSelection_chHEF>0.1 AND LeadJetSelection_chHEF<0.95 AND nPhotonVeto==0 AND nBJetVeto==0 AND MinDPhiJ1234METnoX>0.5 AND nMuonVeto==3 AND nElectronVeto==0 AND nTauVeto==0 AND nMuonSelection==3"
-        Cutflow_SingleMuonTriggered_SingleTau:
-            "IsCertified AND IsSingleMuonTriggered AND Flag_goodVertices>0.5 AND Flag_globalSuperTightHalo2016Filter>0.5 AND Flag_HBHENoiseFilter>0.5 AND Flag_HBHENoiseIsoFilter>0.5 AND Flag_EcalDeadCellTriggerPrimitiveFilter>0.5 AND Flag_BadPFMuonFilter>0.5 AND Flag_BadGlobalMuon>0.5 AND Flag_CloneGlobalMuon>0.5 AND Flag_eeBadScFilter>0.5 AND METnoX_pt>200. AND MET_dCaloMET<0.6 AND nJetSelection>0 AND nJetSelection==nJetVeto AND LeadJetSelection_pt>200. AND LeadJetSelection_chHEF>0.1 AND LeadJetSelection_chHEF<0.95 AND nPhotonVeto==0 AND nBJetVeto==0 AND MinDPhiJ1234METnoX>0.5 AND nMuonVeto==0 AND nElectronVeto==0 AND nTauVeto==1 AND nTauSelection==1"
-        Cutflow_SingleMuonTriggered_METTriggered_SingleTau:
-            "IsCertified AND IsSingleMuonTriggered AND IsMETTriggered AND Flag_goodVertices>0.5 AND Flag_globalSuperTightHalo2016Filter>0.5 AND Flag_HBHENoiseFilter>0.5 AND Flag_HBHENoiseIsoFilter>0.5 AND Flag_EcalDeadCellTriggerPrimitiveFilter>0.5 AND Flag_BadPFMuonFilter>0.5 AND Flag_BadGlobalMuon>0.5 AND Flag_CloneGlobalMuon>0.5 AND Flag_eeBadScFilter>0.5 AND METnoX_pt>200. AND MET_dCaloMET<0.6 AND nJetSelection>0 AND nJetSelection==nJetVeto AND LeadJetSelection_pt>200. AND LeadJetSelection_chHEF>0.1 AND LeadJetSelection_chHEF<0.95 AND nPhotonVeto==0 AND nBJetVeto==0 AND MinDPhiJ1234METnoX>0.5 AND nMuonVeto==0 AND nElectronVeto==0 AND nTauVeto==1 AND nTauSelection==1"
-        Cutflow_SingleMuonTriggered_DoubleTau:
-            "IsCertified AND IsSingleMuonTriggered AND Flag_goodVertices>0.5 AND Flag_globalSuperTightHalo2016Filter>0.5 AND Flag_HBHENoiseFilter>0.5 AND Flag_HBHENoiseIsoFilter>0.5 AND Flag_EcalDeadCellTriggerPrimitiveFilter>0.5 AND Flag_BadPFMuonFilter>0.5 AND Flag_BadGlobalMuon>0.5 AND Flag_CloneGlobalMuon>0.5 AND Flag_eeBadScFilter>0.5 AND METnoX_pt>200. AND MET_dCaloMET<0.6 AND nJetSelection>0 AND nJetSelection==nJetVeto AND LeadJetSelection_pt>200. AND LeadJetSelection_chHEF>0.1 AND LeadJetSelection_chHEF<0.95 AND nPhotonVeto==0 AND nBJetVeto==0 AND MinDPhiJ1234METnoX>0.5 AND nMuonVeto==0 AND nElectronVeto==0 AND nTauVeto==2 AND nTauSelection==2"
-        Cutflow_SingleMuonTriggered_METTriggered_DoubleTau:
-            "IsCertified AND IsSingleMuonTriggered AND IsMETTriggered AND Flag_goodVertices>0.5 AND Flag_globalSuperTightHalo2016Filter>0.5 AND Flag_HBHENoiseFilter>0.5 AND Flag_HBHENoiseIsoFilter>0.5 AND Flag_EcalDeadCellTriggerPrimitiveFilter>0.5 AND Flag_BadPFMuonFilter>0.5 AND Flag_BadGlobalMuon>0.5 AND Flag_CloneGlobalMuon>0.5 AND Flag_eeBadScFilter>0.5 AND METnoX_pt>200. AND MET_dCaloMET<0.6 AND nJetSelection>0 AND nJetSelection==nJetVeto AND LeadJetSelection_pt>200. AND LeadJetSelection_chHEF>0.1 AND LeadJetSelection_chHEF<0.95 AND nPhotonVeto==0 AND nBJetVeto==0 AND MinDPhiJ1234METnoX>0.5 AND nMuonVeto==0 AND nElectronVeto==0 AND nTauVeto==2 AND nTauSelection==2"
+        Cutflow_Monojet:
+            "IsCertified AND IsMETTriggered AND Flag_goodVertices>0.5 AND Flag_globalSuperTightHalo2016Filter>0.5 AND Flag_HBHENoiseFilter>0.5 AND Flag_HBHENoiseIsoFilter>0.5 AND Flag_EcalDeadCellTriggerPrimitiveFilter>0.5 AND Flag_BadPFMuonFilter>0.5 AND Flag_BadGlobalMuon>0.5 AND Flag_CloneGlobalMuon>0.5 AND Flag_eeBadScFilter>0.5 AND METnoX_pt>200. AND MET_dCaloMET<0.6 AND nJetSelection>0 AND nJetSelection==nJetVeto AND LeadJetSelection_pt>200. AND LeadJetSelection_chHEF>0.1 AND LeadJetSelection_chHEF<0.95 AND nPhotonVeto==0 AND nBJetVeto==0 AND MinDPhiJ1234METnoX>0.5 AND nMuonVeto==0 AND nElectronVeto==0 AND nTauVeto==0"
+        Cutflow_MonojetQCD:
+            "IsCertified AND IsMETTriggered AND Flag_goodVertices>0.5 AND Flag_globalSuperTightHalo2016Filter>0.5 AND Flag_HBHENoiseFilter>0.5 AND Flag_HBHENoiseIsoFilter>0.5 AND Flag_EcalDeadCellTriggerPrimitiveFilter>0.5 AND Flag_BadPFMuonFilter>0.5 AND Flag_BadGlobalMuon>0.5 AND Flag_CloneGlobalMuon>0.5 AND Flag_eeBadScFilter>0.5 AND METnoX_pt>200. AND MET_dCaloMET<0.6 AND nJetSelection>0 AND nJetSelection==nJetVeto AND LeadJetSelection_pt>200. AND LeadJetSelection_chHEF>0.1 AND LeadJetSelection_chHEF<0.95 AND nPhotonVeto==0 AND nBJetVeto==0 AND MinDPhiJ1234METnoX<=0.5 AND nMuonVeto==0 AND nElectronVeto==0 AND nTauVeto==0"
+        Cutflow_SingleMuon:
+            "IsCertified AND IsMETTriggered AND Flag_goodVertices>0.5 AND Flag_globalSuperTightHalo2016Filter>0.5 AND Flag_HBHENoiseFilter>0.5 AND Flag_HBHENoiseIsoFilter>0.5 AND Flag_EcalDeadCellTriggerPrimitiveFilter>0.5 AND Flag_BadPFMuonFilter>0.5 AND Flag_BadGlobalMuon>0.5 AND Flag_CloneGlobalMuon>0.5 AND Flag_eeBadScFilter>0.5 AND METnoX_pt>200. AND MET_dCaloMET<0.6 AND nJetSelection>0 AND nJetSelection==nJetVeto AND LeadJetSelection_pt>200. AND LeadJetSelection_chHEF>0.1 AND LeadJetSelection_chHEF<0.95 AND nPhotonVeto==0 AND nBJetVeto==0 AND MinDPhiJ1234METnoX>0.5 AND nMuonVeto==1 AND nElectronVeto==0 AND nTauVeto==0 AND nMuonSelection==1 AND MTW>=30. AND MTW<125."
+        Cutflow_SingleMuonQCD:
+            "IsCertified AND IsMETTriggered AND Flag_goodVertices>0.5 AND Flag_globalSuperTightHalo2016Filter>0.5 AND Flag_HBHENoiseFilter>0.5 AND Flag_HBHENoiseIsoFilter>0.5 AND Flag_EcalDeadCellTriggerPrimitiveFilter>0.5 AND Flag_BadPFMuonFilter>0.5 AND Flag_BadGlobalMuon>0.5 AND Flag_CloneGlobalMuon>0.5 AND Flag_eeBadScFilter>0.5 AND METnoX_pt>200. AND MET_dCaloMET<0.6 AND nJetSelection>0 AND nJetSelection==nJetVeto AND LeadJetSelection_pt>200. AND LeadJetSelection_chHEF>0.1 AND LeadJetSelection_chHEF<0.95 AND nPhotonVeto==0 AND nBJetVeto==0 AND MinDPhiJ1234METnoX<=0.5 AND nMuonVeto==1 AND nElectronVeto==0 AND nTauVeto==0 AND nMuonSelection==1 AND MTW>=30. AND MTW<125."
+        Cutflow_DoubleMuon:
+            "IsCertified AND IsMETTriggered AND Flag_goodVertices>0.5 AND Flag_globalSuperTightHalo2016Filter>0.5 AND Flag_HBHENoiseFilter>0.5 AND Flag_HBHENoiseIsoFilter>0.5 AND Flag_EcalDeadCellTriggerPrimitiveFilter>0.5 AND Flag_BadPFMuonFilter>0.5 AND Flag_BadGlobalMuon>0.5 AND Flag_CloneGlobalMuon>0.5 AND Flag_eeBadScFilter>0.5 AND METnoX_pt>200. AND MET_dCaloMET<0.6 AND nJetSelection>0 AND nJetSelection==nJetVeto AND LeadJetSelection_pt>200. AND LeadJetSelection_chHEF>0.1 AND LeadJetSelection_chHEF<0.95 AND nPhotonVeto==0 AND nBJetVeto==0 AND MinDPhiJ1234METnoX>0.5 AND nMuonVeto==2 AND nElectronVeto==0 AND nTauVeto==0 AND nMuonSelection==2 AND MLL>=71. AND MLL<111."
+        Cutflow_SingleElectron:
+            "IsCertified AND IsSingleElectronTriggered AND Flag_goodVertices>0.5 AND Flag_globalSuperTightHalo2016Filter>0.5 AND Flag_HBHENoiseFilter>0.5 AND Flag_HBHENoiseIsoFilter>0.5 AND Flag_EcalDeadCellTriggerPrimitiveFilter>0.5 AND Flag_BadPFMuonFilter>0.5 AND Flag_BadGlobalMuon>0.5 AND Flag_CloneGlobalMuon>0.5 AND Flag_eeBadScFilter>0.5 AND METnoX_pt>200. AND MET_dCaloMET<0.6 AND nJetSelection>0 AND nJetSelection==nJetVeto AND LeadJetSelection_pt>200. AND LeadJetSelection_chHEF>0.1 AND LeadJetSelection_chHEF<0.95 AND nPhotonVeto==0 AND nBJetVeto==0 AND MinDPhiJ1234METnoX>0.5 AND nMuonVeto==0 AND nElectronVeto==1 AND nTauVeto==0 AND nElectronSelection==1 AND MTW>=30. AND MTW<125. AND MET_pt>100."
+        Cutflow_SingleElectronQCD:
+            "IsCertified AND IsSingleElectronTriggered AND Flag_goodVertices>0.5 AND Flag_globalSuperTightHalo2016Filter>0.5 AND Flag_HBHENoiseFilter>0.5 AND Flag_HBHENoiseIsoFilter>0.5 AND Flag_EcalDeadCellTriggerPrimitiveFilter>0.5 AND Flag_BadPFMuonFilter>0.5 AND Flag_BadGlobalMuon>0.5 AND Flag_CloneGlobalMuon>0.5 AND Flag_eeBadScFilter>0.5 AND METnoX_pt>200. AND MET_dCaloMET<0.6 AND nJetSelection>0 AND nJetSelection==nJetVeto AND LeadJetSelection_pt>200. AND LeadJetSelection_chHEF>0.1 AND LeadJetSelection_chHEF<0.95 AND nPhotonVeto==0 AND nBJetVeto==0 AND MinDPhiJ1234METnoX<=0.5 AND nMuonVeto==0 AND nElectronVeto==1 AND nTauVeto==0 AND nElectronSelection==1 AND MTW>=30. AND MTW<125. AND MET_pt>100."
+        Cutflow_DoubleElectron:
+            "IsCertified AND IsSingleElectronTriggered AND Flag_goodVertices>0.5 AND Flag_globalSuperTightHalo2016Filter>0.5 AND Flag_HBHENoiseFilter>0.5 AND Flag_HBHENoiseIsoFilter>0.5 AND Flag_EcalDeadCellTriggerPrimitiveFilter>0.5 AND Flag_BadPFMuonFilter>0.5 AND Flag_BadGlobalMuon>0.5 AND Flag_CloneGlobalMuon>0.5 AND Flag_eeBadScFilter>0.5 AND METnoX_pt>200. AND MET_dCaloMET<0.6 AND nJetSelection>0 AND nJetSelection==nJetVeto AND LeadJetSelection_pt>200. AND LeadJetSelection_chHEF>0.1 AND LeadJetSelection_chHEF<0.95 AND nPhotonVeto==0 AND nBJetVeto==0 AND MinDPhiJ1234METnoX>0.5 AND nMuonVeto==0 AND nElectronVeto==2 AND nTauVeto==0 AND nElectronSelection==2 AND MLL>=71. AND MLL<111."
+        Cutflow_SingleTau:
+            "IsCertified AND IsMETTriggered AND Flag_goodVertices>0.5 AND Flag_globalSuperTightHalo2016Filter>0.5 AND Flag_HBHENoiseFilter>0.5 AND Flag_HBHENoiseIsoFilter>0.5 AND Flag_EcalDeadCellTriggerPrimitiveFilter>0.5 AND Flag_BadPFMuonFilter>0.5 AND Flag_BadGlobalMuon>0.5 AND Flag_CloneGlobalMuon>0.5 AND Flag_eeBadScFilter>0.5 AND METnoX_pt>200. AND MET_dCaloMET<0.6 AND nJetSelection>0 AND nJetSelection==nJetVeto AND LeadJetSelection_pt>200. AND LeadJetSelection_chHEF>0.1 AND LeadJetSelection_chHEF<0.95 AND nPhotonVeto==0 AND nBJetVeto==0 AND MinDPhiJ1234METnoX>0.5 AND nMuonVeto==0 AND nElectronVeto==0 AND nTauVeto==1 AND nTauSelection==1"
     histograms:
-        METnoX_pt:
-            columns:
-                - "'METnoX_pt' as varname, '{selection_name}' as selection, parent"
-                - "CAST(METnoX_pt/5. as int)*5 as binvar"
-                - "SUM({weight}) as sum_w"
-                - "SUM({weight}*{weight}) as sum_ww"
+        METnoX_ptParaZCandNorm__ZCand_pt__Muons:
             table: "Events"
+            columns:
+                - "'ZCand_pt' as varname0, 'METnoX_ptParaZCandNorm' as varname1"
+                - "'{selection_name}' as selection, parent"
+                - "METnoX_pt, METnoX_phi"
+                - "LeadMuonSelection_pt, LeadMuonSelection_phi"
+                - "SecondMuonSelection_pt, SecondMuonSelection_phi"
+                - "{weight} as sum_w"
+                - "{weight}*{weight} as sum_ww"
             selection:
-                SingleMuonTriggered_Monojet:
-                    selection: "{Cutflow_SingleMuonTriggered_Monojet}"
+                DoubleMuon:
+                    selection: "{Cutflow_DoubleMuon}"
                     weights: "1."
-                SingleMuonTriggered_METTriggered_Monojet:
-                    selection: "{Cutflow_SingleMuonTriggered_METTriggered_Monojet}"
-                    weights: "1."
-                SingleMuonTriggered_MonojetQCD:
-                    selection: "{Cutflow_SingleMuonTriggered_MonojetQCD}"
-                    weights: "1."
-                SingleMuonTriggered_METTriggered_MonojetQCD:
-                    selection: "{Cutflow_SingleMuonTriggered_METTriggered_MonojetQCD}"
-                    weights: "1."
-                SingleMuonTriggered_SingleMuon:
-                    selection: "{Cutflow_SingleMuonTriggered_SingleMuon}"
-                    weights: "1."
-                SingleMuonTriggered_METTriggered_SingleMuon:
-                    selection: "{Cutflow_SingleMuonTriggered_METTriggered_SingleMuon}"
-                    weights: "1."
-                SingleMuonTriggered_DoubleMuon:
-                    selection: "{Cutflow_SingleMuonTriggered_DoubleMuon}"
-                    weights: "1."
-                SingleMuonTriggered_METTriggered_DoubleMuon:
-                    selection: "{Cutflow_SingleMuonTriggered_METTriggered_DoubleMuon}"
-                    weights: "1."
-                SingleMuonTriggered_TripleMuon:
-                    selection: "{Cutflow_SingleMuonTriggered_TripleMuon}"
-                    weights: "1."
-                SingleMuonTriggered_METTriggered_TripleMuon:
-                    selection: "{Cutflow_SingleMuonTriggered_METTriggered_TripleMuon}"
-                    weights: "1."
-                SingleMuonTriggered_SingleTau:
-                    selection: "{Cutflow_SingleMuonTriggered_SingleTau}"
-                    weights: "1."
-                SingleMuonTriggered_METTriggered_SingleTau:
-                    selection: "{Cutflow_SingleMuonTriggered_METTriggered_SingleTau}"
-                    weights: "1."
-                SingleMuonTriggered_DoubleTau:
-                    selection: "{Cutflow_SingleMuonTriggered_DoubleTau}"
-                    weights: "1."
-                SingleMuonTriggered_METTriggered_DoubleTau:
-                    selection: "{Cutflow_SingleMuonTriggered_METTriggered_DoubleTau}"
-                    weights: "1."
+            evals:
+                - name: "ZCand_px"
+                  eval: "LeadMuonSelection_pt*cos(LeadMuonSelection_phi)+SecondMuonSelection_pt*cos(SecondMuonSelection_phi)"
+                - name: "ZCand_py"
+                  eval: "LeadMuonSelection_pt*sin(LeadMuonSelection_phi)+SecondMuonSelection_pt*sin(SecondMuonSelection_phi)"
+                - name: "ZCand_pt"
+                  eval: "sqrt(ZCand_px**2 + ZCand_py**2)"
+                - name: "ZCand_phi"
+                  eval: "arctan2(ZCand_py, ZCand_px)"
+                - name: "METnoX_ptParaZCandNorm"
+                  eval: "METnoX_pt*cos(METnoX_phi-ZCand_phi)/ZCand_pt - 1"
+                - name: "binvar0"
+                  eval: "floor(ZCand_pt/2.)*2"
+                - name: "binvar1"
+                  eval: "floor(METnoX_ptParaZCandNorm/0.01)*0.01"
             groupby:
-                "parent, CAST(METnoX_pt/5. as int)*5"
+                - "varname0"
+                - "varname1"
+                - "selection"
+                - "parent"
+                - "binvar0"
+                - "binvar1"
+        METnoX_ptPerpZCandCent__ZCand_pt__Muons:
+            table: "Events"
+            columns:
+                - "'ZCand_pt' as varname0, 'METnoX_ptPerpZCandCent' as varname1"
+                - "'{selection_name}' as selection, parent"
+                - "METnoX_pt, METnoX_phi"
+                - "LeadMuonSelection_pt, LeadMuonSelection_phi"
+                - "SecondMuonSelection_pt, SecondMuonSelection_phi"
+                - "{weight} as sum_w"
+                - "{weight}*{weight} as sum_ww"
+            selection:
+                DoubleMuon:
+                    selection: "{Cutflow_DoubleMuon}"
+                    weights: "1."
+            evals:
+                - name: "ZCand_px"
+                  eval: "LeadMuonSelection_pt*cos(LeadMuonSelection_phi)+SecondMuonSelection_pt*cos(SecondMuonSelection_phi)"
+                - name: "ZCand_py"
+                  eval: "LeadMuonSelection_pt*sin(LeadMuonSelection_phi)+SecondMuonSelection_pt*sin(SecondMuonSelection_phi)"
+                - name: "ZCand_pt"
+                  eval: "sqrt(ZCand_px**2 + ZCand_py**2)"
+                - name: "ZCand_phi"
+                  eval: "arctan2(ZCand_py, ZCand_px)"
+                - name: "METnoX_ptPerpZCandCent"
+                  eval: "METnoX_pt*sin(METnoX_phi-ZCand_phi)"
+                - name: "binvar0"
+                  eval: "floor(ZCand_pt/2.)*2"
+                - name: "binvar1"
+                  eval: "floor(METnoX_ptPerpZCandCent/5.)*5"
+            groupby:
+                - "varname0"
+                - "varname1"
+                - "selection"
+                - "parent"
+                - "binvar0"
+                - "binvar1"
+        METnoX_ptParaZCandNorm__ZCand_pt__Electrons:
+            table: "Events"
+            columns:
+                - "'ZCand_pt' as varname0, 'METnoX_ptParaZCandNorm' as varname1"
+                - "'{selection_name}' as selection, parent"
+                - "METnoX_pt, METnoX_phi"
+                - "LeadElectronSelection_pt, LeadElectronSelection_phi"
+                - "SecondElectronSelection_pt, SecondElectronSelection_phi"
+                - "{weight} as sum_w"
+                - "{weight}*{weight} as sum_ww"
+            selection:
+                DoubleElectron:
+                    selection: "{Cutflow_DoubleElectron}"
+                    weights: "1."
+            evals:
+                - name: "ZCand_px"
+                  eval: "LeadElectronSelection_pt*cos(LeadElectronSelection_phi)+SecondElectronSelection_pt*cos(SecondElectronSelection_phi)"
+                - name: "ZCand_py"
+                  eval: "LeadElectronSelection_pt*sin(LeadElectronSelection_phi)+SecondElectronSelection_pt*sin(SecondElectronSelection_phi)"
+                - name: "ZCand_pt"
+                  eval: "sqrt(ZCand_px**2 + ZCand_py**2)"
+                - name: "ZCand_phi"
+                  eval: "arctan2(ZCand_py, ZCand_px)"
+                - name: "METnoX_ptParaZCandNorm"
+                  eval: "METnoX_pt*cos(METnoX_phi-ZCand_phi)/ZCand_pt - 1"
+                - name: "binvar0"
+                  eval: "floor(ZCand_pt/2.)*2"
+                - name: "binvar1"
+                  eval: "floor(METnoX_ptParaZCandNorm/0.01)*0.01"
+            groupby:
+                - "varname0"
+                - "varname1"
+                - "selection"
+                - "parent"
+                - "binvar0"
+                - "binvar1"
+        METnoX_ptPerpZCandCent__ZCand_pt__Electrons:
+            table: "Events"
+            columns:
+                - "'ZCand_pt' as varname0, 'METnoX_ptPerpZCandCent' as varname1"
+                - "'{selection_name}' as selection, parent"
+                - "METnoX_pt, METnoX_phi"
+                - "LeadElectronSelection_pt, LeadElectronSelection_phi"
+                - "SecondElectronSelection_pt, SecondElectronSelection_phi"
+                - "{weight} as sum_w"
+                - "{weight}*{weight} as sum_ww"
+            selection:
+                DoubleElectron:
+                    selection: "{Cutflow_DoubleElectron}"
+                    weights: "1."
+            evals:
+                - name: "ZCand_px"
+                  eval: "LeadElectronSelection_pt*cos(LeadElectronSelection_phi)+SecondElectronSelection_pt*cos(SecondElectronSelection_phi)"
+                - name: "ZCand_py"
+                  eval: "LeadElectronSelection_pt*sin(LeadElectronSelection_phi)+SecondElectronSelection_pt*sin(SecondElectronSelection_phi)"
+                - name: "ZCand_pt"
+                  eval: "sqrt(ZCand_px**2 + ZCand_py**2)"
+                - name: "ZCand_phi"
+                  eval: "arctan2(ZCand_py, ZCand_px)"
+                - name: "METnoX_ptPerpZCandCent"
+                  eval: "METnoX_pt*sin(METnoX_phi-ZCand_phi)"
+                - name: "binvar0"
+                  eval: "floor(ZCand_pt/2.)*2"
+                - name: "binvar1"
+                  eval: "floor(METnoX_ptPerpZCandCent/5.)*5"
+            groupby:
+                - "varname0"
+                - "varname1"
+                - "selection"
+                - "parent"
+                - "binvar0"
+                - "binvar1"
 database:
     - "/vols/cms/sdb15/Analysis/ZinvWidth/databases/201905_May/18_FitInputDatabases/Data/result_00000.db"
     - "/vols/cms/sdb15/Analysis/ZinvWidth/databases/201905_May/18_FitInputDatabases/Data/result_00001.db"
