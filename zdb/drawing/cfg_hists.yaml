@@ -378,7 +378,7 @@ MonojetQCD:
         SingleTop: "Minor"
         DYJetsToEE: "Minor"
         DYJetsToMuMu: "Minor"
-        DYJetsToTauHTauH: "Minor"
+        dYJetsToTauHTauH: "Minor"
         DYJetsToTauHTauL: "Minor"
         DYJetsToTauLTauL: "Minor"
         VBS: "Minor"
@@ -409,7 +409,7 @@ defaults:
     rename_samples: {}
     legend_off_axes: True
     blind: False
-    binvar: "binvar"
+    binvar: "binvar0"
     counts: "sum_w"
     variance: "sum_ww"
     sample: "parent"

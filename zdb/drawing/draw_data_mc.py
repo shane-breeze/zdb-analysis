@@ -81,7 +81,7 @@ def draw_data(ax, df, cfg):
         )
 
 def draw_mc_counts(ax, df, cfg):
-    if df is None:
+    if df is None or df.empty or df.sum().sum()==0:
         return
 
     binning = np.arange(*cfg["binning"])
@@ -226,7 +226,7 @@ def draw_data_mc(df_data, df_mc, cfg):
 
     axb.axhline(1., lw=0.8, ls='--', color='black')
 
-    print("Creating {}".format(cfg["outpath"]))
+    #print("Creating {}".format(cfg["outpath"]))
     fig.align_ylabels([axt, axb])
     fig.savefig(cfg["outpath"], format="pdf", bbox_inches="tight")
     plt.close(fig)

@@ -1,34 +1,20 @@
 #!/usr/bin/env python
 import os
 import argparse
+import numpy as np
 import pandas as pd
 import importlib
 import yaml
 import copy
+import pysge
 
 from zdb.modules.multirun import multidraw
 
-from atsge.build_parallel import build_parallel
-
-import logging
-logging.getLogger(__name__).setLevel(logging.INFO)
-logging.getLogger("atsge.SGEJobSubmitter").setLevel(logging.INFO)
-logging.getLogger("atsge.WorkingArea").setLevel(logging.INFO)
-
-logging.getLogger(__name__).propagate = False
-logging.getLogger("atsge.SGEJobSubmitter").propagate = False
-logging.getLogger("atsge.WorkingArea").propagate = False
-
 def parse_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument("drawer", help="Path to drawing function")
+    parser.add_argument("input", help="Input file")
     parser.add_argument("cfg", help="Plotting config file")
-    parser.add_argument(
-        "--data", default=None, type=str, help="Path to data pandas pickle",
-    )
-    parser.add_argument(
-        "--mc", default=None, type=str, help="Path to MC pandas pickle",
-    )
+    parser.add_argument("drawer", help="Path to drawing function")
     parser.add_argument(
         "-m", "--mode", default="multiprocessing", type=str,
         help="Parallelisation: 'multiprocessing', 'sge', 'htcondor'",
@@ -36,6 +22,10 @@ def parse_args():
     parser.add_argument(
         "-j", "--ncores", default=0, type=int,
         help="Number of cores for 'multiprocessing' jobs",
+    )
+    parser.add_argument(
+        "--sge-opts", default="-q hep.q", type=str,
+        help="SGE job options",
     )
     parser.add_argument(
         "-n", "--nplots", default=-1, type=int,
@@ -61,28 +51,23 @@ def parallel_draw(draw, jobs, options):
 
     njobs = options.ncores
     if options.mode in ["multiprocessing"]:
-        njobs = len(jobs)+1
+        njobs = len(jobs)
 
-    jobs = [
-        jobs[i:i+len(jobs)//njobs+1]
-        for i in xrange(0, len(jobs), len(jobs)//njobs+1)
+    grouped_jobs = [list(x) for x in np.array_split(jobs, njobs)]
+    tasks = [
+        {"task": multidraw, "args": (draw, args), "kwargs": {}}
+        for args in grouped_jobs
     ]
 
-    parallel = build_parallel(
-        options.mode, processes=options.ncores, quiet=False,
-        dispatcher_options={"vmem": 6, "walltime": 3*60*60},
-    )
-    parallel.begin()
-    try:
-        parallel.communicationChannel.put_multiple([{
-            'task': multidraw,
-            'args': (draw, args),
-            'kwargs': {},
-        } for args in jobs])
-        results = parallel.communicationChannel.receive()
-    except KeyboardInterrupt:
-        parallel.terminate()
-    parallel.end()
+    if options.mode=="multiprocessing" and options.ncores==0:
+        pysge.local_submit(tasks)
+    elif options.mode=="multiprocessing":
+        pysge.mp_submit(tasks, ncores=options.ncores)
+    elif options.mode=="sge":
+        pysge.sge_submit(
+            "zdb-draw", "_ccsp_temp/", tasks=tasks, options=options.sge_opts,
+            sleep=5, request_resubmission_options=True,
+        )
 
 def main():
     options = parse_args()
@@ -93,11 +78,13 @@ def main():
 
     # open cfg
     with open(options.cfg, 'r') as f:
-        cfg = yaml.load(f)
+        cfg = yaml.full_load(f)
 
     # Read in dataframes
-    df_data = pd.read_pickle(options.data) if options.data is not None else None
-    df_mc = pd.read_pickle(options.mc) if options.mc is not None else None
+    df_data = pd.read_hdf(options.input, "DataAggEvents")
+    df_data = df_data.loc[("central",), :]
+    df_mc = pd.read_hdf(options.input, "MCAggEvents")
+    df_mc = df_mc.loc[("central",), :]
 
     # process MC dataframe
     if df_mc is not None:
@@ -124,7 +111,7 @@ def main():
         dfs.append(df_mc)
 
     # varnames
-    varnames = pd.concat(dfs).index.get_level_values("varname").unique()
+    varnames = pd.concat(dfs).index.get_level_values("varname0").unique()
 
     # datasets
     if df_data is not None:
