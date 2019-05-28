@@ -1,7 +1,7 @@
 # Custom
 output_*/
 _ccsp_temp/
-
+output*.h5
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
