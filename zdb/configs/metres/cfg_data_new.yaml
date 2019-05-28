@@ -1,75 +1,93 @@
 query:
+    groupby: ["table", "varname0", "varname1", "selection", "parent", "binvar0", "binvar1"]
+    tables:
+        "central": "Events"
     aliases: {}
-    selections:
-        Cutflow_Monojet: "(IsCertified) & (IsMETTriggered) & (Flag_goodVertices) & (Flag_globalSuperTightHalo2016Filter) & (Flag_HBHENoiseFilter) & (Flag_HBHENoiseIsoFilter) & (Flag_EcalDeadCellTriggerPrimitiveFilter) & (Flag_BadPFMuonFilter) & (Flag_BadGlobalMuon) & (Flag_CloneGlobalMuon) & (Flag_eeBadScFilter) & (METnoX_pt>200.) & (MET_dCaloMET<0.6) & (nJetSelection>0) & (nJetSelection==nJetVeto) & (LeadJetSelection_pt>200.) & (LeadJetSelection_chHEF>0.1) & (LeadJetSelection_chHEF<0.95) & (nPhotonVeto==0) & (nBJetVeto==0) & (MinDPhiJ1234METnoX>0.5) & (nMuonVeto==0) & (nElectronVeto==0) & (nTauVeto==0)"
-        Cutflow_MonojetQCD: "(IsCertified) & (IsMETTriggered) & (Flag_goodVertices) & (Flag_globalSuperTightHalo2016Filter) & (Flag_HBHENoiseFilter) & (Flag_HBHENoiseIsoFilter) & (Flag_EcalDeadCellTriggerPrimitiveFilter) & (Flag_BadPFMuonFilter) & (Flag_BadGlobalMuon) & (Flag_CloneGlobalMuon) & (Flag_eeBadScFilter) & (METnoX_pt>200.) & (MET_dCaloMET<0.6) & (nJetSelection>0) & (nJetSelection==nJetVeto) & (LeadJetSelection_pt>200.) & (LeadJetSelection_chHEF>0.1) & (LeadJetSelection_chHEF<0.95) & (nPhotonVeto==0) & (nBJetVeto==0) & (MinDPhiJ1234METnoX<=0.5) & (nMuonVeto==0) & (nElectronVeto==0) & (nTauVeto==0)"
-        Cutflow_SingleMuon: "(IsCertified) & (IsMETTriggered) & (Flag_goodVertices) & (Flag_globalSuperTightHalo2016Filter) & (Flag_HBHENoiseFilter) & (Flag_HBHENoiseIsoFilter) & (Flag_EcalDeadCellTriggerPrimitiveFilter) & (Flag_BadPFMuonFilter) & (Flag_BadGlobalMuon) & (Flag_CloneGlobalMuon) & (Flag_eeBadScFilter) & (METnoX_pt>200.) & (MET_dCaloMET<0.6) & (nJetSelection>0) & (nJetSelection==nJetVeto) & (LeadJetSelection_pt>200.) & (LeadJetSelection_chHEF>0.1) & (LeadJetSelection_chHEF<0.95) & (nPhotonVeto==0) & (nBJetVeto==0) & (MinDPhiJ1234METnoX>0.5) & (nMuonVeto==1) & (nElectronVeto==0) & (nTauVeto==0) & (nMuonSelection==1) & (MTW>=30.) & (MTW<125.)"
-        Cutflow_SingleMuonQCD: "(IsCertified) & (IsMETTriggered) & (Flag_goodVertices) & (Flag_globalSuperTightHalo2016Filter) & (Flag_HBHENoiseFilter) & (Flag_HBHENoiseIsoFilter) & (Flag_EcalDeadCellTriggerPrimitiveFilter) & (Flag_BadPFMuonFilter) & (Flag_BadGlobalMuon) & (Flag_CloneGlobalMuon) & (Flag_eeBadScFilter) & (METnoX_pt>200.) & (MET_dCaloMET<0.6) & (nJetSelection>0) & (nJetSelection==nJetVeto) & (LeadJetSelection_pt>200.) & (LeadJetSelection_chHEF>0.1) & (LeadJetSelection_chHEF<0.95) & (nPhotonVeto==0) & (nBJetVeto==0) & (MinDPhiJ1234METnoX<=0.5) & (nMuonVeto==1) & (nElectronVeto==0) & (nTauVeto==0) & (nMuonSelection==1) & (MTW>=30.) & (MTW<125.)"
-        Cutflow_DoubleMuon: "(IsCertified) & (IsMETTriggered) & (Flag_goodVertices) & (Flag_globalSuperTightHalo2016Filter) & (Flag_HBHENoiseFilter) & (Flag_HBHENoiseIsoFilter) & (Flag_EcalDeadCellTriggerPrimitiveFilter) & (Flag_BadPFMuonFilter) & (Flag_BadGlobalMuon) & (Flag_CloneGlobalMuon) & (Flag_eeBadScFilter) & (METnoX_pt>200.) & (MET_dCaloMET<0.6) & (nJetSelection>0) & (nJetSelection==nJetVeto) & (LeadJetSelection_pt>200.) & (LeadJetSelection_chHEF>0.1) & (LeadJetSelection_chHEF<0.95) & (nPhotonVeto==0) & (nBJetVeto==0) & (MinDPhiJ1234METnoX>0.5) & (nMuonVeto==2) & (nElectronVeto==0) & (nTauVeto==0) & (nMuonSelection==2) & (MLL>=71.) & (MLL<111.)"
-        Cutflow_SingleElectron: "(IsCertified) & (IsSingleElectronTriggered) & (Flag_goodVertices) & (Flag_globalSuperTightHalo2016Filter) & (Flag_HBHENoiseFilter) & (Flag_HBHENoiseIsoFilter) & (Flag_EcalDeadCellTriggerPrimitiveFilter) & (Flag_BadPFMuonFilter) & (Flag_BadGlobalMuon) & (Flag_CloneGlobalMuon) & (Flag_eeBadScFilter) & (METnoX_pt>200.) & (MET_dCaloMET<0.6) & (nJetSelection>0) & (nJetSelection==nJetVeto) & (LeadJetSelection_pt>200.) & (LeadJetSelection_chHEF>0.1) & (LeadJetSelection_chHEF<0.95) & (nPhotonVeto==0) & (nBJetVeto==0) & (MinDPhiJ1234METnoX>0.5) & (nMuonVeto==0) & (nElectronVeto==1) & (nTauVeto==0) & (nElectronSelection==1) & (MTW>=30.) & (MTW<125.) & (MET_pt>100.)"
-        Cutflow_SingleElectronQCD: "(IsCertified) & (IsSingleElectronTriggered) & (Flag_goodVertices) & (Flag_globalSuperTightHalo2016Filter) & (Flag_HBHENoiseFilter) & (Flag_HBHENoiseIsoFilter) & (Flag_EcalDeadCellTriggerPrimitiveFilter) & (Flag_BadPFMuonFilter) & (Flag_BadGlobalMuon) & (Flag_CloneGlobalMuon) & (Flag_eeBadScFilter) & (METnoX_pt>200.) & (MET_dCaloMET<0.6) & (nJetSelection>0) & (nJetSelection==nJetVeto) & (LeadJetSelection_pt>200.) & (LeadJetSelection_chHEF>0.1) & (LeadJetSelection_chHEF<0.95) & (nPhotonVeto==0) & (nBJetVeto==0) & (MinDPhiJ1234METnoX<=0.5) & (nMuonVeto==0) & (nElectronVeto==1) & (nTauVeto==0) & (nElectronSelection==1) & (MTW>=30.) & (MTW<125.) & (MET_pt>100.)"
-        Cutflow_DoubleElectron: "(IsCertified) & (IsSingleElectronTriggered) & (Flag_goodVertices) & (Flag_globalSuperTightHalo2016Filter) & (Flag_HBHENoiseFilter) & (Flag_HBHENoiseIsoFilter) & (Flag_EcalDeadCellTriggerPrimitiveFilter) & (Flag_BadPFMuonFilter) & (Flag_BadGlobalMuon) & (Flag_CloneGlobalMuon) & (Flag_eeBadScFilter) & (METnoX_pt>200.) & (MET_dCaloMET<0.6) & (nJetSelection>0) & (nJetSelection==nJetVeto) & (LeadJetSelection_pt>200.) & (LeadJetSelection_chHEF>0.1) & (LeadJetSelection_chHEF<0.95) & (nPhotonVeto==0) & (nBJetVeto==0) & (MinDPhiJ1234METnoX>0.5) & (nMuonVeto==0) & (nElectronVeto==2) & (nTauVeto==0) & (nElectronSelection==2) & (MLL>=71.) & (MLL<111.)"
-        Cutflow_SingleTau: "(IsCertified) & (IsMETTriggered) & (Flag_goodVertices) & (Flag_globalSuperTightHalo2016Filter) & (Flag_HBHENoiseFilter) & (Flag_HBHENoiseIsoFilter) & (Flag_EcalDeadCellTriggerPrimitiveFilter) & (Flag_BadPFMuonFilter) & (Flag_BadGlobalMuon) & (Flag_CloneGlobalMuon) & (Flag_eeBadScFilter) & (METnoX_pt>200.) & (MET_dCaloMET<0.6) & (nJetSelection>0) & (nJetSelection==nJetVeto) & (LeadJetSelection_pt>200.) & (LeadJetSelection_chHEF>0.1) & (LeadJetSelection_chHEF<0.95) & (nPhotonVeto==0) & (nBJetVeto==0) & (MinDPhiJ1234METnoX>0.5) & (nMuonVeto==0) & (nElectronVeto==0) & (nTauVeto==1) & (nTauSelection==1)"
     eval:
-        - ZCand_px: "df: df.LeadMuonSelection_pt*np.cos(df.LeadMuonSelection_phi)+df.SecondMuonSelection_pt*np.cos(df.SecondMuonSelection_phi) + df.LeadElectronSelection_pt*np.cos(df.LeadElectronSelection_phi)+df.SecondElectronSelection_pt*np.cos(df.SecondElectronSelection_phi)"
-        - ZCand_py: "df: df.LeadMuonSelection_pt*np.sin(df.LeadMuonSelection_phi)+df.SecondMuonSelection_pt*np.sin(df.SecondMuonSelection_phi) + df.LeadElectronSelection_pt*np.sin(df.LeadElectronSelection_phi)+df.SecondElectronSelection_pt*np.sin(df.SecondElectronSelection_phi)"
+        - ZCand_px: "df: np.where(df.nMuonSelection==2, df.LeadMuonSelection_pt*np.cos(df.LeadMuonSelection_phi)+df.SecondMuonSelection_pt*np.cos(df.SecondMuonSelection_phi), np.zeros_like(df.nMuonSelection)) + np.where(df.nElectronSelection==2, df.LeadElectronSelection_pt*np.cos(df.LeadElectronSelection_phi)+df.SecondElectronSelection_pt*np.cos(df.SecondElectronSelection_phi), np.zeros_like(df.nMuonSelection))"
+        - ZCand_py: "df: np.where(df.nMuonSelection==2, df.LeadMuonSelection_pt*np.sin(df.LeadMuonSelection_phi)+df.SecondMuonSelection_pt*np.sin(df.SecondMuonSelection_phi), np.zeros_like(df.nElectronSelection)) + np.where(df.nElectronSelection==2, df.LeadElectronSelection_pt*np.sin(df.LeadElectronSelection_phi)+df.SecondElectronSelection_pt*np.sin(df.SecondElectronSelection_phi), np.zeros_like(df.nElectronSelection))"
         - ZCand_pt: "df: np.sqrt(df.ZCand_px**2 + df.ZCand_py**2)"
         - ZCand_phi: "df: np.arctan2(df.ZCand_py, df.ZCand_px)"
         - METnoX_ptParaZCandNorm: "df: df.METnoX_pt*np.cos(df.METnoX_phi-df.ZCand_phi)/df.ZCand_pt - 1"
+        - METnoX_ptParaZCandCent: "df: df.METnoX_pt*np.cos(df.METnoX_phi-df.ZCand_phi) - df.ZCand_pt"
+        - METnoX_ptPerpZCandNorm: "df: df.METnoX_pt*np.sin(df.METnoX_phi-df.ZCand_phi)/df.ZCand_pt"
         - METnoX_ptPerpZCandCent: "df: df.METnoX_pt*np.sin(df.METnoX_phi-df.ZCand_phi)"
-    histograms:
-        METnoX_ptParaZCandNorm__ZCand_pt__Muons:
-            table: "Events"
-            selection:
-                Cutflow_DoubleMuon:
-                    selection: "DoubleMuon"
-                    weight: "1."
-                Cutflow_DoubleElectron:
-                    selection: "DoubleElectron"
-                    weight: "1."
-            eval:
-                - varname0: "df: 'ZCand_pt'"
-                - varname1: "df: 'METnoX_ptParaZCandNorm'"
-                - selection: "df: '{selection}'"
-                - parent: "df: df.parent"
-                - binvar0: "df: np.floor(df.ZCand_pt/2.)*2"
-                - binvar1: "df: np.floor(df.METnoX_ptParaZCandNorm/0.01)*0.01"
-                - count: "df: 1."
-                - sum_w: "df: {weight}"
-                - sum_ww: "df: df.sum_w**2"
-            groupby:
-                - "varname0"
-                - "varname1"
-                - "selection"
-                - "parent"
-                - "binvar0"
-                - "binvar1"
-        METnoX_ptParaZCandNorm__ZCand_pt__Electrons:
-            table: "Events"
-            selection:
-                Cutflow_DoubleMuon:
-                    selection: "DoubleMuon"
-                    weight: "1."
-                Cutflow_DoubleElectron:
-                    selection: "DoubleElectron"
-                    weight: "1."
-            eval:
-                - varname0: "df: 'ZCand_pt'"
-                - varname1: "df: 'METnoX_ptParaZCandNorm'"
-                - selection: "df: '{selection}'"
-                - parent: "df: df.parent"
-                - binvar0: "df: np.floor(df.ZCand_pt/2.)*2"
-                - binvar1: "df: np.floor(df.METnoX_ptParaZCandNorm/0.01)*0.01"
-                - count: "df: 1."
-                - sum_w: "df: {weight}"
-                - sum_ww: "df: df.sum_w**2"
-            groupby:
-                - "varname0"
-                - "varname1"
-                - "selection"
-                - "parent"
-                - "binvar0"
-                - "binvar1"
+    cutflows:
+        DoubleMuon:
+            selection_name: "DoubleMuon"
+            selection: "(IsCertified) & (IsMETTriggered) & (Flag_goodVertices) & (Flag_globalSuperTightHalo2016Filter) & (Flag_HBHENoiseFilter) & (Flag_HBHENoiseIsoFilter) & (Flag_EcalDeadCellTriggerPrimitiveFilter) & (Flag_BadPFMuonFilter) & (Flag_BadGlobalMuon) & (Flag_CloneGlobalMuon) & (Flag_eeBadScFilter) & (METnoX_pt>200.) & (MET_dCaloMET<0.6) & (nJetSelection>0) & (nJetSelection==nJetVeto) & (LeadJetSelection_pt>200.) & (LeadJetSelection_chHEF>0.1) & (LeadJetSelection_chHEF<0.95) & (nPhotonVeto==0) & (nBJetVeto==0) & (MinDPhiJ1234METnoX>0.5) & (nMuonVeto==2) & (nElectronVeto==0) & (nTauVeto==0) & (nMuonSelection==2) & (MLL>=71.) & (MLL<111.)"
+            weight: "1."
+            hists: [
+                "METnoX_ptParaZCandNorm__ZCand_pt",
+                "METnoX_ptParaZCandCent__ZCand_pt",
+                "METnoX_ptPerpZCandNorm__ZCand_pt",
+                "METnoX_ptPerpZCandCent__ZCand_pt",
+            ]
+        DoubleElectron:
+            selection_name: "DoubleElectron"
+            selection: "(IsCertified) & (IsSingleElectronTriggered) & (Flag_goodVertices) & (Flag_globalSuperTightHalo2016Filter) & (Flag_HBHENoiseFilter) & (Flag_HBHENoiseIsoFilter) & (Flag_EcalDeadCellTriggerPrimitiveFilter) & (Flag_BadPFMuonFilter) & (Flag_BadGlobalMuon) & (Flag_CloneGlobalMuon) & (Flag_eeBadScFilter) & (METnoX_pt>200.) & (MET_dCaloMET<0.6) & (nJetSelection>0) & (nJetSelection==nJetVeto) & (LeadJetSelection_pt>200.) & (LeadJetSelection_chHEF>0.1) & (LeadJetSelection_chHEF<0.95) & (nPhotonVeto==0) & (nBJetVeto==0) & (MinDPhiJ1234METnoX>0.5) & (nMuonVeto==0) & (nElectronVeto==2) & (nTauVeto==0) & (nElectronSelection==2) & (MLL>=71.) & (MLL<111.)"
+            weight: "1."
+            hists: [
+                "METnoX_ptParaZCandNorm__ZCand_pt",
+                "METnoX_ptParaZCandCent__ZCand_pt",
+                "METnoX_ptPerpZCandNorm__ZCand_pt",
+                "METnoX_ptPerpZCandCent__ZCand_pt",
+            ]
+        DoubleMuonMu:
+            selection_name: "DoubleMuonMu"
+            selection: "(IsCertified) & (IsSingleMuonTriggered) & (Flag_goodVertices) & (Flag_globalSuperTightHalo2016Filter) & (Flag_HBHENoiseFilter) & (Flag_HBHENoiseIsoFilter) & (Flag_EcalDeadCellTriggerPrimitiveFilter) & (Flag_BadPFMuonFilter) & (Flag_BadGlobalMuon) & (Flag_CloneGlobalMuon) & (Flag_eeBadScFilter) & (METnoX_pt>200.) & (MET_dCaloMET<0.6) & (nJetSelection>0) & (nJetSelection==nJetVeto) & (LeadJetSelection_pt>200.) & (LeadJetSelection_chHEF>0.1) & (LeadJetSelection_chHEF<0.95) & (nPhotonVeto==0) & (nBJetVeto==0) & (MinDPhiJ1234METnoX>0.5) & (nMuonVeto==2) & (nElectronVeto==0) & (nTauVeto==0) & (nMuonSelection==2) & (MLL>=71.) & (MLL<111.)"
+            weight: "1."
+            hists: [
+                "METnoX_ptParaZCandNorm__ZCand_pt",
+                "METnoX_ptParaZCandCent__ZCand_pt",
+                "METnoX_ptPerpZCandNorm__ZCand_pt",
+                "METnoX_ptPerpZCandCent__ZCand_pt",
+            ]
+    hists:
+        METnoX_ptParaZCandNorm__ZCand_pt:
+            - table: "df: '{table_name}'"
+            - varname0: "df: 'ZCand_pt'"
+            - varname1: "df: 'METnoX_ptParaZCandNorm'"
+            - selection: "df: '{selection_name}'"
+            - parent: "df: df.parent"
+            - binvar0: "df: np.floor(df.ZCand_pt/10.)*10"
+            - binvar1: "df: np.floor(df.METnoX_ptParaZCandNorm/0.01)*0.01"
+            - count: "df: 1."
+            - sum_w: "df: {weight}"
+            - sum_ww: "df: df.sum_w**2"
+        METnoX_ptParaZCandCent__ZCand_pt:
+            - table: "df: '{table_name}'"
+            - varname0: "df: 'ZCand_pt'"
+            - varname1: "df: 'METnoX_ptParaZCandCent'"
+            - selection: "df: '{selection_name}'"
+            - parent: "df: df.parent"
+            - binvar0: "df: np.floor(df.ZCand_pt/10.)*10"
+            - binvar1: "df: np.floor(df.METnoX_ptParaZCandCent/10.)*10."
+            - count: "df: 1."
+            - sum_w: "df: {weight}"
+            - sum_ww: "df: df.sum_w**2"
+        METnoX_ptPerpZCandNorm__ZCand_pt:
+            - table: "df: '{table_name}'"
+            - varname0: "df: 'ZCand_pt'"
+            - varname1: "df: 'METnoX_ptPerpZCandNorm'"
+            - selection: "df: '{selection_name}'"
+            - parent: "df: df.parent"
+            - binvar0: "df: np.floor(df.ZCand_pt/10.)*10"
+            - binvar1: "df: np.floor(df.METnoX_ptPerpZCandNorm/0.01)*0.01"
+            - count: "df: 1."
+            - sum_w: "df: {weight}"
+            - sum_ww: "df: df.sum_w**2"
+        METnoX_ptPerpZCandCent__ZCand_pt:
+            - table: "df: '{table_name}'"
+            - varname0: "df: 'ZCand_pt'"
+            - varname1: "df: 'METnoX_ptPerpZCandCent'"
+            - selection: "df: '{selection_name}'"
+            - parent: "df: df.parent"
+            - binvar0: "df: np.floor(df.ZCand_pt/10.)*10"
+            - binvar1: "df: np.floor(df.METnoX_ptPerpZCandCent/10.)*10."
+            - count: "df: 1."
+            - sum_w: "df: {weight}"
+            - sum_ww: "df: df.sum_w**2"
 files:
     - "/vols/cms/sdb15/Analysis/ZinvWidth/databases/201905_May/26_fixedJetPtRes/Data/result_00000.h5"
     - "/vols/cms/sdb15/Analysis/ZinvWidth/databases/201905_May/26_fixedJetPtRes/Data/result_00001.h5"

@@ -5,6 +5,7 @@ import pandas as pd
 import pysge
 import oyaml as yaml
 import functools
+import tqdm
 
 from zdb.modules.df_process import df_process, df_merge
 
@@ -45,7 +46,7 @@ def main():
     files = cfg["files"]
     if options.nfiles > 0:
         files = files[:options.nfiles]
-    if mode in ["multiprocessing"]:
+    if mode in ["multiprocessing"] or njobs < 0:
         njobs = len(files)
 
     grouped_files = [list(x) for x in np.array_split(files, njobs)]
@@ -61,6 +62,8 @@ def main():
         results = pysge.mp_submit(tasks, ncores=options.ncores)
         df = functools.reduce(lambda x, y: df_merge(x, y), results)
     elif mode=="sge":
+        pbar = tqdm.tqdm(total=njobs, desc="Merged", dynamic_ncols=True)
+
         df = pd.DataFrame()
         merged_idx = []
         for results in pysge.sge_submit_yield(
@@ -72,6 +75,9 @@ def main():
                     continue
                 df = df_merge(df, r)
                 merged_idx.append(idx)
+                pbar.update()
+
+        pbar.close()
     else:
         df = pd.DataFrame()
 

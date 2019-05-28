@@ -1,501 +1,94 @@
 query:
+    groupby: ["table", "varname0", "varname1", "selection", "parent", "binvar0", "binvar1"]
+    tables:
+        "eleEnergyScaleUp":      "Events_eleEnergyScaleUp"
+        "eleEnergyScaleDown":    "Events_eleEnergyScaleDown"
+        "muonPtScaleUp":         "Events_muonPtScaleUp"
+        "muonPtScaleDown":       "Events_muonPtScaleDown"
+        "photonEnergyScaleUp":   "Events_photonEnergyScaleUp"
+        "photonEnergyScaleDown": "Events_photonEnergyScaleDown"
     aliases: {}
-    selections:
-        Cutflow_Monojet: "(parent!='EWKV2Jets' | nGenBosonSelection==1) & (Flag_goodVertices) & (Flag_globalSuperTightHalo2016Filter) & (Flag_HBHENoiseFilter) & (Flag_HBHENoiseIsoFilter) & (Flag_EcalDeadCellTriggerPrimitiveFilter) & (Flag_BadPFMuonFilter) & (Flag_BadGlobalMuon) & (Flag_CloneGlobalMuon) & (METnoX_pt>200.) & (MET_dCaloMET<0.6) & (nJetSelection>0) & (nJetSelection==nJetVeto) & (LeadJetSelection_pt>200.) & (LeadJetSelection_chHEF>0.1) & (LeadJetSelection_chHEF<0.95) & (MinDPhiJ1234METnoX>0.5)"
-        Cutflow_MonojetQCD: "(parent!='EWKV2Jets' | nGenBosonSelection==1) & (Flag_goodVertices) & (Flag_globalSuperTightHalo2016Filter) & (Flag_HBHENoiseFilter) & (Flag_HBHENoiseIsoFilter) & (Flag_EcalDeadCellTriggerPrimitiveFilter) & (Flag_BadPFMuonFilter) & (Flag_BadGlobalMuon) & (Flag_CloneGlobalMuon) & (METnoX_pt>200.) & (MET_dCaloMET<0.6) & (nJetSelection>0) & (nJetSelection==nJetVeto) & (LeadJetSelection_pt>200.) & (LeadJetSelection_chHEF>0.1) & (LeadJetSelection_chHEF<0.95) & (MinDPhiJ1234METnoX<=0.5)"
-        Cutflow_SingleMuon: "(parent!='EWKV2Jets' | nGenBosonSelection==1) & (Flag_goodVertices) & (Flag_globalSuperTightHalo2016Filter) & (Flag_HBHENoiseFilter) & (Flag_HBHENoiseIsoFilter) & (Flag_EcalDeadCellTriggerPrimitiveFilter) & (Flag_BadPFMuonFilter) & (Flag_BadGlobalMuon) & (Flag_CloneGlobalMuon) & (METnoX_pt>200.) & (MET_dCaloMET<0.6) & (nJetSelection>0) & (nJetSelection==nJetVeto) & (LeadJetSelection_pt>200.) & (LeadJetSelection_chHEF>0.1) & (LeadJetSelection_chHEF<0.95) & (MinDPhiJ1234METnoX>0.5) & (nMuonSelection==1) & (MTW>=30.) & (MTW<125)"
-        Cutflow_SingleMuonQCD: "(parent!='EWKV2Jets' | nGenBosonSelection==1) & (Flag_goodVertices) & (Flag_globalSuperTightHalo2016Filter) & (Flag_HBHENoiseFilter) & (Flag_HBHENoiseIsoFilter) & (Flag_EcalDeadCellTriggerPrimitiveFilter) & (Flag_BadPFMuonFilter) & (Flag_BadGlobalMuon) & (Flag_CloneGlobalMuon) & (METnoX_pt>200.) & (MET_dCaloMET<0.6) & (nJetSelection>0) & (nJetSelection==nJetVeto) & (LeadJetSelection_pt>200.) & (LeadJetSelection_chHEF>0.1) & (LeadJetSelection_chHEF<0.95) & (MinDPhiJ1234METnoX<=0.5) & (nMuonSelection==1) & (MTW>=30.) & (MTW<125)"
-        Cutflow_DoubleMuon: "(parent!='EWKV2Jets' | nGenBosonSelection==1) & (Flag_goodVertices) & (Flag_globalSuperTightHalo2016Filter) & (Flag_HBHENoiseFilter) & (Flag_HBHENoiseIsoFilter) & (Flag_EcalDeadCellTriggerPrimitiveFilter) & (Flag_BadPFMuonFilter) & (Flag_BadGlobalMuon) & (Flag_CloneGlobalMuon) & (METnoX_pt>200.) & (MET_dCaloMET<0.6) & (nJetSelection>0) & (nJetSelection==nJetVeto) & (LeadJetSelection_pt>200.) & (LeadJetSelection_chHEF>0.1) & (LeadJetSelection_chHEF<0.95) & (MinDPhiJ1234METnoX>0.5) & (nMuonSelection==2) & (MLL>=71.) & (MLL<111.)"
-        Cutflow_SingleElectron: "(parent!='EWKV2Jets' | nGenBosonSelection==1) & (Flag_goodVertices) & (Flag_globalSuperTightHalo2016Filter) & (Flag_HBHENoiseFilter) & (Flag_HBHENoiseIsoFilter) & (Flag_EcalDeadCellTriggerPrimitiveFilter) & (Flag_BadPFMuonFilter) & (Flag_BadGlobalMuon) & (Flag_CloneGlobalMuon) & (METnoX_pt>200.) & (MET_dCaloMET<0.6) & (nJetSelection>0) & (nJetSelection==nJetVeto) & (LeadJetSelection_pt>200.) & (LeadJetSelection_chHEF>0.1) & (LeadJetSelection_chHEF<0.95) & (MinDPhiJ1234METnoX>0.5) & (nElectronSelection==1) & (MTW>=30.) & (MTW<125) & (MET_pt>100.)"
-        Cutflow_SingleElectronQCD: "(parent!='EWKV2Jets' | nGenBosonSelection==1) & (Flag_goodVertices) & (Flag_globalSuperTightHalo2016Filter) & (Flag_HBHENoiseFilter) & (Flag_HBHENoiseIsoFilter) & (Flag_EcalDeadCellTriggerPrimitiveFilter) & (Flag_BadPFMuonFilter) & (Flag_BadGlobalMuon) & (Flag_CloneGlobalMuon) & (METnoX_pt>200.) & (MET_dCaloMET<0.6) & (nJetSelection>0) & (nJetSelection==nJetVeto) & (LeadJetSelection_pt>200.) & (LeadJetSelection_chHEF>0.1) & (LeadJetSelection_chHEF<0.95) & (MinDPhiJ1234METnoX<=0.5) & (nElectronSelection==1) & (MTW>=30.) & (MTW<125) & (MET_pt>100.)"
-        Cutflow_DoubleElectron: "(parent!='EWKV2Jets' | nGenBosonSelection==1) & (Flag_goodVertices) & (Flag_globalSuperTightHalo2016Filter) & (Flag_HBHENoiseFilter) & (Flag_HBHENoiseIsoFilter) & (Flag_EcalDeadCellTriggerPrimitiveFilter) & (Flag_BadPFMuonFilter) & (Flag_BadGlobalMuon) & (Flag_CloneGlobalMuon) & (METnoX_pt>200.) & (MET_dCaloMET<0.6) & (nJetSelection>0) & (nJetSelection==nJetVeto) & (LeadJetSelection_pt>200.) & (LeadJetSelection_chHEF>0.1) & (LeadJetSelection_chHEF<0.95) & (MinDPhiJ1234METnoX>0.5) & (nElectronSelection==2) & (MLL>=71.) & (MLL<111.)"
-        Cutflow_SingleTau: "(parent!='EWKV2Jets' | nGenBosonSelection==1) & (Flag_goodVertices) & (Flag_globalSuperTightHalo2016Filter) & (Flag_HBHENoiseFilter) & (Flag_HBHENoiseIsoFilter) & (Flag_EcalDeadCellTriggerPrimitiveFilter) & (Flag_BadPFMuonFilter) & (Flag_BadGlobalMuon) & (Flag_CloneGlobalMuon) & (METnoX_pt>200.) & (MET_dCaloMET<0.6) & (nJetSelection>0) & (nJetSelection==nJetVeto) & (LeadJetSelection_pt>200.) & (LeadJetSelection_chHEF>0.1) & (LeadJetSelection_chHEF<0.95) & (MinDPhiJ1234METnoX>0.5) & (nTauSelection==1)"
     eval:
-        - ZCand_px: "df: df.LeadMuonSelection_pt*np.cos(df.LeadMuonSelection_phi)+df.SecondMuonSelection_pt*np.cos(df.SecondMuonSelection_phi)"
-        - ZCand_py: "df: df.LeadMuonSelection_pt*np.sin(df.LeadMuonSelection_phi)+df.SecondMuonSelection_pt*np.sin(df.SecondMuonSelection_phi)"
-        - ZCand_pt: "df: np.sqrt(df.ZCand_px**2 + df.ZCand_py**2)"
-        - ZCand_phi: "df: np.arctan2(df.ZCand_py, df.ZCand_px)"
-        - METnoX_ptParaZCandNorm: "df: df.METnoX_pt*np.cos(df.METnoX_phi-df.ZCand_phi)/df.ZCand_pt - 1"
-        - METnoX_ptPerpZCandCent: "df: df.METnoX_pt*np.sin(df.METnoX_phi-df.ZCand_phi)"
-        - Weight_DoubleMuon: "df: df.WeightXsLumi*df.WeightQcdEwk*df.WeightPU*df.WeightPreFiring*df.WeightMETTrig*df.WeightOneMinusElectronVetoNoSelectionIdIsoVeto*df.WeightOneMinusElectronSelectionIdIsoTight*df.WeightOneMinusElectronVetoReco*df.WeightMuonSelectionIdTight*df.WeightMuonSelectionIsoTight*df.WeightOneMinusMuonVetoNoSelectionIdLoose*df.WeightOneMinusMuonVetoNoSelectionIsoLoose*df.WeightOneMinusTauSelectionIdTight*df.WeightOneMinusPhotonVetoIdLoose*df.WeightOneMinusPhotonVetoPixelSeedVeto*df.WeightOneMinusJetBVetoIdMedium"
-        - Weight_DoubleElectron: "df: df.WeightXsLumi*df.WeightQcdEwk*df.WeightPU*df.WeightPreFiring*df.WeightSingleElectronTrig*df.WeightElectronSelectionIdIsoTight*df.WeightElectronSelectionReco*df.WeightOneMinusElectronVetoNoSelectionIdIsoVeto*df.WeightOneMinusElectronVetoNoSelectionReco*df.WeightOneMinusMuonVetoNoSelectionIdLoose*df.WeightOneMinusMuonVetoNoSelectionIsoLoose*df.WeightOneMinusMuonSelectionIdTight*df.WeightOneMinusMuonSelectionIsoTight*df.WeightOneMinusTauSelectionIdTight*df.WeightOneMinusPhotonVetoIdLoose*df.WeightOneMinusPhotonVetoPixelSeedVeto*df.WeightOneMinusJetBVetoIdMedium"
-    histograms:
-        METnoX_ptParaZCandNorm__ZCand_pt:
-            table: "Events"
-            selection:
-                Cutflow_DoubleMuon:
-                    selection: "DoubleMuon"
-                    weight: "df.Weight_DoubleMuon"
-                Cutflow_DoubleElectron:
-                    selection: "DoubleElectron"
-                    weight: "df.Weight_DoubleElectron"
-            eval:
-                - varname0: "df: 'ZCand_pt'"
-                - varname1: "df: 'METnoX_ptParaZCandNorm'"
-                - selection: "df: '{selection}'"
-                - parent: "df: df.parent"
-                - LeptonIsElectron: "df: df.LeptonIsElectron"
-                - LeptonIsMuon: "df: df.LeptonIsMuon"
-                - LeptonIsTau: "df: df.LeptonIsTau"
-                - nGenTauL: "df: df.nGenTauL"
-                - binvar0: "df: np.floor(df.ZCand_pt/2.)*2"
-                - binvar1: "df: np.floor(df.METnoX_ptParaZCandNorm/0.01)*0.01"
-                - count: "df: 1."
-                - sum_w: "df: {weight}"
-                - sum_ww: "df: df.sum_w**2"
-            groupby:
-                - "varname0"
-                - "varname1"
-                - "selection"
-                - "parent"
-                - "LeptonIsElectron"
-                - "LeptonIsMuon"
-                - "LeptonIsTau"
-                - "nGenTauL"
-                - "binvar0"
-                - "binvar1"
-        METnoX_ptParaZCandNorm__ZCand_pt__eleEnergyScaleUp:
-            table: "Events_eleEnergyScaleUp"
-            selection:
-                Cutflow_DoubleMuon:
-                    selection: "DoubleMuon"
-                    weight: "df.Weight_DoubleMuon"
-                Cutflow_DoubleElectron:
-                    selection: "DoubleElectron"
-                    weight: "df.Weight_DoubleElectron"
-            eval:
-                - varname0: "df: 'ZCand_pt'"
-                - varname1: "df: 'METnoX_ptParaZCandNorm'"
-                - selection: "df: '{selection}'"
-                - parent: "df: df.parent"
-                - LeptonIsElectron: "df: df.LeptonIsElectron"
-                - LeptonIsMuon: "df: df.LeptonIsMuon"
-                - LeptonIsTau: "df: df.LeptonIsTau"
-                - nGenTauL: "df: df.nGenTauL"
-                - binvar0: "df: np.floor(df.ZCand_pt/2.)*2"
-                - binvar1: "df: np.floor(df.METnoX_ptParaZCandNorm/0.01)*0.01"
-                - count: "df: 1."
-                - sum_w: "df: {weight}"
-                - sum_ww: "df: df.sum_w**2"
-            groupby:
-                - "varname0"
-                - "varname1"
-                - "selection"
-                - "parent"
-                - "LeptonIsElectron"
-                - "LeptonIsMuon"
-                - "LeptonIsTau"
-                - "nGenTauL"
-                - "binvar0"
-                - "binvar1"
-        METnoX_ptParaZCandNorm__ZCand_pt__eleEnergyScaleDown:
-            table: "Events_eleEnergyScaleDown"
-            selection:
-                Cutflow_DoubleMuon:
-                    selection: "DoubleMuon"
-                    weight: "df.Weight_DoubleMuon"
-                Cutflow_DoubleElectron:
-                    selection: "DoubleElectron"
-                    weight: "df.Weight_DoubleElectron"
-            eval:
-                - varname0: "df: 'ZCand_pt'"
-                - varname1: "df: 'METnoX_ptParaZCandNorm'"
-                - selection: "df: '{selection}'"
-                - parent: "df: df.parent"
-                - LeptonIsElectron: "df: df.LeptonIsElectron"
-                - LeptonIsMuon: "df: df.LeptonIsMuon"
-                - LeptonIsTau: "df: df.LeptonIsTau"
-                - nGenTauL: "df: df.nGenTauL"
-                - binvar0: "df: np.floor(df.ZCand_pt/2.)*2"
-                - binvar1: "df: np.floor(df.METnoX_ptParaZCandNorm/0.01)*0.01"
-                - count: "df: 1."
-                - sum_w: "df: {weight}"
-                - sum_ww: "df: df.sum_w**2"
-            groupby:
-                - "varname0"
-                - "varname1"
-                - "selection"
-                - "parent"
-                - "LeptonIsElectron"
-                - "LeptonIsMuon"
-                - "LeptonIsTau"
-                - "nGenTauL"
-                - "binvar0"
-                - "binvar1"
-        METnoX_ptParaZCandNorm__ZCand_pt__muonPtScaleUp:
-            table: "Events_muonPtScaleUp"
-            selection:
-                Cutflow_DoubleMuon:
-                    selection: "DoubleMuon"
-                    weight: "df.Weight_DoubleMuon"
-                Cutflow_DoubleElectron:
-                    selection: "DoubleElectron"
-                    weight: "df.Weight_DoubleElectron"
-            eval:
-                - varname0: "df: 'ZCand_pt'"
-                - varname1: "df: 'METnoX_ptParaZCandNorm'"
-                - selection: "df: '{selection}'"
-                - parent: "df: df.parent"
-                - LeptonIsElectron: "df: df.LeptonIsElectron"
-                - LeptonIsMuon: "df: df.LeptonIsMuon"
-                - LeptonIsTau: "df: df.LeptonIsTau"
-                - nGenTauL: "df: df.nGenTauL"
-                - binvar0: "df: np.floor(df.ZCand_pt/2.)*2"
-                - binvar1: "df: np.floor(df.METnoX_ptParaZCandNorm/0.01)*0.01"
-                - count: "df: 1."
-                - sum_w: "df: {weight}"
-                - sum_ww: "df: df.sum_w**2"
-            groupby:
-                - "varname0"
-                - "varname1"
-                - "selection"
-                - "parent"
-                - "LeptonIsElectron"
-                - "LeptonIsMuon"
-                - "LeptonIsTau"
-                - "nGenTauL"
-                - "binvar0"
-                - "binvar1"
-        METnoX_ptParaZCandNorm__ZCand_pt__muonPtScaleDown:
-            table: "Events_muonPtScaleDown"
-            selection:
-                Cutflow_DoubleMuon:
-                    selection: "DoubleMuon"
-                    weight: "df.Weight_DoubleMuon"
-                Cutflow_DoubleElectron:
-                    selection: "DoubleElectron"
-                    weight: "df.Weight_DoubleElectron"
-            eval:
-                - varname0: "df: 'ZCand_pt'"
-                - varname1: "df: 'METnoX_ptParaZCandNorm'"
-                - selection: "df: '{selection}'"
-                - parent: "df: df.parent"
-                - LeptonIsElectron: "df: df.LeptonIsElectron"
-                - LeptonIsMuon: "df: df.LeptonIsMuon"
-                - LeptonIsTau: "df: df.LeptonIsTau"
-                - nGenTauL: "df: df.nGenTauL"
-                - binvar0: "df: np.floor(df.ZCand_pt/2.)*2"
-                - binvar1: "df: np.floor(df.METnoX_ptParaZCandNorm/0.01)*0.01"
-                - count: "df: 1."
-                - sum_w: "df: {weight}"
-                - sum_ww: "df: df.sum_w**2"
-            groupby:
-                - "varname0"
-                - "varname1"
-                - "selection"
-                - "parent"
-                - "LeptonIsElectron"
-                - "LeptonIsMuon"
-                - "LeptonIsTau"
-                - "nGenTauL"
-                - "binvar0"
-                - "binvar1"
-        METnoX_ptParaZCandNorm__ZCand_pt__photonEnergyScaleUp:
-            table: "Events_photonEnergyScaleUp"
-            selection:
-                Cutflow_DoubleMuon:
-                    selection: "DoubleMuon"
-                    weight: "df.Weight_DoubleMuon"
-                Cutflow_DoubleElectron:
-                    selection: "DoubleElectron"
-                    weight: "df.Weight_DoubleElectron"
-            eval:
-                - varname0: "df: 'ZCand_pt'"
-                - varname1: "df: 'METnoX_ptParaZCandNorm'"
-                - selection: "df: '{selection}'"
-                - parent: "df: df.parent"
-                - LeptonIsElectron: "df: df.LeptonIsElectron"
-                - LeptonIsMuon: "df: df.LeptonIsMuon"
-                - LeptonIsTau: "df: df.LeptonIsTau"
-                - nGenTauL: "df: df.nGenTauL"
-                - binvar0: "df: np.floor(df.ZCand_pt/2.)*2"
-                - binvar1: "df: np.floor(df.METnoX_ptParaZCandNorm/0.01)*0.01"
-                - count: "df: 1."
-                - sum_w: "df: {weight}"
-                - sum_ww: "df: df.sum_w**2"
-            groupby:
-                - "varname0"
-                - "varname1"
-                - "selection"
-                - "parent"
-                - "LeptonIsElectron"
-                - "LeptonIsMuon"
-                - "LeptonIsTau"
-                - "nGenTauL"
-                - "binvar0"
-                - "binvar1"
-        METnoX_ptParaZCandNorm__ZCand_pt__photonEnergyScaleDown:
-            table: "Events_photonEnergyScaleDown"
-            selection:
-                Cutflow_DoubleMuon:
-                    selection: "DoubleMuon"
-                    weight: "df.Weight_DoubleMuon"
-                Cutflow_DoubleElectron:
-                    selection: "DoubleElectron"
-                    weight: "df.Weight_DoubleElectron"
-            eval:
-                - varname0: "df: 'ZCand_pt'"
-                - varname1: "df: 'METnoX_ptParaZCandNorm'"
-                - selection: "df: '{selection}'"
-                - parent: "df: df.parent"
-                - LeptonIsElectron: "df: df.LeptonIsElectron"
-                - LeptonIsMuon: "df: df.LeptonIsMuon"
-                - LeptonIsTau: "df: df.LeptonIsTau"
-                - nGenTauL: "df: df.nGenTauL"
-                - binvar0: "df: np.floor(df.ZCand_pt/2.)*2"
-                - binvar1: "df: np.floor(df.METnoX_ptParaZCandNorm/0.01)*0.01"
-                - count: "df: 1."
-                - sum_w: "df: {weight}"
-                - sum_ww: "df: df.sum_w**2"
-            groupby:
-                - "varname0"
-                - "varname1"
-                - "selection"
-                - "parent"
-                - "LeptonIsElectron"
-                - "LeptonIsMuon"
-                - "LeptonIsTau"
-                - "nGenTauL"
-                - "binvar0"
-                - "binvar1"
-        METnoX_ptPerpZCandCent__ZCand_pt:
-            table: "Events"
-            selection:
-                Cutflow_DoubleMuon:
-                    selection: "DoubleMuon"
-                    weight: "df.Weight_DoubleMuon"
-                Cutflow_DoubleElectron:
-                    selection: "DoubleElectron"
-                    weight: "df.Weight_DoubleElectron"
-            eval:
-                - varname0: "df: 'ZCand_pt'"
-                - varname1: "df: 'METnoX_ptPerpZCandCent'"
-                - selection: "df: '{selection}'"
-                - parent: "df: df.parent"
-                - LeptonIsElectron: "df: df.LeptonIsElectron"
-                - LeptonIsMuon: "df: df.LeptonIsMuon"
-                - LeptonIsTau: "df: df.LeptonIsTau"
-                - nGenTauL: "df: df.nGenTauL"
-                - binvar0: "df: np.floor(df.ZCand_pt/2.)*2"
-                - binvar1: "df: np.floor(df.METnoX_ptPerpZCandCent/0.01)*0.01"
-                - count: "df: 1."
-                - sum_w: "df: {weight}"
-                - sum_ww: "df: df.sum_w**2"
-            groupby:
-                - "varname0"
-                - "varname1"
-                - "selection"
-                - "parent"
-                - "LeptonIsElectron"
-                - "LeptonIsMuon"
-                - "LeptonIsTau"
-                - "nGenTauL"
-                - "binvar0"
-                - "binvar1"
-        METnoX_ptPerpZCandCent__ZCand_pt__eleEnergyScaleUp:
-            table: "Events_eleEnergyScaleUp"
-            selection:
-                Cutflow_DoubleMuon:
-                    selection: "DoubleMuon"
-                    weight: "df.Weight_DoubleMuon"
-                Cutflow_DoubleElectron:
-                    selection: "DoubleElectron"
-                    weight: "df.Weight_DoubleElectron"
-            eval:
-                - varname0: "df: 'ZCand_pt'"
-                - varname1: "df: 'METnoX_ptPerpZCandCent'"
-                - selection: "df: '{selection}'"
-                - parent: "df: df.parent"
-                - LeptonIsElectron: "df: df.LeptonIsElectron"
-                - LeptonIsMuon: "df: df.LeptonIsMuon"
-                - LeptonIsTau: "df: df.LeptonIsTau"
-                - nGenTauL: "df: df.nGenTauL"
-                - binvar0: "df: np.floor(df.ZCand_pt/2.)*2"
-                - binvar1: "df: np.floor(df.METnoX_ptPerpZCandCent/0.01)*0.01"
-                - count: "df: 1."
-                - sum_w: "df: {weight}"
-                - sum_ww: "df: df.sum_w**2"
-            groupby:
-                - "varname0"
-                - "varname1"
-                - "selection"
-                - "parent"
-                - "LeptonIsElectron"
-                - "LeptonIsMuon"
-                - "LeptonIsTau"
-                - "nGenTauL"
-                - "binvar0"
-                - "binvar1"
-        METnoX_ptPerpZCandCent__ZCand_pt__eleEnergyScaleDown:
-            table: "Events_eleEnergyScaleDown"
-            selection:
-                Cutflow_DoubleMuon:
-                    selection: "DoubleMuon"
-                    weight: "df.Weight_DoubleMuon"
-                Cutflow_DoubleElectron:
-                    selection: "DoubleElectron"
-                    weight: "df.Weight_DoubleElectron"
-            eval:
-                - varname0: "df: 'ZCand_pt'"
-                - varname1: "df: 'METnoX_ptPerpZCandCent'"
-                - selection: "df: '{selection}'"
-                - parent: "df: df.parent"
-                - LeptonIsElectron: "df: df.LeptonIsElectron"
-                - LeptonIsMuon: "df: df.LeptonIsMuon"
-                - LeptonIsTau: "df: df.LeptonIsTau"
-                - nGenTauL: "df: df.nGenTauL"
-                - binvar0: "df: np.floor(df.ZCand_pt/2.)*2"
-                - binvar1: "df: np.floor(df.METnoX_ptPerpZCandCent/0.01)*0.01"
-                - count: "df: 1."
-                - sum_w: "df: {weight}"
-                - sum_ww: "df: df.sum_w**2"
-            groupby:
-                - "varname0"
-                - "varname1"
-                - "selection"
-                - "parent"
-                - "LeptonIsElectron"
-                - "LeptonIsMuon"
-                - "LeptonIsTau"
-                - "nGenTauL"
-                - "binvar0"
-                - "binvar1"
-        METnoX_ptPerpZCandCent__ZCand_pt__muonPtScaleUp:
-            table: "Events_muonPtScaleUp"
-            selection:
-                Cutflow_DoubleMuon:
-                    selection: "DoubleMuon"
-                    weight: "df.Weight_DoubleMuon"
-                Cutflow_DoubleElectron:
-                    selection: "DoubleElectron"
-                    weight: "df.Weight_DoubleElectron"
-            eval:
-                - varname0: "df: 'ZCand_pt'"
-                - varname1: "df: 'METnoX_ptPerpZCandCent'"
-                - selection: "df: '{selection}'"
-                - parent: "df: df.parent"
-                - LeptonIsElectron: "df: df.LeptonIsElectron"
-                - LeptonIsMuon: "df: df.LeptonIsMuon"
-                - LeptonIsTau: "df: df.LeptonIsTau"
-                - nGenTauL: "df: df.nGenTauL"
-                - binvar0: "df: np.floor(df.ZCand_pt/2.)*2"
-                - binvar1: "df: np.floor(df.METnoX_ptPerpZCandCent/0.01)*0.01"
-                - count: "df: 1."
-                - sum_w: "df: {weight}"
-                - sum_ww: "df: df.sum_w**2"
-            groupby:
-                - "varname0"
-                - "varname1"
-                - "selection"
-                - "parent"
-                - "LeptonIsElectron"
-                - "LeptonIsMuon"
-                - "LeptonIsTau"
-                - "nGenTauL"
-                - "binvar0"
-                - "binvar1"
-        METnoX_ptPerpZCandCent__ZCand_pt__muonPtScaleDown:
-            table: "Events_muonPtScaleDown"
-            selection:
-                Cutflow_DoubleMuon:
-                    selection: "DoubleMuon"
-                    weight: "df.Weight_DoubleMuon"
-                Cutflow_DoubleElectron:
-                    selection: "DoubleElectron"
-                    weight: "df.Weight_DoubleElectron"
-            eval:
-                - varname0: "df: 'ZCand_pt'"
-                - varname1: "df: 'METnoX_ptPerpZCandCent'"
-                - selection: "df: '{selection}'"
-                - parent: "df: df.parent"
-                - LeptonIsElectron: "df: df.LeptonIsElectron"
-                - LeptonIsMuon: "df: df.LeptonIsMuon"
-                - LeptonIsTau: "df: df.LeptonIsTau"
-                - nGenTauL: "df: df.nGenTauL"
-                - binvar0: "df: np.floor(df.ZCand_pt/2.)*2"
-                - binvar1: "df: np.floor(df.METnoX_ptPerpZCandCent/0.01)*0.01"
-                - count: "df: 1."
-                - sum_w: "df: {weight}"
-                - sum_ww: "df: df.sum_w**2"
-            groupby:
-                - "varname0"
-                - "varname1"
-                - "selection"
-                - "parent"
-                - "LeptonIsElectron"
-                - "LeptonIsMuon"
-                - "LeptonIsTau"
-                - "nGenTauL"
-                - "binvar0"
-                - "binvar1"
-        METnoX_ptPerpZCandCent__ZCand_pt__photonEnergyScaleUp:
-            table: "Events_photonEnergyScaleUp"
-            selection:
-                Cutflow_DoubleMuon:
-                    selection: "DoubleMuon"
-                    weight: "df.Weight_DoubleMuon"
-                Cutflow_DoubleElectron:
-                    selection: "DoubleElectron"
-                    weight: "df.Weight_DoubleElectron"
-            eval:
-                - varname0: "df: 'ZCand_pt'"
-                - varname1: "df: 'METnoX_ptPerpZCandCent'"
-                - selection: "df: '{selection}'"
-                - parent: "df: df.parent"
-                - LeptonIsElectron: "df: df.LeptonIsElectron"
-                - LeptonIsMuon: "df: df.LeptonIsMuon"
-                - LeptonIsTau: "df: df.LeptonIsTau"
-                - nGenTauL: "df: df.nGenTauL"
-                - binvar0: "df: np.floor(df.ZCand_pt/2.)*2"
-                - binvar1: "df: np.floor(df.METnoX_ptPerpZCandCent/0.01)*0.01"
-                - count: "df: 1."
-                - sum_w: "df: {weight}"
-                - sum_ww: "df: df.sum_w**2"
-            groupby:
-                - "varname0"
-                - "varname1"
-                - "selection"
-                - "parent"
-                - "LeptonIsElectron"
-                - "LeptonIsMuon"
-                - "LeptonIsTau"
-                - "nGenTauL"
-                - "binvar0"
-                - "binvar1"
-        METnoX_ptPerpZCandCent__ZCand_pt__photonEnergyScaleDown:
-            table: "Events_photonEnergyScaleDown"
-            selection:
-                Cutflow_DoubleMuon:
-                    selection: "DoubleMuon"
-                    weight: "df.Weight_DoubleMuon"
-                Cutflow_DoubleElectron:
-                    selection: "DoubleElectron"
-                    weight: "df.Weight_DoubleElectron"
-            eval:
-                - varname0: "df: 'ZCand_pt'"
-                - varname1: "df: 'METnoX_ptPerpZCandCent'"
-                - selection: "df: '{selection}'"
-                - parent: "df: df.parent"
-                - LeptonIsElectron: "df: df.LeptonIsElectron"
-                - LeptonIsMuon: "df: df.LeptonIsMuon"
-                - LeptonIsTau: "df: df.LeptonIsTau"
-                - nGenTauL: "df: df.nGenTauL"
-                - binvar0: "df: np.floor(df.ZCand_pt/2.)*2"
-                - binvar1: "df: np.floor(df.METnoX_ptPerpZCandCent/0.01)*0.01"
-                - count: "df: 1."
-                - sum_w: "df: {weight}"
-                - sum_ww: "df: df.sum_w**2"
-            groupby:
-                - "varname0"
-                - "varname1"
-                - "selection"
-                - "parent"
-                - "LeptonIsElectron"
-                - "LeptonIsMuon"
-                - "LeptonIsTau"
-                - "nGenTauL"
-                - "binvar0"
-                - "binvar1"
+        - parent: "df: np.where( df.parent.isin(['WJetsToLNu', 'DYJetsToLL']), np.where( df.parent=='WJetsToLNu', np.where( df.LeptonIsElectron, np.full_like(df.parent, 'WJetsToENu'), np.where( df.LeptonIsMuon, np.full_like(df.parent, 'WJetsToMuNu'), np.where( df.LeptonIsTau, np.full_like(df.parent, 'WJetsToTauNu'), np.full_like(df.parent, 'WJetsToLNu'),),),), np.where( df.parent=='DYJetsToLL', np.where( df.LeptonIsElectron, np.full_like(df.parent, 'DYJetsToEE'), np.where( df.LeptonIsMuon, np.full_like(df.parent, 'DYJetsToMuMu'), np.where( df.LeptonIsTau, np.where( df.nGenTauL==0, np.full_like(df.parent, 'DYJetsToTauHTauH'), np.where( df.nGenTauL==1, np.full_like(df.parent, 'DYJetsToTauHTauL'), np.where( df.nGenTauL==2, np.full_like(df.parent, 'DYJetsToTauLTauL'), np.full_like(df.parent, 'DYJetsToTauTau'),),),), np.full_like(df.parent, 'DYJetsToLL'),),),), df.parent,),), df.parent,)"
+        - Weight_Monojet: "df: df.eval('WeightXsLumi*WeightQcdEwk*WeightPU*WeightPreFiring*WeightMETTrig*WeightOneMinusElectronVetoNoSelectionIdIsoVeto*WeightOneMinusElectronSelectionIdIsoTight*WeightOneMinusElectronVetoReco*WeightOneMinusMuonVetoNoSelectionIdLoose*WeightOneMinusMuonVetoNoSelectionIsoLoose*WeightOneMinusMuonSelectionIdTight*WeightOneMinusMuonSelectionIsoTight*WeightOneMinusTauSelectionIdTight*WeightOneMinusPhotonVetoIdLoose*WeightOneMinusPhotonVetoPixelSeedVeto*WeightOneMinusJetBVetoIdMedium')"
+        - Weight_MonojetQCD: "df: df.eval('WeightXsLumi*WeightQcdEwk*WeightPU*WeightPreFiring*WeightMETTrig*WeightOneMinusElectronVetoNoSelectionIdIsoVeto*WeightOneMinusElectronSelectionIdIsoTight*WeightOneMinusElectronVetoReco*WeightOneMinusMuonVetoNoSelectionIdLoose*WeightOneMinusMuonVetoNoSelectionIsoLoose*WeightOneMinusMuonSelectionIdTight*WeightOneMinusMuonSelectionIsoTight*WeightOneMinusTauSelectionIdTight*WeightOneMinusPhotonVetoIdLoose*WeightOneMinusPhotonVetoPixelSeedVeto*WeightOneMinusJetBVetoIdMedium')"
+        - Weight_SingleMuon: "df: df.eval('WeightXsLumi*WeightQcdEwk*WeightPU*WeightPreFiring*WeightMETTrig*WeightOneMinusElectronVetoNoSelectionIdIsoVeto*WeightOneMinusElectronSelectionIdIsoTight*WeightOneMinusElectronVetoReco*WeightMuonSelectionIdTight*WeightMuonSelectionIsoTight*WeightOneMinusMuonVetoNoSelectionIdLoose*WeightOneMinusMuonVetoNoSelectionIsoLoose*WeightOneMinusTauSelectionIdTight*WeightOneMinusPhotonVetoIdLoose*WeightOneMinusPhotonVetoPixelSeedVeto*WeightOneMinusJetBVetoIdMedium')"
+        - Weight_SingleMuonQCD: "df: df.eval('WeightXsLumi*WeightQcdEwk*WeightPU*WeightPreFiring*WeightMETTrig*WeightOneMinusElectronVetoNoSelectionIdIsoVeto*WeightOneMinusElectronSelectionIdIsoTight*WeightOneMinusElectronVetoReco*WeightMuonSelectionIdTight*WeightMuonSelectionIsoTight*WeightOneMinusMuonVetoNoSelectionIdLoose*WeightOneMinusMuonVetoNoSelectionIsoLoose*WeightOneMinusTauSelectionIdTight*WeightOneMinusPhotonVetoIdLoose*WeightOneMinusPhotonVetoPixelSeedVeto*WeightOneMinusJetBVetoIdMedium')"
+        - Weight_DoubleMuon: "df: df.eval('WeightXsLumi*WeightQcdEwk*WeightPU*WeightPreFiring*WeightMETTrig*WeightOneMinusElectronVetoNoSelectionIdIsoVeto*WeightOneMinusElectronSelectionIdIsoTight*WeightOneMinusElectronVetoReco*WeightMuonSelectionIdTight*WeightMuonSelectionIsoTight*WeightOneMinusMuonVetoNoSelectionIdLoose*WeightOneMinusMuonVetoNoSelectionIsoLoose*WeightOneMinusTauSelectionIdTight*WeightOneMinusPhotonVetoIdLoose*WeightOneMinusPhotonVetoPixelSeedVeto*WeightOneMinusJetBVetoIdMedium')"
+        - Weight_SingleElectron: "df: df.eval('WeightXsLumi*WeightQcdEwk*WeightPU*WeightPreFiring*WeightSingleElectronTrig*WeightElectronSelectionIdIsoTight*WeightElectronSelectionReco*WeightOneMinusElectronVetoNoSelectionIdIsoVeto*WeightOneMinusElectronVetoNoSelectionReco*WeightOneMinusMuonVetoNoSelectionIdLoose*WeightOneMinusMuonVetoNoSelectionIsoLoose*WeightOneMinusMuonSelectionIdTight*WeightOneMinusMuonSelectionIsoTight*WeightOneMinusTauSelectionIdTight*WeightOneMinusPhotonVetoIdLoose*WeightOneMinusPhotonVetoPixelSeedVeto*WeightOneMinusJetBVetoIdMedium')"
+        - Weight_SingleElectronQCD: "df: df.eval('WeightXsLumi*WeightQcdEwk*WeightPU*WeightPreFiring*WeightSingleElectronTrig*WeightElectronSelectionIdIsoTight*WeightElectronSelectionReco*WeightOneMinusElectronVetoNoSelectionIdIsoVeto*WeightOneMinusElectronVetoNoSelectionReco*WeightOneMinusMuonVetoNoSelectionIdLoose*WeightOneMinusMuonVetoNoSelectionIsoLoose*WeightOneMinusMuonSelectionIdTight*WeightOneMinusMuonSelectionIsoTight*WeightOneMinusTauSelectionIdTight*WeightOneMinusPhotonVetoIdLoose*WeightOneMinusPhotonVetoPixelSeedVeto*WeightOneMinusJetBVetoIdMedium')"
+        - Weight_DoubleElectron: "df: df.eval('WeightXsLumi*WeightQcdEwk*WeightPU*WeightPreFiring*WeightSingleElectronTrig*WeightElectronSelectionIdIsoTight*WeightElectronSelectionReco*WeightOneMinusElectronVetoNoSelectionIdIsoVeto*WeightOneMinusElectronVetoNoSelectionReco*WeightOneMinusMuonVetoNoSelectionIdLoose*WeightOneMinusMuonVetoNoSelectionIsoLoose*WeightOneMinusMuonSelectionIdTight*WeightOneMinusMuonSelectionIsoTight*WeightOneMinusTauSelectionIdTight*WeightOneMinusPhotonVetoIdLoose*WeightOneMinusPhotonVetoPixelSeedVeto*WeightOneMinusJetBVetoIdMedium')"
+        - Weight_SingleTau: "df: df.eval('WeightXsLumi*WeightQcdEwk*WeightPU*WeightPreFiring*WeightMETTrig*WeightOneMinusElectronVetoNoSelectionIdIsoVeto*WeightOneMinusElectronSelectionIdIsoTight*WeightOneMinusElectronVetoReco*WeightOneMinusMuonVetoNoSelectionIdLoose*WeightOneMinusMuonVetoNoSelectionIsoLoose*WeightOneMinusMuonSelectionIdTight*WeightOneMinusMuonSelectionIsoTight*WeightTauSelectionIdTight*WeightOneMinusPhotonVetoIdLoose*WeightOneMinusPhotonVetoPixelSeedVeto*WeightOneMinusJetBVetoIdMedium')"
+        - Weight_SingleMuonMu: "df: df.eval('WeightXsLumi*WeightQcdEwk*WeightPU*WeightPreFiring*WeightSingleMuonTrig*WeightOneMinusElectronVetoNoSelectionIdIsoVeto*WeightOneMinusElectronSelectionIdIsoTight*WeightOneMinusElectronVetoReco*WeightMuonSelectionIdTight*WeightMuonSelectionIsoTight*WeightOneMinusMuonVetoNoSelectionIdLoose*WeightOneMinusMuonVetoNoSelectionIsoLoose*WeightOneMinusTauSelectionIdTight*WeightOneMinusPhotonVetoIdLoose*WeightOneMinusPhotonVetoPixelSeedVeto*WeightOneMinusJetBVetoIdMedium')"
+        - Weight_DoubleMuonMu: "df: df.eval('WeightXsLumi*WeightQcdEwk*WeightPU*WeightPreFiring*WeightSingleMuonTrig*WeightOneMinusElectronVetoNoSelectionIdIsoVeto*WeightOneMinusElectronSelectionIdIsoTight*WeightOneMinusElectronVetoReco*WeightMuonSelectionIdTight*WeightMuonSelectionIsoTight*WeightOneMinusMuonVetoNoSelectionIdLoose*WeightOneMinusMuonVetoNoSelectionIsoLoose*WeightOneMinusTauSelectionIdTight*WeightOneMinusPhotonVetoIdLoose*WeightOneMinusPhotonVetoPixelSeedVeto*WeightOneMinusJetBVetoIdMedium')"
+    cutflows:
+        Monojet:
+            selection_name: "Monojet"
+            selection: "(IsCertified) & (IsMETTriggered) & (Flag_goodVertices) & (Flag_globalSuperTightHalo2016Filter) & (Flag_HBHENoiseFilter) & (Flag_HBHENoiseIsoFilter) & (Flag_EcalDeadCellTriggerPrimitiveFilter) & (Flag_BadPFMuonFilter) & (Flag_BadGlobalMuon) & (Flag_CloneGlobalMuon) & (Flag_eeBadScFilter) & (METnoX_pt>200.) & (MET_dCaloMET<0.6) & (nJetSelection>0) & (nJetSelection==nJetVeto) & (LeadJetSelection_pt>200.) & (LeadJetSelection_chHEF>0.1) & (LeadJetSelection_chHEF<0.95) & (nPhotonVeto==0) & (nBJetVeto==0) & (MinDPhiJ1234METnoX>0.5) & (nMuonVeto==0) & (nElectronVeto==0) & (nTauVeto==0)"
+            weight: "Weight_Monojet"
+            hists: ["METnoX_pt__NearestJetSelectionMET_pt"]
+        MonojetQCD:
+            selection_name: "MonojetQCD"
+            selection: "(IsCertified) & (IsMETTriggered) & (Flag_goodVertices) & (Flag_globalSuperTightHalo2016Filter) & (Flag_HBHENoiseFilter) & (Flag_HBHENoiseIsoFilter) & (Flag_EcalDeadCellTriggerPrimitiveFilter) & (Flag_BadPFMuonFilter) & (Flag_BadGlobalMuon) & (Flag_CloneGlobalMuon) & (Flag_eeBadScFilter) & (METnoX_pt>200.) & (MET_dCaloMET<0.6) & (nJetSelection>0) & (nJetSelection==nJetVeto) & (LeadJetSelection_pt>200.) & (LeadJetSelection_chHEF>0.1) & (LeadJetSelection_chHEF<0.95) & (nPhotonVeto==0) & (nBJetVeto==0) & (MinDPhiJ1234METnoX<=0.5) & (nMuonVeto==0) & (nElectronVeto==0) & (nTauVeto==0)"
+            weight: "Weight_MonojetQCD"
+            hists: ["METnoX_pt__NearestJetSelectionMET_pt"]
+        SingleMuon:
+            selection_name: "SingleMuon"
+            selection: "(IsCertified) & (IsMETTriggered) & (Flag_goodVertices) & (Flag_globalSuperTightHalo2016Filter) & (Flag_HBHENoiseFilter) & (Flag_HBHENoiseIsoFilter) & (Flag_EcalDeadCellTriggerPrimitiveFilter) & (Flag_BadPFMuonFilter) & (Flag_BadGlobalMuon) & (Flag_CloneGlobalMuon) & (Flag_eeBadScFilter) & (METnoX_pt>200.) & (MET_dCaloMET<0.6) & (nJetSelection>0) & (nJetSelection==nJetVeto) & (LeadJetSelection_pt>200.) & (LeadJetSelection_chHEF>0.1) & (LeadJetSelection_chHEF<0.95) & (nPhotonVeto==0) & (nBJetVeto==0) & (MinDPhiJ1234METnoX>0.5) & (nMuonVeto==1) & (nElectronVeto==0) & (nTauVeto==0) & (nMuonSelection==1) & (MTW>=30.) & (MTW<125.)"
+            weight: "Weight_SingleMuon"
+            hists: ["METnoX_pt__NearestJetSelectionMET_pt"]
+        SingleMuonQCD:
+            selection_name: "SingleMuonQCD"
+            selection: "(IsCertified) & (IsMETTriggered) & (Flag_goodVertices) & (Flag_globalSuperTightHalo2016Filter) & (Flag_HBHENoiseFilter) & (Flag_HBHENoiseIsoFilter) & (Flag_EcalDeadCellTriggerPrimitiveFilter) & (Flag_BadPFMuonFilter) & (Flag_BadGlobalMuon) & (Flag_CloneGlobalMuon) & (Flag_eeBadScFilter) & (METnoX_pt>200.) & (MET_dCaloMET<0.6) & (nJetSelection>0) & (nJetSelection==nJetVeto) & (LeadJetSelection_pt>200.) & (LeadJetSelection_chHEF>0.1) & (LeadJetSelection_chHEF<0.95) & (nPhotonVeto==0) & (nBJetVeto==0) & (MinDPhiJ1234METnoX<=0.5) & (nMuonVeto==1) & (nElectronVeto==0) & (nTauVeto==0) & (nMuonSelection==1) & (MTW>=30.) & (MTW<125.)"
+            weight: "Weight_SingleMuonQCD"
+            hists: ["METnoX_pt__NearestJetSelectionMET_pt"]
+        DoubleMuon:
+            selection_name: "DoubleMuon"
+            selection: "(IsCertified) & (IsMETTriggered) & (Flag_goodVertices) & (Flag_globalSuperTightHalo2016Filter) & (Flag_HBHENoiseFilter) & (Flag_HBHENoiseIsoFilter) & (Flag_EcalDeadCellTriggerPrimitiveFilter) & (Flag_BadPFMuonFilter) & (Flag_BadGlobalMuon) & (Flag_CloneGlobalMuon) & (Flag_eeBadScFilter) & (METnoX_pt>200.) & (MET_dCaloMET<0.6) & (nJetSelection>0) & (nJetSelection==nJetVeto) & (LeadJetSelection_pt>200.) & (LeadJetSelection_chHEF>0.1) & (LeadJetSelection_chHEF<0.95) & (nPhotonVeto==0) & (nBJetVeto==0) & (MinDPhiJ1234METnoX>0.5) & (nMuonVeto==2) & (nElectronVeto==0) & (nTauVeto==0) & (nMuonSelection==2) & (MLL>=71.) & (MLL<111.)"
+            weight: "Weight_DoubleMuon"
+            hists: ["METnoX_pt__NearestJetSelectionMET_pt"]
+        SingleElectron:
+            selection_name: "SingleElectron"
+            selection: "(IsCertified) & (IsSingleElectronTriggered) & (Flag_goodVertices) & (Flag_globalSuperTightHalo2016Filter) & (Flag_HBHENoiseFilter) & (Flag_HBHENoiseIsoFilter) & (Flag_EcalDeadCellTriggerPrimitiveFilter) & (Flag_BadPFMuonFilter) & (Flag_BadGlobalMuon) & (Flag_CloneGlobalMuon) & (Flag_eeBadScFilter) & (METnoX_pt>200.) & (MET_dCaloMET<0.6) & (nJetSelection>0) & (nJetSelection==nJetVeto) & (LeadJetSelection_pt>200.) & (LeadJetSelection_chHEF>0.1) & (LeadJetSelection_chHEF<0.95) & (nPhotonVeto==0) & (nBJetVeto==0) & (MinDPhiJ1234METnoX>0.5) & (nMuonVeto==0) & (nElectronVeto==1) & (nTauVeto==0) & (nElectronSelection==1) & (MTW>=30.) & (MTW<125.) & (MET_pt>100.)"
+            weight: "Weight_SingleElectron"
+            hists: ["METnoX_pt__NearestJetSelectionMET_pt"]
+        SingleElectronQCD:
+            selection_name: "SingleElectronQCD"
+            selection: "(IsCertified) & (IsSingleElectronTriggered) & (Flag_goodVertices) & (Flag_globalSuperTightHalo2016Filter) & (Flag_HBHENoiseFilter) & (Flag_HBHENoiseIsoFilter) & (Flag_EcalDeadCellTriggerPrimitiveFilter) & (Flag_BadPFMuonFilter) & (Flag_BadGlobalMuon) & (Flag_CloneGlobalMuon) & (Flag_eeBadScFilter) & (METnoX_pt>200.) & (MET_dCaloMET<0.6) & (nJetSelection>0) & (nJetSelection==nJetVeto) & (LeadJetSelection_pt>200.) & (LeadJetSelection_chHEF>0.1) & (LeadJetSelection_chHEF<0.95) & (nPhotonVeto==0) & (nBJetVeto==0) & (MinDPhiJ1234METnoX<=0.5) & (nMuonVeto==0) & (nElectronVeto==1) & (nTauVeto==0) & (nElectronSelection==1) & (MTW>=30.) & (MTW<125.) & (MET_pt>100.)"
+            weight: "Weight_SingleElectronQCD"
+            hists: ["METnoX_pt__NearestJetSelectionMET_pt"]
+        DoubleElectron:
+            selection_name: "DoubleElectron"
+            selection: "(IsCertified) & (IsSingleElectronTriggered) & (Flag_goodVertices) & (Flag_globalSuperTightHalo2016Filter) & (Flag_HBHENoiseFilter) & (Flag_HBHENoiseIsoFilter) & (Flag_EcalDeadCellTriggerPrimitiveFilter) & (Flag_BadPFMuonFilter) & (Flag_BadGlobalMuon) & (Flag_CloneGlobalMuon) & (Flag_eeBadScFilter) & (METnoX_pt>200.) & (MET_dCaloMET<0.6) & (nJetSelection>0) & (nJetSelection==nJetVeto) & (LeadJetSelection_pt>200.) & (LeadJetSelection_chHEF>0.1) & (LeadJetSelection_chHEF<0.95) & (nPhotonVeto==0) & (nBJetVeto==0) & (MinDPhiJ1234METnoX>0.5) & (nMuonVeto==0) & (nElectronVeto==2) & (nTauVeto==0) & (nElectronSelection==2) & (MLL>=71.) & (MLL<111.)"
+            weight: "Weight_DoubleElectron"
+            hists: ["METnoX_pt__NearestJetSelectionMET_pt"]
+        SingleTau:
+            selection_name: "SingleTau"
+            selection: "(IsCertified) & (IsMETTriggered) & (Flag_goodVertices) & (Flag_globalSuperTightHalo2016Filter) & (Flag_HBHENoiseFilter) & (Flag_HBHENoiseIsoFilter) & (Flag_EcalDeadCellTriggerPrimitiveFilter) & (Flag_BadPFMuonFilter) & (Flag_BadGlobalMuon) & (Flag_CloneGlobalMuon) & (Flag_eeBadScFilter) & (METnoX_pt>200.) & (MET_dCaloMET<0.6) & (nJetSelection>0) & (nJetSelection==nJetVeto) & (LeadJetSelection_pt>200.) & (LeadJetSelection_chHEF>0.1) & (LeadJetSelection_chHEF<0.95) & (nPhotonVeto==0) & (nBJetVeto==0) & (MinDPhiJ1234METnoX>0.5) & (nMuonVeto==0) & (nElectronVeto==0) & (nTauVeto==1) & (nTauSelection==1)"
+            weight: "Weight_SingleTau"
+            hists: ["METnoX_pt__NearestJetSelectionMET_pt"]
+        SingleMuonMu:
+            selection_name: "SingleMuonMu"
+            selection: "(IsCertified) & (IsSingleMuonTriggered) & (Flag_goodVertices) & (Flag_globalSuperTightHalo2016Filter) & (Flag_HBHENoiseFilter) & (Flag_HBHENoiseIsoFilter) & (Flag_EcalDeadCellTriggerPrimitiveFilter) & (Flag_BadPFMuonFilter) & (Flag_BadGlobalMuon) & (Flag_CloneGlobalMuon) & (Flag_eeBadScFilter) & (METnoX_pt>200.) & (MET_dCaloMET<0.6) & (nJetSelection>0) & (nJetSelection==nJetVeto) & (LeadJetSelection_pt>200.) & (LeadJetSelection_chHEF>0.1) & (LeadJetSelection_chHEF<0.95) & (nPhotonVeto==0) & (nBJetVeto==0) & (MinDPhiJ1234METnoX>0.5) & (nMuonVeto==1) & (nElectronVeto==0) & (nTauVeto==0) & (nMuonSelection==1) & (MTW>=30.) & (MTW<125.)"
+            weight: "Weight_SingleMuonMu"
+            hists: ["METnoX_pt__NearestJetSelectionMET_pt"]
+        DoubleMuonMu:
+            selection_name: "DoubleMuonMu"
+            selection: "(IsCertified) & (IsSingleMuonTriggered) & (Flag_goodVertices) & (Flag_globalSuperTightHalo2016Filter) & (Flag_HBHENoiseFilter) & (Flag_HBHENoiseIsoFilter) & (Flag_EcalDeadCellTriggerPrimitiveFilter) & (Flag_BadPFMuonFilter) & (Flag_BadGlobalMuon) & (Flag_CloneGlobalMuon) & (Flag_eeBadScFilter) & (METnoX_pt>200.) & (MET_dCaloMET<0.6) & (nJetSelection>0) & (nJetSelection==nJetVeto) & (LeadJetSelection_pt>200.) & (LeadJetSelection_chHEF>0.1) & (LeadJetSelection_chHEF<0.95) & (nPhotonVeto==0) & (nBJetVeto==0) & (MinDPhiJ1234METnoX>0.5) & (nMuonVeto==2) & (nElectronVeto==0) & (nTauVeto==0) & (nMuonSelection==2) & (MLL>=71.) & (MLL<111.)"
+            weight: "Weight_DoubleMuonMu"
+            hists: ["METnoX_pt__NearestJetSelectionMET_pt"]
+    hists:
+        METnoX_pt__NearestJetSelectionMET_pt:
+            - table: "df: '{table_name}'"
+            - varname0: "df: 'METnoX_pt'"
+            - varname1: "df: 'NearestJetSelectionMET_pt'"
+            - selection: "df: '{selection_name}'"
+            - parent: "df: df.parent"
+            - binvar0: "df: np.floor(df.METnoX_pt/5.)*5"
+            - binvar0: "df: np.floor(df.NearestJetSelectionMET_pt/5.)*5"
+            - count: "df: 1."
+            - sum_w: "df: {weight}"
+            - sum_ww: "df: df.sum_w**2"
 files:
     - "/vols/cms/sdb15/Analysis/ZinvWidth/databases/201905_May/26_fixedJetPtRes/MC_leps/result_00000.h5"
     - "/vols/cms/sdb15/Analysis/ZinvWidth/databases/201905_May/26_fixedJetPtRes/MC_leps/result_00001.h5"
