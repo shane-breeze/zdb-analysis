@@ -7,7 +7,7 @@ import oyaml as yaml
 import functools
 import tqdm
 
-from zdb.modules.df_process import df_process, df_merge
+from zdb.modules.df_process import df_process, df_merge, df_open_merge
 
 def parse_args():
     parser = argparse.ArgumentParser()
@@ -62,22 +62,21 @@ def main():
         results = pysge.mp_submit(tasks, ncores=options.ncores)
         df = functools.reduce(lambda x, y: df_merge(x, y), results)
     elif mode=="sge":
-        pbar = tqdm.tqdm(total=njobs, desc="Merged", dynamic_ncols=True)
-
-        df = pd.DataFrame()
-        merged_idx = []
-        for results in pysge.sge_submit_yield(
+        results = pysge.sge_submit(
             "zdb", "_ccsp_temp/", tasks=tasks, options=options.sge_opts,
             sleep=5, request_resubmission_options=True,
-        ):
-            for idx, r in enumerate(results):
-                if r is None or idx in merged_idx:
-                    continue
-                df = df_merge(df, r)
-                merged_idx.append(idx)
-                pbar.update()
+        )
 
-        pbar.close()
+        grouped_args = [list(x) for x in np.array_split(results, 75)]
+        tasks = [
+            {"task": df_open_merge, "args": (args,), "kwargs": {"quiet": True}}
+            for args in grouped_args
+        ]
+        merge_results = pysge.sge_submit(
+            "zdb-merge", "_ccsp_temp/", tasks=tasks, options=options.sge_opts,
+            sleep=5, request_resubmission_options=True,
+        )
+        df = df_open_merge(merge_results)
     else:
         df = pd.DataFrame()
 

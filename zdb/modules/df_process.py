@@ -1,6 +1,9 @@
+import gzip
+import pickle
 import numpy as np
 import pandas as pd
 import copy
+import tqdm
 
 def df_merge(df1, df2):
     if df1 is None or df1.empty:
@@ -10,6 +13,17 @@ def df_merge(df1, df2):
 
     reindex = df1.index.union(df2.index)
     return df1.reindex(reindex).fillna(0.) + df2.reindex(reindex).fillna(0.)
+
+def df_open_merge(paths, quiet=False):
+    pbar = tqdm.tqdm(total=len(paths), desc="Merged", dynamic_ncols=True, disable=quiet)
+    obj_out = pd.DataFrame()
+    for path in paths:
+        with gzip.open(path, 'rb') as f:
+            obj_in = pickle.load(f)
+        obj_out = df_merge(obj_out, obj_in)
+        pbar.update()
+    pbar.close()
+    return obj_out
 
 def df_process(paths, cfg):
     out_df = pd.DataFrame()
