@@ -86,23 +86,6 @@ def main():
     df_mc = pd.read_hdf(options.input, "MCAggEvents")
     df_mc = df_mc.loc[("central",), :]
 
-    # process MC dataframe
-    if df_mc is not None:
-        df_mc = rename_df_index(df_mc, "parent", [
-            ("WJetsToENu", "(parent=='WJetsToLNu') & (LeptonIsElectron==1)"),
-            ("WJetsToMuNu", "(parent=='WJetsToLNu') & (LeptonIsMuon==1)"),
-            #("WJetsToTauNu", "(parent=='WJetsToLNu') & (LeptonIsTau==1)"),
-            ("WJetsToTauHNu", "(parent=='WJetsToLNu') & (LeptonIsTau==1) & (nGenTauL==0)"),
-            ("WJetsToTauLNu", "(parent=='WJetsToLNu') & (LeptonIsTau==1) & (nGenTauL==1)"),
-            ("DYJetsToEE", "(parent=='DYJetsToLL') & (LeptonIsElectron==1)"),
-            ("DYJetsToMuMu", "(parent=='DYJetsToLL') & (LeptonIsMuon==1)"),
-            #("DYJetsToTauTau", "(parent=='DYJetsToLL') & (LeptonIsTau==1)"),
-            ("DYJetsToTauHTauH", "(parent=='DYJetsToLL') & (LeptonIsTau==1) & (nGenTauL==0)"),
-            ("DYJetsToTauHTauL", "(parent=='DYJetsToLL') & (LeptonIsTau==1) & (nGenTauL==1)"),
-            ("DYJetsToTauLTauL", "(parent=='DYJetsToLL') & (LeptonIsTau==1) & (nGenTauL==2)"),
-        ]).reset_index(["LeptonIsElectron", "LeptonIsMuon", "LeptonIsTau", "nGenTauL"], drop=True)
-        df_mc = df_mc.groupby(df_mc.index.names).sum()
-
     # dfs
     dfs = []
     if df_data is not None:
@@ -127,6 +110,7 @@ def main():
     for varname in varnames:
         for dataset in datasets:
             for cutflow in cutflows:
+                if varname not in cfg: continue
                 job_cfg = copy.deepcopy(cfg[varname])
                 job_cfg.update(cfg.get("defaults", {}))
                 job_cfg.update(cfg.get(dataset+"_dataset", {}))

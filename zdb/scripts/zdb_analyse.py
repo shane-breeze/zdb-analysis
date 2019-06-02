@@ -83,7 +83,7 @@ def main():
     print(df)
     path, table = options.output.split(":")
     df.to_hdf(
-        path, table, format='table', append=True, complevel=9,
+        path, table, format='table', append=False, complevel=9,
         complib='blosc:lz4hc',
     )
 
