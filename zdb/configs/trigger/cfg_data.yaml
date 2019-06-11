@@ -4,7 +4,7 @@ query:
         "central": "Events"
     aliases: {}
     eval:
-        - trigger: "df: np.where(df.IsSingleMuonTriggered, np.where(df.IsMETTriggered, np.full_like(df.IsMETTriggered, 'SingleMuon_OR_MET'), np.full_like(df.IsMETTriggered, 'SingleMuon')), np.full_like(df.IsMETTriggered, 'Other'))"
+        - trigger: "df: np.where(df.IsSingleMuonTriggered, np.where(df.IsMETTriggered, np.full_like(df.IsMETTriggered, 'SingleMuon_OR_MET', dtype=object), np.full_like(df.IsMETTriggered, 'SingleMuon', dtype=object)), np.full_like(df.IsMETTriggered, 'Other', dtype=object))"
     cutflows:
         SingleMuon:
             selection_name: "SingleMuon"
@@ -51,7 +51,7 @@ query:
             - table: "df: '{table_name}'"
             - varname0: "df: 'METnoX_pt'"
             - selection: "df: '{selection_name}'"
-            - trigger: "df: df.tigger"
+            - trigger: "df: df.trigger"
             - parent: "df: df.parent"
             - binvar0: "df: np.floor(df.METnoX_pt/5.)*5"
             - count: "df: 1."

@@ -13,9 +13,7 @@ query:
         - ZCand_py: "df: np.where(df.nMuonSelection==2, df.LeadMuonSelection_pt*np.sin(df.LeadMuonSelection_phi)+df.SecondMuonSelection_pt*np.sin(df.SecondMuonSelection_phi), np.zeros_like(df.nElectronSelection)) + np.where(df.nElectronSelection==2, df.LeadElectronSelection_pt*np.sin(df.LeadElectronSelection_phi)+df.SecondElectronSelection_pt*np.sin(df.SecondElectronSelection_phi), np.zeros_like(df.nElectronSelection))"
         - ZCand_pt: "df: np.sqrt(df.ZCand_px**2 + df.ZCand_py**2)"
         - ZCand_phi: "df: np.arctan2(df.ZCand_py, df.ZCand_px)"
-        - METnoX_ptParaZCandNorm: "df: df.METnoX_pt*np.cos(df.METnoX_phi-df.ZCand_phi)/df.ZCand_pt - 1"
         - METnoX_ptParaZCandCent: "df: df.METnoX_pt*np.cos(df.METnoX_phi-df.ZCand_phi) - df.ZCand_pt"
-        - METnoX_ptPerpZCandNorm: "df: df.METnoX_pt*np.sin(df.METnoX_phi-df.ZCand_phi)/df.ZCand_pt"
         - METnoX_ptPerpZCandCent: "df: df.METnoX_pt*np.sin(df.METnoX_phi-df.ZCand_phi)"
         - Weight_DoubleMuon: "df: df.WeightXsLumi*df.WeightQcdEwk*df.WeightPU*df.WeightPreFiring*df.WeightMETTrig*df.WeightOneMinusElectronVetoNoSelectionIdIsoVeto*df.WeightOneMinusElectronSelectionIdIsoTight*df.WeightOneMinusElectronVetoReco*df.WeightMuonSelectionIdTight*df.WeightMuonSelectionIsoTight*df.WeightOneMinusMuonVetoNoSelectionIdLoose*df.WeightOneMinusMuonVetoNoSelectionIsoLoose*df.WeightOneMinusTauSelectionIdTight*df.WeightOneMinusPhotonVetoIdLoose*df.WeightOneMinusPhotonVetoPixelSeedVeto*df.WeightOneMinusJetBVetoIdMedium"
         - Weight_DoubleElectron: "df: df.WeightXsLumi*df.WeightQcdEwk*df.WeightPU*df.WeightPreFiring*df.WeightSingleElectronTrig*df.WeightElectronSelectionIdIsoTight*df.WeightElectronSelectionReco*df.WeightOneMinusElectronVetoNoSelectionIdIsoVeto*df.WeightOneMinusElectronVetoNoSelectionReco*df.WeightOneMinusMuonVetoNoSelectionIdLoose*df.WeightOneMinusMuonVetoNoSelectionIsoLoose*df.WeightOneMinusMuonSelectionIdTight*df.WeightOneMinusMuonSelectionIsoTight*df.WeightOneMinusTauSelectionIdTight*df.WeightOneMinusPhotonVetoIdLoose*df.WeightOneMinusPhotonVetoPixelSeedVeto*df.WeightOneMinusJetBVetoIdMedium"
@@ -24,46 +22,29 @@ query:
     cutflows:
         DoubleMuon:
             selection_name: "DoubleMuon"
-            selection: "(parent!='EWKV2Jets' | nGenBosonSelection==1) & (Flag_goodVertices) & (Flag_globalSuperTightHalo2016Filter) & (Flag_HBHENoiseFilter) & (Flag_HBHENoiseIsoFilter) & (Flag_EcalDeadCellTriggerPrimitiveFilter) & (Flag_BadPFMuonFilter) & (Flag_BadGlobalMuon) & (Flag_CloneGlobalMuon) & (METnoX_pt>200.) & (MET_dCaloMET<0.6) & (nJetSelection>0) & (nJetSelection==nJetVeto) & (LeadJetSelection_pt>200.) & (LeadJetSelection_chHEF>0.1) & (LeadJetSelection_chHEF<0.95) & (MinDPhiJ1234METnoX>0.5) & (nMuonSelection==2) & (MLL>=71.) & (MLL<111.)"
+            selection: "(parent!='EWKV2Jets' | nGenBosonSelection==1) & (Flag_goodVertices) & (Flag_globalSuperTightHalo2016Filter) & (Flag_HBHENoiseFilter) & (Flag_HBHENoiseIsoFilter) & (Flag_EcalDeadCellTriggerPrimitiveFilter) & (Flag_BadPFMuonFilter) & (Flag_BadGlobalMuon) & (Flag_CloneGlobalMuon) & (MET_dCaloMET<0.6) & (nJetSelection>0) & (nJetSelection==nJetVeto) & (LeadJetSelection_pt>200.) & (LeadJetSelection_chHEF>0.1) & (LeadJetSelection_chHEF<0.95) & (MinDPhiJ1234METnoX>0.5) & (nMuonSelection==2) & (MLL>=71.) & (MLL<111.)"
             weight: "df.Weight_DoubleMuon"
             hists: [
-                "METnoX_ptParaZCandNorm__ZCand_pt",
                 "METnoX_ptParaZCandCent__ZCand_pt",
-                "METnoX_ptPerpZCandNorm__ZCand_pt",
                 "METnoX_ptPerpZCandCent__ZCand_pt",
             ]
         DoubleElectron:
             selection_name: "DoubleElectron"
-            selection: "(parent!='EWKV2Jets' | nGenBosonSelection==1) & (Flag_goodVertices) & (Flag_globalSuperTightHalo2016Filter) & (Flag_HBHENoiseFilter) & (Flag_HBHENoiseIsoFilter) & (Flag_EcalDeadCellTriggerPrimitiveFilter) & (Flag_BadPFMuonFilter) & (Flag_BadGlobalMuon) & (Flag_CloneGlobalMuon) & (METnoX_pt>200.) & (MET_dCaloMET<0.6) & (nJetSelection>0) & (nJetSelection==nJetVeto) & (LeadJetSelection_pt>200.) & (LeadJetSelection_chHEF>0.1) & (LeadJetSelection_chHEF<0.95) & (MinDPhiJ1234METnoX>0.5) & (nElectronSelection==2) & (MLL>=71.) & (MLL<111.)"
+            selection: "(parent!='EWKV2Jets' | nGenBosonSelection==1) & (Flag_goodVertices) & (Flag_globalSuperTightHalo2016Filter) & (Flag_HBHENoiseFilter) & (Flag_HBHENoiseIsoFilter) & (Flag_EcalDeadCellTriggerPrimitiveFilter) & (Flag_BadPFMuonFilter) & (Flag_BadGlobalMuon) & (Flag_CloneGlobalMuon) & (MET_dCaloMET<0.6) & (nJetSelection>0) & (nJetSelection==nJetVeto) & (LeadJetSelection_pt>200.) & (LeadJetSelection_chHEF>0.1) & (LeadJetSelection_chHEF<0.95) & (MinDPhiJ1234METnoX>0.5) & (nElectronSelection==2) & (MLL>=71.) & (MLL<111.)"
             weight: "df.Weight_DoubleElectron"
             hists: [
-                "METnoX_ptParaZCandNorm__ZCand_pt",
                 "METnoX_ptParaZCandCent__ZCand_pt",
-                "METnoX_ptPerpZCandNorm__ZCand_pt",
                 "METnoX_ptPerpZCandCent__ZCand_pt",
             ]
         DoubleMuonMu:
             selection_name: "DoubleMuonMu"
-            selection: "(parent!='EWKV2Jets' | nGenBosonSelection==1) & (Flag_goodVertices) & (Flag_globalSuperTightHalo2016Filter) & (Flag_HBHENoiseFilter) & (Flag_HBHENoiseIsoFilter) & (Flag_EcalDeadCellTriggerPrimitiveFilter) & (Flag_BadPFMuonFilter) & (Flag_BadGlobalMuon) & (Flag_CloneGlobalMuon) & (METnoX_pt>200.) & (MET_dCaloMET<0.6) & (nJetSelection>0) & (nJetSelection==nJetVeto) & (LeadJetSelection_pt>200.) & (LeadJetSelection_chHEF>0.1) & (LeadJetSelection_chHEF<0.95) & (MinDPhiJ1234METnoX>0.5) & (nMuonSelection==2) & (MLL>=71.) & (MLL<111.)"
+            selection: "(parent!='EWKV2Jets' | nGenBosonSelection==1) & (Flag_goodVertices) & (Flag_globalSuperTightHalo2016Filter) & (Flag_HBHENoiseFilter) & (Flag_HBHENoiseIsoFilter) & (Flag_EcalDeadCellTriggerPrimitiveFilter) & (Flag_BadPFMuonFilter) & (Flag_BadGlobalMuon) & (Flag_CloneGlobalMuon) & (MET_dCaloMET<0.6) & (nJetSelection>0) & (nJetSelection==nJetVeto) & (LeadJetSelection_pt>200.) & (LeadJetSelection_chHEF>0.1) & (LeadJetSelection_chHEF<0.95) & (MinDPhiJ1234METnoX>0.5) & (nMuonSelection==2) & (MLL>=71.) & (MLL<111.)"
             weight: "df.Weight_DoubleMuonMu"
             hists: [
-                "METnoX_ptParaZCandNorm__ZCand_pt",
                 "METnoX_ptParaZCandCent__ZCand_pt",
-                "METnoX_ptPerpZCandNorm__ZCand_pt",
                 "METnoX_ptPerpZCandCent__ZCand_pt",
             ]
     hists:
-        METnoX_ptParaZCandNorm__ZCand_pt:
-            - table: "df: '{table_name}'"
-            - varname0: "df: 'ZCand_pt'"
-            - varname1: "df: 'METnoX_ptParaZCandNorm'"
-            - selection: "df: '{selection_name}'"
-            - parent: "df: df.parent"
-            - binvar0: "df: np.floor(df.ZCand_pt/10.)*10"
-            - binvar1: "df: np.floor(df.METnoX_ptParaZCandNorm/0.01)*0.01"
-            - count: "df: 1."
-            - sum_w: "df: {weight}"
-            - sum_ww: "df: df.sum_w**2"
         METnoX_ptParaZCandCent__ZCand_pt:
             - table: "df: '{table_name}'"
             - varname0: "df: 'ZCand_pt'"
@@ -75,17 +56,7 @@ query:
             - count: "df: 1."
             - sum_w: "df: {weight}"
             - sum_ww: "df: df.sum_w**2"
-        METnoX_ptPerpZCandNorm__ZCand_pt:
-            - table: "df: '{table_name}'"
-            - varname0: "df: 'ZCand_pt'"
-            - varname1: "df: 'METnoX_ptPerpZCandNorm'"
-            - selection: "df: '{selection_name}'"
-            - parent: "df: df.parent"
-            - binvar0: "df: np.floor(df.ZCand_pt/10.)*10"
-            - binvar1: "df: np.floor(df.METnoX_ptPerpZCandNorm/0.01)*0.01"
-            - count: "df: 1."
-            - sum_w: "df: {weight}"
-            - sum_ww: "df: df.sum_w**2"
+            - sum_wZCand_pt: "df: df.sum_w*df.ZCand_pt"
         METnoX_ptPerpZCandCent__ZCand_pt:
             - table: "df: '{table_name}'"
             - varname0: "df: 'ZCand_pt'"
@@ -97,6 +68,7 @@ query:
             - count: "df: 1."
             - sum_w: "df: {weight}"
             - sum_ww: "df: df.sum_w**2"
+            - sum_wZCand_pt: "df: df.sum_w*df.ZCand_pt"
 files:
     - "/vols/cms/sdb15/Analysis/ZinvWidth/databases/201905_May/26_fixedJetPtRes/MC_leps/result_00000.h5"
     - "/vols/cms/sdb15/Analysis/ZinvWidth/databases/201905_May/26_fixedJetPtRes/MC_leps/result_00001.h5"
