@@ -1,4 +1,4 @@
-import gzip
+import lz4.frame
 import pickle
 import numpy as np
 import pandas as pd
@@ -18,7 +18,7 @@ def df_open_merge(paths, quiet=False):
     pbar = tqdm.tqdm(total=len(paths), desc="Merged", dynamic_ncols=True, disable=quiet)
     obj_out = pd.DataFrame()
     for path in paths:
-        with gzip.open(path, 'rb') as f:
+        with lz4.frame.open(path, 'rb') as f:
             obj_in = pickle.load(f)
         obj_out = df_merge(obj_out, obj_in)
         pbar.update()
