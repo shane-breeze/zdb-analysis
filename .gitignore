@@ -1,4 +1,5 @@
 # Custom
+data/
 output_*/
 _ccsp_temp/
 output*.h5
