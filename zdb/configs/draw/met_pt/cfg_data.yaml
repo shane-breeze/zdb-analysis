@@ -5,68 +5,23 @@ query:
     aliases: {}
     eval: []
     cutflows:
-        Monojet:
-            selection_name: "Monojet"
-            selection: "(IsCertified) & (IsMETTriggered) & (Flag_goodVertices) & (Flag_globalSuperTightHalo2016Filter) & (Flag_HBHENoiseFilter) & (Flag_HBHENoiseIsoFilter) & (Flag_EcalDeadCellTriggerPrimitiveFilter) & (Flag_BadPFMuonFilter) & (Flag_BadGlobalMuon) & (Flag_CloneGlobalMuon) & (Flag_eeBadScFilter) & (METnoX_pt>200.) & (MET_dCaloMET<0.6) & (nJetSelection>0) & (nJetSelection==nJetVeto) & (LeadJetSelection_pt>200.) & (nPhotonVeto==0) & (nBJetVeto==0) & (MinDPhiJ1234METnoX>0.5) & (nMuonVeto==0) & (nElectronVeto==0) & (nTauVeto==0)"
-            weight: "1."
-            hists: ["LeadJetSelection_neHEF"]
-        MonojetQCD:
-            selection_name: "MonojetQCD"
-            selection: "(IsCertified) & (IsMETTriggered) & (Flag_goodVertices) & (Flag_globalSuperTightHalo2016Filter) & (Flag_HBHENoiseFilter) & (Flag_HBHENoiseIsoFilter) & (Flag_EcalDeadCellTriggerPrimitiveFilter) & (Flag_BadPFMuonFilter) & (Flag_BadGlobalMuon) & (Flag_CloneGlobalMuon) & (Flag_eeBadScFilter) & (METnoX_pt>200.) & (MET_dCaloMET<0.6) & (nJetSelection>0) & (nJetSelection==nJetVeto) & (LeadJetSelection_pt>200.) & (nPhotonVeto==0) & (nBJetVeto==0) & (MinDPhiJ1234METnoX<=0.5) & (nMuonVeto==0) & (nElectronVeto==0) & (nTauVeto==0)"
-            weight: "1."
-            hists: ["LeadJetSelection_neHEF"]
-        SingleMuon:
-            selection_name: "SingleMuon"
-            selection: "(IsCertified) & (IsMETTriggered) & (Flag_goodVertices) & (Flag_globalSuperTightHalo2016Filter) & (Flag_HBHENoiseFilter) & (Flag_HBHENoiseIsoFilter) & (Flag_EcalDeadCellTriggerPrimitiveFilter) & (Flag_BadPFMuonFilter) & (Flag_BadGlobalMuon) & (Flag_CloneGlobalMuon) & (Flag_eeBadScFilter) & (METnoX_pt>200.) & (MET_dCaloMET<0.6) & (nJetSelection>0) & (nJetSelection==nJetVeto) & (LeadJetSelection_pt>200.) & (nPhotonVeto==0) & (nBJetVeto==0) & (MinDPhiJ1234METnoX>0.5) & (nMuonVeto==1) & (nElectronVeto==0) & (nTauVeto==0) & (nMuonSelection==1) & (MTW>=30.) & (MTW<125.)"
-            weight: "1."
-            hists: ["LeadJetSelection_neHEF"]
-        SingleMuonQCD:
-            selection_name: "SingleMuonQCD"
-            selection: "(IsCertified) & (IsMETTriggered) & (Flag_goodVertices) & (Flag_globalSuperTightHalo2016Filter) & (Flag_HBHENoiseFilter) & (Flag_HBHENoiseIsoFilter) & (Flag_EcalDeadCellTriggerPrimitiveFilter) & (Flag_BadPFMuonFilter) & (Flag_BadGlobalMuon) & (Flag_CloneGlobalMuon) & (Flag_eeBadScFilter) & (METnoX_pt>200.) & (MET_dCaloMET<0.6) & (nJetSelection>0) & (nJetSelection==nJetVeto) & (LeadJetSelection_pt>200.) & (nPhotonVeto==0) & (nBJetVeto==0) & (MinDPhiJ1234METnoX<=0.5) & (nMuonVeto==1) & (nElectronVeto==0) & (nTauVeto==0) & (nMuonSelection==1) & (MTW>=30.) & (MTW<125.)"
-            weight: "1."
-            hists: ["LeadJetSelection_neHEF"]
-        DoubleMuon:
-            selection_name: "DoubleMuon"
-            selection: "(IsCertified) & (IsMETTriggered) & (Flag_goodVertices) & (Flag_globalSuperTightHalo2016Filter) & (Flag_HBHENoiseFilter) & (Flag_HBHENoiseIsoFilter) & (Flag_EcalDeadCellTriggerPrimitiveFilter) & (Flag_BadPFMuonFilter) & (Flag_BadGlobalMuon) & (Flag_CloneGlobalMuon) & (Flag_eeBadScFilter) & (METnoX_pt>200.) & (MET_dCaloMET<0.6) & (nJetSelection>0) & (nJetSelection==nJetVeto) & (LeadJetSelection_pt>200.) & (nPhotonVeto==0) & (nBJetVeto==0) & (MinDPhiJ1234METnoX>0.5) & (nMuonVeto==2) & (nElectronVeto==0) & (nTauVeto==0) & (nMuonSelection==2) & (MLL>=71.) & (MLL<111.)"
-            weight: "1."
-            hists: ["LeadJetSelection_neHEF"]
         SingleElectron:
             selection_name: "SingleElectron"
-            selection: "(IsCertified) & (IsSingleElectronTriggered) & (Flag_goodVertices) & (Flag_globalSuperTightHalo2016Filter) & (Flag_HBHENoiseFilter) & (Flag_HBHENoiseIsoFilter) & (Flag_EcalDeadCellTriggerPrimitiveFilter) & (Flag_BadPFMuonFilter) & (Flag_BadGlobalMuon) & (Flag_CloneGlobalMuon) & (Flag_eeBadScFilter) & (METnoX_pt>200.) & (MET_dCaloMET<0.6) & (nJetSelection>0) & (nJetSelection==nJetVeto) & (LeadJetSelection_pt>200.) & (nPhotonVeto==0) & (nBJetVeto==0) & (MinDPhiJ1234METnoX>0.5) & (nMuonVeto==0) & (nElectronVeto==1) & (nTauVeto==0) & (nElectronSelection==1) & (MTW>=30.) & (MTW<125.) & (MET_pt>100.)"
+            selection: "(IsCertified) & (IsSingleElectronTriggered) & (Flag_goodVertices) & (Flag_globalSuperTightHalo2016Filter) & (Flag_HBHENoiseFilter) & (Flag_HBHENoiseIsoFilter) & (Flag_EcalDeadCellTriggerPrimitiveFilter) & (Flag_BadPFMuonFilter) & (Flag_BadGlobalMuon) & (Flag_CloneGlobalMuon) & (Flag_eeBadScFilter) & (METnoX_pt>200.) & (MET_dCaloMET<0.6) & (nJetSelection>0) & (nJetSelection==nJetVeto) & (LeadJetSelection_pt>200.) & (LeadJetSelection_chHEF>0.1) & (LeadJetSelection_chHEF<0.95) & (nPhotonVeto==0) & (nBJetVeto==0) & (MinDPhiJ1234METnoX>0.5) & (nMuonVeto==0) & (nElectronVeto==1) & (nTauVeto==0) & (nElectronSelection==1) & (MTW>=30.) & (MTW<125.)"
             weight: "1."
-            hists: ["LeadJetSelection_neHEF"]
+            hists: ["MET_pt"]
         SingleElectronQCD:
             selection_name: "SingleElectronQCD"
-            selection: "(IsCertified) & (IsSingleElectronTriggered) & (Flag_goodVertices) & (Flag_globalSuperTightHalo2016Filter) & (Flag_HBHENoiseFilter) & (Flag_HBHENoiseIsoFilter) & (Flag_EcalDeadCellTriggerPrimitiveFilter) & (Flag_BadPFMuonFilter) & (Flag_BadGlobalMuon) & (Flag_CloneGlobalMuon) & (Flag_eeBadScFilter) & (METnoX_pt>200.) & (MET_dCaloMET<0.6) & (nJetSelection>0) & (nJetSelection==nJetVeto) & (LeadJetSelection_pt>200.) & (nPhotonVeto==0) & (nBJetVeto==0) & (MinDPhiJ1234METnoX<=0.5) & (nMuonVeto==0) & (nElectronVeto==1) & (nTauVeto==0) & (nElectronSelection==1) & (MTW>=30.) & (MTW<125.) & (MET_pt>100.)"
+            selection: "(IsCertified) & (IsSingleElectronTriggered) & (Flag_goodVertices) & (Flag_globalSuperTightHalo2016Filter) & (Flag_HBHENoiseFilter) & (Flag_HBHENoiseIsoFilter) & (Flag_EcalDeadCellTriggerPrimitiveFilter) & (Flag_BadPFMuonFilter) & (Flag_BadGlobalMuon) & (Flag_CloneGlobalMuon) & (Flag_eeBadScFilter) & (METnoX_pt>200.) & (MET_dCaloMET<0.6) & (nJetSelection>0) & (nJetSelection==nJetVeto) & (LeadJetSelection_pt>200.) & (LeadJetSelection_chHEF>0.1) & (LeadJetSelection_chHEF<0.95) & (nPhotonVeto==0) & (nBJetVeto==0) & (MinDPhiJ1234METnoX<=0.5) & (nMuonVeto==0) & (nElectronVeto==1) & (nTauVeto==0) & (nElectronSelection==1) & (MTW>=30.) & (MTW<125.)"
             weight: "1."
-            hists: ["LeadJetSelection_neHEF"]
-        DoubleElectron:
-            selection_name: "DoubleElectron"
-            selection: "(IsCertified) & (IsSingleElectronTriggered) & (Flag_goodVertices) & (Flag_globalSuperTightHalo2016Filter) & (Flag_HBHENoiseFilter) & (Flag_HBHENoiseIsoFilter) & (Flag_EcalDeadCellTriggerPrimitiveFilter) & (Flag_BadPFMuonFilter) & (Flag_BadGlobalMuon) & (Flag_CloneGlobalMuon) & (Flag_eeBadScFilter) & (METnoX_pt>200.) & (MET_dCaloMET<0.6) & (nJetSelection>0) & (nJetSelection==nJetVeto) & (LeadJetSelection_pt>200.) & (nPhotonVeto==0) & (nBJetVeto==0) & (MinDPhiJ1234METnoX>0.5) & (nMuonVeto==0) & (nElectronVeto==2) & (nTauVeto==0) & (nElectronSelection==2) & (MLL>=71.) & (MLL<111.)"
-            weight: "1."
-            hists: ["LeadJetSelection_neHEF"]
-        SingleTau:
-            selection_name: "SingleTau"
-            selection: "(IsCertified) & (IsMETTriggered) & (Flag_goodVertices) & (Flag_globalSuperTightHalo2016Filter) & (Flag_HBHENoiseFilter) & (Flag_HBHENoiseIsoFilter) & (Flag_EcalDeadCellTriggerPrimitiveFilter) & (Flag_BadPFMuonFilter) & (Flag_BadGlobalMuon) & (Flag_CloneGlobalMuon) & (Flag_eeBadScFilter) & (METnoX_pt>200.) & (MET_dCaloMET<0.6) & (nJetSelection>0) & (nJetSelection==nJetVeto) & (LeadJetSelection_pt>200.) & (nPhotonVeto==0) & (nBJetVeto==0) & (MinDPhiJ1234METnoX>0.5) & (nMuonVeto==0) & (nElectronVeto==0) & (nTauVeto==1) & (nTauSelection==1)"
-            weight: "1."
-            hists: ["LeadJetSelection_neHEF"]
-        SingleMuonMu:
-            selection_name: "SingleMuonMu"
-            selection: "(IsCertified) & (IsSingleMuonTriggered) & (Flag_goodVertices) & (Flag_globalSuperTightHalo2016Filter) & (Flag_HBHENoiseFilter) & (Flag_HBHENoiseIsoFilter) & (Flag_EcalDeadCellTriggerPrimitiveFilter) & (Flag_BadPFMuonFilter) & (Flag_BadGlobalMuon) & (Flag_CloneGlobalMuon) & (Flag_eeBadScFilter) & (METnoX_pt>200.) & (MET_dCaloMET<0.6) & (nJetSelection>0) & (nJetSelection==nJetVeto) & (LeadJetSelection_pt>200.) & (nPhotonVeto==0) & (nBJetVeto==0) & (MinDPhiJ1234METnoX>0.5) & (nMuonVeto==1) & (nElectronVeto==0) & (nTauVeto==0) & (nMuonSelection==1) & (MTW>=30.) & (MTW<125.)"
-            weight: "1."
-            hists: ["LeadJetSelection_neHEF"]
-        DoubleMuonMu:
-            selection_name: "DoubleMuonMu"
-            selection: "(IsCertified) & (IsSingleMuonTriggered) & (Flag_goodVertices) & (Flag_globalSuperTightHalo2016Filter) & (Flag_HBHENoiseFilter) & (Flag_HBHENoiseIsoFilter) & (Flag_EcalDeadCellTriggerPrimitiveFilter) & (Flag_BadPFMuonFilter) & (Flag_BadGlobalMuon) & (Flag_CloneGlobalMuon) & (Flag_eeBadScFilter) & (METnoX_pt>200.) & (MET_dCaloMET<0.6) & (nJetSelection>0) & (nJetSelection==nJetVeto) & (LeadJetSelection_pt>200.) & (nPhotonVeto==0) & (nBJetVeto==0) & (MinDPhiJ1234METnoX>0.5) & (nMuonVeto==2) & (nElectronVeto==0) & (nTauVeto==0) & (nMuonSelection==2) & (MLL>=71.) & (MLL<111.)"
-            weight: "1."
-            hists: ["LeadJetSelection_neHEF"]
+            hists: ["MET_pt"]
     hists:
-        LeadJetSelection_neHEF:
+        MET_pt:
             - table: "df: '{table_name}'"
-            - varname0: "df: 'LeadJetSelection_neHEF'"
+            - varname0: "df: 'MET_pt'"
             - selection: "df: '{selection_name}'"
             - parent: "df: df.parent"
-            - binvar0: "df: np.floor(df.LeadJetSelection_neHEF/0.01)*0.01"
+            - binvar0: "df: np.floor(df.MET_pt)"
             - count: "df: 1."
             - sum_w: "df: {weight}"
             - sum_ww: "df: df.sum_w**2"
