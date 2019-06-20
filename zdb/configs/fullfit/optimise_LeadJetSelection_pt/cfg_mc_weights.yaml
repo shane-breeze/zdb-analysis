@@ -1,68 +1,86 @@
 query:
-    groupby: ["table", "varname0", "selection", "trigger", "parent", "binvar0"]
+    groupby: ["table", "varname0", "varname1", "selection", "parent", "binvar0", "binvar1"]
     tables:
         "central": "Events"
     aliases: {}
     eval:
-        - trigger: "df: np.where(df.IsSingleMuonTriggered, np.where(df.IsMETTriggered, np.full_like(df.IsMETTriggered, 'SingleMuon_OR_MET', dtype=object), np.full_like(df.IsMETTriggered, 'SingleMuon', dtype=object)), np.full_like(df.IsMETTriggered, 'Other', dtype=object))"
         - parent: "df: np.where( df.parent.isin(['WJetsToLNu', 'DYJetsToLL']), np.where( df.parent=='WJetsToLNu', np.where( df.LeptonIsElectron, np.full_like(df.parent, 'WJetsToENu'), np.where( df.LeptonIsMuon, np.full_like(df.parent, 'WJetsToMuNu'), np.where( df.LeptonIsTau, np.full_like(df.parent, 'WJetsToTauNu'), np.full_like(df.parent, 'WJetsToLNu'),),),), np.where( df.parent=='DYJetsToLL', np.where( df.LeptonIsElectron, np.full_like(df.parent, 'DYJetsToEE'), np.where( df.LeptonIsMuon, np.full_like(df.parent, 'DYJetsToMuMu'), np.where( df.LeptonIsTau, np.where( df.nGenTauL==0, np.full_like(df.parent, 'DYJetsToTauHTauH'), np.where( df.nGenTauL==1, np.full_like(df.parent, 'DYJetsToTauHTauL'), np.where( df.nGenTauL==2, np.full_like(df.parent, 'DYJetsToTauLTauL'), np.full_like(df.parent, 'DYJetsToTauTau'),),),), np.full_like(df.parent, 'DYJetsToLL'),),),), df.parent,),), df.parent,)"
-        - Weight_SingleMuon: "df: df.WeightXsLumi*df.WeightQcdEwk*df.WeightPU*df.WeightPreFiring*df.WeightOneMinusElectronVetoNoSelectionIdIsoVeto*df.WeightOneMinusElectronSelectionIdIsoTight*df.WeightOneMinusElectronVetoReco*df.WeightMuonSelectionIdTight*df.WeightMuonSelectionIsoTight*df.WeightOneMinusMuonVetoNoSelectionIdLoose*df.WeightOneMinusMuonVetoNoSelectionIsoLoose*df.WeightOneMinusTauSelectionIdTight*df.WeightOneMinusPhotonVetoIdLoose*df.WeightOneMinusPhotonVetoPixelSeedVeto*df.WeightOneMinusJetBVetoIdMedium"
-        - Weight_DoubleMuon: "df: df.WeightXsLumi*df.WeightQcdEwk*df.WeightPU*df.WeightPreFiring*df.WeightOneMinusElectronVetoNoSelectionIdIsoVeto*df.WeightOneMinusElectronSelectionIdIsoTight*df.WeightOneMinusElectronVetoReco*df.WeightMuonSelectionIdTight*df.WeightMuonSelectionIsoTight*df.WeightOneMinusMuonVetoNoSelectionIdLoose*df.WeightOneMinusMuonVetoNoSelectionIsoLoose*df.WeightOneMinusTauSelectionIdTight*df.WeightOneMinusPhotonVetoIdLoose*df.WeightOneMinusPhotonVetoPixelSeedVeto*df.WeightOneMinusJetBVetoIdMedium"
-        - Weight_TripleMuon: "df: df.WeightXsLumi*df.WeightQcdEwk*df.WeightPU*df.WeightPreFiring*df.WeightOneMinusElectronVetoNoSelectionIdIsoVeto*df.WeightOneMinusElectronSelectionIdIsoTight*df.WeightOneMinusElectronVetoReco*df.WeightMuonSelectionIdTight*df.WeightMuonSelectionIsoTight*df.WeightOneMinusMuonVetoNoSelectionIdLoose*df.WeightOneMinusMuonVetoNoSelectionIsoLoose*df.WeightOneMinusTauSelectionIdTight*df.WeightOneMinusPhotonVetoIdLoose*df.WeightOneMinusPhotonVetoPixelSeedVeto*df.WeightOneMinusJetBVetoIdMedium"
-        - Weight_SingleMuonTau: "df: df.WeightXsLumi*df.WeightQcdEwk*df.WeightPU*df.WeightPreFiring*df.WeightOneMinusElectronVetoNoSelectionIdIsoVeto*df.WeightOneMinusElectronSelectionIdIsoTight*df.WeightOneMinusElectronVetoReco*df.WeightMuonSelectionIdTight*df.WeightMuonSelectionIsoTight*df.WeightOneMinusMuonVetoNoSelectionIdLoose*df.WeightOneMinusMuonVetoNoSelectionIsoLoose*df.WeightTauSelectionIdTight*df.WeightOneMinusPhotonVetoIdLoose*df.WeightOneMinusPhotonVetoPixelSeedVeto*df.WeightOneMinusJetBVetoIdMedium"
-        - Weight_SingleMuonQCD: "df: df.WeightXsLumi*df.WeightQcdEwk*df.WeightPU*df.WeightPreFiring*df.WeightOneMinusElectronVetoNoSelectionIdIsoVeto*df.WeightOneMinusElectronSelectionIdIsoTight*df.WeightOneMinusElectronVetoReco*df.WeightMuonSelectionIdTight*df.WeightMuonSelectionIsoTight*df.WeightOneMinusMuonVetoNoSelectionIdLoose*df.WeightOneMinusMuonVetoNoSelectionIsoLoose*df.WeightOneMinusTauSelectionIdTight*df.WeightOneMinusPhotonVetoIdLoose*df.WeightOneMinusPhotonVetoPixelSeedVeto*df.WeightOneMinusJetBVetoIdMedium"
-        - Weight_DoubleMuonQCD: "df: df.WeightXsLumi*df.WeightQcdEwk*df.WeightPU*df.WeightPreFiring*df.WeightOneMinusElectronVetoNoSelectionIdIsoVeto*df.WeightOneMinusElectronSelectionIdIsoTight*df.WeightOneMinusElectronVetoReco*df.WeightMuonSelectionIdTight*df.WeightMuonSelectionIsoTight*df.WeightOneMinusMuonVetoNoSelectionIdLoose*df.WeightOneMinusMuonVetoNoSelectionIsoLoose*df.WeightOneMinusTauSelectionIdTight*df.WeightOneMinusPhotonVetoIdLoose*df.WeightOneMinusPhotonVetoPixelSeedVeto*df.WeightOneMinusJetBVetoIdMedium"
-        - Weight_TripleMuonQCD: "df: df.WeightXsLumi*df.WeightQcdEwk*df.WeightPU*df.WeightPreFiring*df.WeightOneMinusElectronVetoNoSelectionIdIsoVeto*df.WeightOneMinusElectronSelectionIdIsoTight*df.WeightOneMinusElectronVetoReco*df.WeightMuonSelectionIdTight*df.WeightMuonSelectionIsoTight*df.WeightOneMinusMuonVetoNoSelectionIdLoose*df.WeightOneMinusMuonVetoNoSelectionIsoLoose*df.WeightOneMinusTauSelectionIdTight*df.WeightOneMinusPhotonVetoIdLoose*df.WeightOneMinusPhotonVetoPixelSeedVeto*df.WeightOneMinusJetBVetoIdMedium"
-        - Weight_SingleMuonTauQCD: "df: df.WeightXsLumi*df.WeightQcdEwk*df.WeightPU*df.WeightPreFiring*df.WeightOneMinusElectronVetoNoSelectionIdIsoVeto*df.WeightOneMinusElectronSelectionIdIsoTight*df.WeightOneMinusElectronVetoReco*df.WeightMuonSelectionIdTight*df.WeightMuonSelectionIsoTight*df.WeightOneMinusMuonVetoNoSelectionIdLoose*df.WeightOneMinusMuonVetoNoSelectionIsoLoose*df.WeightTauSelectionIdTight*df.WeightOneMinusPhotonVetoIdLoose*df.WeightOneMinusPhotonVetoPixelSeedVeto*df.WeightOneMinusJetBVetoIdMedium"
+        - Weight_Monojet: "df: df.WeightXsLumi*df.WeightQcdEwk*df.WeightPU*df.WeightPreFiring*df.WeightMETTrig*df.WeightOneMinusElectronVetoNoSelectionIdIsoVeto*df.WeightOneMinusElectronSelectionIdIsoTight*df.WeightOneMinusElectronVetoReco*df.WeightOneMinusMuonVetoNoSelectionIdLoose*df.WeightOneMinusMuonVetoNoSelectionIsoLoose*df.WeightOneMinusMuonSelectionIdTight*df.WeightOneMinusMuonSelectionIsoTight*df.WeightOneMinusTauSelectionIdTight*df.WeightOneMinusPhotonVetoIdLoose*df.WeightOneMinusPhotonVetoPixelSeedVeto*df.WeightOneMinusJetBVetoIdMedium"
+        - Weight_MonojetQCD: "df: df.WeightXsLumi*df.WeightQcdEwk*df.WeightPU*df.WeightPreFiring*df.WeightMETTrig*df.WeightOneMinusElectronVetoNoSelectionIdIsoVeto*df.WeightOneMinusElectronSelectionIdIsoTight*df.WeightOneMinusElectronVetoReco*df.WeightOneMinusMuonVetoNoSelectionIdLoose*df.WeightOneMinusMuonVetoNoSelectionIsoLoose*df.WeightOneMinusMuonSelectionIdTight*df.WeightOneMinusMuonSelectionIsoTight*df.WeightOneMinusTauSelectionIdTight*df.WeightOneMinusPhotonVetoIdLoose*df.WeightOneMinusPhotonVetoPixelSeedVeto*df.WeightOneMinusJetBVetoIdMedium"
+        - Weight_SingleMuon: "df: df.WeightXsLumi*df.WeightQcdEwk*df.WeightPU*df.WeightPreFiring*df.WeightMETTrig*df.WeightOneMinusElectronVetoNoSelectionIdIsoVeto*df.WeightOneMinusElectronSelectionIdIsoTight*df.WeightOneMinusElectronVetoReco*df.WeightMuonSelectionIdTight*df.WeightMuonSelectionIsoTight*df.WeightOneMinusMuonVetoNoSelectionIdLoose*df.WeightOneMinusMuonVetoNoSelectionIsoLoose*df.WeightOneMinusTauSelectionIdTight*df.WeightOneMinusPhotonVetoIdLoose*df.WeightOneMinusPhotonVetoPixelSeedVeto*df.WeightOneMinusJetBVetoIdMedium"
+        - Weight_SingleMuonQCD: "df: df.WeightXsLumi*df.WeightQcdEwk*df.WeightPU*df.WeightPreFiring*df.WeightMETTrig*df.WeightOneMinusElectronVetoNoSelectionIdIsoVeto*df.WeightOneMinusElectronSelectionIdIsoTight*df.WeightOneMinusElectronVetoReco*df.WeightMuonSelectionIdTight*df.WeightMuonSelectionIsoTight*df.WeightOneMinusMuonVetoNoSelectionIdLoose*df.WeightOneMinusMuonVetoNoSelectionIsoLoose*df.WeightOneMinusTauSelectionIdTight*df.WeightOneMinusPhotonVetoIdLoose*df.WeightOneMinusPhotonVetoPixelSeedVeto*df.WeightOneMinusJetBVetoIdMedium"
+        - Weight_DoubleMuon: "df: df.WeightXsLumi*df.WeightQcdEwk*df.WeightPU*df.WeightPreFiring*df.WeightMETTrig*df.WeightOneMinusElectronVetoNoSelectionIdIsoVeto*df.WeightOneMinusElectronSelectionIdIsoTight*df.WeightOneMinusElectronVetoReco*df.WeightMuonSelectionIdTight*df.WeightMuonSelectionIsoTight*df.WeightOneMinusMuonVetoNoSelectionIdLoose*df.WeightOneMinusMuonVetoNoSelectionIsoLoose*df.WeightOneMinusTauSelectionIdTight*df.WeightOneMinusPhotonVetoIdLoose*df.WeightOneMinusPhotonVetoPixelSeedVeto*df.WeightOneMinusJetBVetoIdMedium"
+        - Weight_SingleElectron: "df: df.WeightXsLumi*df.WeightQcdEwk*df.WeightPU*df.WeightPreFiring*df.WeightSingleElectronTrig*df.WeightElectronSelectionIdIsoTight*df.WeightElectronSelectionReco*df.WeightOneMinusElectronVetoNoSelectionIdIsoVeto*df.WeightOneMinusElectronVetoNoSelectionReco*df.WeightOneMinusMuonVetoNoSelectionIdLoose*df.WeightOneMinusMuonVetoNoSelectionIsoLoose*df.WeightOneMinusMuonSelectionIdTight*df.WeightOneMinusMuonSelectionIsoTight*df.WeightOneMinusTauSelectionIdTight*df.WeightOneMinusPhotonVetoIdLoose*df.WeightOneMinusPhotonVetoPixelSeedVeto*df.WeightOneMinusJetBVetoIdMedium"
+        - Weight_SingleElectronQCD: "df: df.WeightXsLumi*df.WeightQcdEwk*df.WeightPU*df.WeightPreFiring*df.WeightSingleElectronTrig*df.WeightElectronSelectionIdIsoTight*df.WeightElectronSelectionReco*df.WeightOneMinusElectronVetoNoSelectionIdIsoVeto*df.WeightOneMinusElectronVetoNoSelectionReco*df.WeightOneMinusMuonVetoNoSelectionIdLoose*df.WeightOneMinusMuonVetoNoSelectionIsoLoose*df.WeightOneMinusMuonSelectionIdTight*df.WeightOneMinusMuonSelectionIsoTight*df.WeightOneMinusTauSelectionIdTight*df.WeightOneMinusPhotonVetoIdLoose*df.WeightOneMinusPhotonVetoPixelSeedVeto*df.WeightOneMinusJetBVetoIdMedium"
+        - Weight_DoubleElectron: "df: df.WeightXsLumi*df.WeightQcdEwk*df.WeightPU*df.WeightPreFiring*df.WeightSingleElectronTrig*df.WeightElectronSelectionIdIsoTight*df.WeightElectronSelectionReco*df.WeightOneMinusElectronVetoNoSelectionIdIsoVeto*df.WeightOneMinusElectronVetoNoSelectionReco*df.WeightOneMinusMuonVetoNoSelectionIdLoose*df.WeightOneMinusMuonVetoNoSelectionIsoLoose*df.WeightOneMinusMuonSelectionIdTight*df.WeightOneMinusMuonSelectionIsoTight*df.WeightOneMinusTauSelectionIdTight*df.WeightOneMinusPhotonVetoIdLoose*df.WeightOneMinusPhotonVetoPixelSeedVeto*df.WeightOneMinusJetBVetoIdMedium"
+        - Weight_SingleTau: "df: df.WeightXsLumi*df.WeightQcdEwk*df.WeightPU*df.WeightPreFiring*df.WeightMETTrig*df.WeightOneMinusElectronVetoNoSelectionIdIsoVeto*df.WeightOneMinusElectronSelectionIdIsoTight*df.WeightOneMinusElectronVetoReco*df.WeightOneMinusMuonVetoNoSelectionIdLoose*df.WeightOneMinusMuonVetoNoSelectionIsoLoose*df.WeightOneMinusMuonSelectionIdTight*df.WeightOneMinusMuonSelectionIsoTight*df.WeightTauSelectionIdTight*df.WeightOneMinusPhotonVetoIdLoose*df.WeightOneMinusPhotonVetoPixelSeedVeto*df.WeightOneMinusJetBVetoIdMedium"
+        - Weight_SingleMuonMu: "df: df.WeightXsLumi*df.WeightQcdEwk*df.WeightPU*df.WeightPreFiring*df.WeightSingleMuonTrig*df.WeightOneMinusElectronVetoNoSelectionIdIsoVeto*df.WeightOneMinusElectronSelectionIdIsoTight*df.WeightOneMinusElectronVetoReco*df.WeightMuonSelectionIdTight*df.WeightMuonSelectionIsoTight*df.WeightOneMinusMuonVetoNoSelectionIdLoose*df.WeightOneMinusMuonVetoNoSelectionIsoLoose*df.WeightOneMinusTauSelectionIdTight*df.WeightOneMinusPhotonVetoIdLoose*df.WeightOneMinusPhotonVetoPixelSeedVeto*df.WeightOneMinusJetBVetoIdMedium"
+        - Weight_DoubleMuonMu: "df: df.WeightXsLumi*df.WeightQcdEwk*df.WeightPU*df.WeightPreFiring*df.WeightSingleMuonTrig*df.WeightOneMinusElectronVetoNoSelectionIdIsoVeto*df.WeightOneMinusElectronSelectionIdIsoTight*df.WeightOneMinusElectronVetoReco*df.WeightMuonSelectionIdTight*df.WeightMuonSelectionIsoTight*df.WeightOneMinusMuonVetoNoSelectionIdLoose*df.WeightOneMinusMuonVetoNoSelectionIsoLoose*df.WeightOneMinusTauSelectionIdTight*df.WeightOneMinusPhotonVetoIdLoose*df.WeightOneMinusPhotonVetoPixelSeedVeto*df.WeightOneMinusJetBVetoIdMedium"
     cutflows:
+        Monojet:
+            selection_name: "Monojet"
+            selection: "(parent!='EWKV2Jets' | nGenBosonSelection==1) & (Flag_goodVertices) & (Flag_globalSuperTightHalo2016Filter) & (Flag_HBHENoiseFilter) & (Flag_HBHENoiseIsoFilter) & (Flag_EcalDeadCellTriggerPrimitiveFilter) & (Flag_BadPFMuonFilter) & (Flag_BadGlobalMuon) & (Flag_CloneGlobalMuon) & (METnoX_pt>200.) & (MET_dCaloMET<0.6) & (nJetSelection>0) & (nJetSelection==nJetVeto) & (LeadJetSelection_chHEF>0.1) & (LeadJetSelection_chHEF<0.95) & (MinDPhiJ1234METnoX>0.5)"
+            weight: "df.Weight_Monojet"
+            hists: ["LeadJetSelection_pt__METnoX_pt"]
+        MonojetQCD:
+            selection_name: "MonojetQCD"
+            selection: "(parent!='EWKV2Jets' | nGenBosonSelection==1) & (Flag_goodVertices) & (Flag_globalSuperTightHalo2016Filter) & (Flag_HBHENoiseFilter) & (Flag_HBHENoiseIsoFilter) & (Flag_EcalDeadCellTriggerPrimitiveFilter) & (Flag_BadPFMuonFilter) & (Flag_BadGlobalMuon) & (Flag_CloneGlobalMuon) & (METnoX_pt>200.) & (MET_dCaloMET<0.6) & (nJetSelection>0) & (nJetSelection==nJetVeto) & (LeadJetSelection_chHEF>0.1) & (LeadJetSelection_chHEF<0.95) & (MinDPhiJ1234METnoX<=0.5)"
+            weight: "df.Weight_MonojetQCD"
+            hists: ["LeadJetSelection_pt__METnoX_pt"]
         SingleMuon:
             selection_name: "SingleMuon"
-            selection: "(parent!='EWKV2Jets' | nGenBosonSelection==1) & (Flag_goodVertices) & (Flag_globalSuperTightHalo2016Filter) & (Flag_HBHENoiseFilter) & (Flag_HBHENoiseIsoFilter) & (Flag_EcalDeadCellTriggerPrimitiveFilter) & (Flag_BadPFMuonFilter) & (Flag_BadGlobalMuon) & (Flag_CloneGlobalMuon) & (METnoX_pt>200.) & (MET_dCaloMET<0.6) & (nJetSelection>0) & (nJetSelection==nJetVeto) & (LeadJetSelection_pt>200.) & (LeadJetSelection_chHEF>0.1) & (LeadJetSelection_chHEF<0.95) & (MinDPhiJ1234METnoX>0.5) & (nMuonSelection==1)"
+            selection: "(parent!='EWKV2Jets' | nGenBosonSelection==1) & (Flag_goodVertices) & (Flag_globalSuperTightHalo2016Filter) & (Flag_HBHENoiseFilter) & (Flag_HBHENoiseIsoFilter) & (Flag_EcalDeadCellTriggerPrimitiveFilter) & (Flag_BadPFMuonFilter) & (Flag_BadGlobalMuon) & (Flag_CloneGlobalMuon) & (METnoX_pt>200.) & (MET_dCaloMET<0.6) & (nJetSelection>0) & (nJetSelection==nJetVeto) & (LeadJetSelection_chHEF>0.1) & (LeadJetSelection_chHEF<0.95) & (MinDPhiJ1234METnoX>0.5) & (nMuonSelection==1) & (MTW>=30.) & (MTW<125)"
             weight: "df.Weight_SingleMuon"
-            hists: ["METnoX_pt"]
-        DoubleMuon:
-            selection_name: "DoubleMuon"
-            selection: "(parent!='EWKV2Jets' | nGenBosonSelection==1) & (Flag_goodVertices) & (Flag_globalSuperTightHalo2016Filter) & (Flag_HBHENoiseFilter) & (Flag_HBHENoiseIsoFilter) & (Flag_EcalDeadCellTriggerPrimitiveFilter) & (Flag_BadPFMuonFilter) & (Flag_BadGlobalMuon) & (Flag_CloneGlobalMuon) & (METnoX_pt>200.) & (MET_dCaloMET<0.6) & (nJetSelection>0) & (nJetSelection==nJetVeto) & (LeadJetSelection_pt>200.) & (LeadJetSelection_chHEF>0.1) & (LeadJetSelection_chHEF<0.95) & (MinDPhiJ1234METnoX>0.5) & (nMuonSelection==2)"
-            weight: "df.Weight_DoubleMuon"
-            hists: ["METnoX_pt"]
-        TripleMuon:
-            selection_name: "TripleMuon"
-            selection: "(parent!='EWKV2Jets' | nGenBosonSelection==1) & (Flag_goodVertices) & (Flag_globalSuperTightHalo2016Filter) & (Flag_HBHENoiseFilter) & (Flag_HBHENoiseIsoFilter) & (Flag_EcalDeadCellTriggerPrimitiveFilter) & (Flag_BadPFMuonFilter) & (Flag_BadGlobalMuon) & (Flag_CloneGlobalMuon) & (METnoX_pt>200.) & (MET_dCaloMET<0.6) & (nJetSelection>0) & (nJetSelection==nJetVeto) & (LeadJetSelection_pt>200.) & (LeadJetSelection_chHEF>0.1) & (LeadJetSelection_chHEF<0.95) & (MinDPhiJ1234METnoX>0.5) & (nMuonSelection==3)"
-            weight: "df.Weight_TripleMuon"
-            hists: ["METnoX_pt"]
-        SingleMuonTau:
-            selection_name: "SingleMuonTau"
-            selection: "(parent!='EWKV2Jets' | nGenBosonSelection==1) & (Flag_goodVertices) & (Flag_globalSuperTightHalo2016Filter) & (Flag_HBHENoiseFilter) & (Flag_HBHENoiseIsoFilter) & (Flag_EcalDeadCellTriggerPrimitiveFilter) & (Flag_BadPFMuonFilter) & (Flag_BadGlobalMuon) & (Flag_CloneGlobalMuon) & (METnoX_pt>200.) & (MET_dCaloMET<0.6) & (nJetSelection>0) & (nJetSelection==nJetVeto) & (LeadJetSelection_pt>200.) & (LeadJetSelection_chHEF>0.1) & (LeadJetSelection_chHEF<0.95) & (MinDPhiJ1234METnoX>0.5) & (nMuonSelection==1) & (nTauSelection==1) & (nTauVeto==1)"
-            weight: "df.Weight_SingleMuonTau"
-            hists: ["METnoX_pt"]
+            hists: ["LeadJetSelection_pt__METnoX_pt"]
         SingleMuonQCD:
             selection_name: "SingleMuonQCD"
-            selection: "(parent!='EWKV2Jets' | nGenBosonSelection==1) & (Flag_goodVertices) & (Flag_globalSuperTightHalo2016Filter) & (Flag_HBHENoiseFilter) & (Flag_HBHENoiseIsoFilter) & (Flag_EcalDeadCellTriggerPrimitiveFilter) & (Flag_BadPFMuonFilter) & (Flag_BadGlobalMuon) & (Flag_CloneGlobalMuon) & (METnoX_pt>200.) & (MET_dCaloMET<0.6) & (nJetSelection>0) & (nJetSelection==nJetVeto) & (LeadJetSelection_pt>200.) & (LeadJetSelection_chHEF>0.1) & (LeadJetSelection_chHEF<0.95) & (MinDPhiJ1234METnoX<=0.5) & (nMuonSelection==1)"
+            selection: "(parent!='EWKV2Jets' | nGenBosonSelection==1) & (Flag_goodVertices) & (Flag_globalSuperTightHalo2016Filter) & (Flag_HBHENoiseFilter) & (Flag_HBHENoiseIsoFilter) & (Flag_EcalDeadCellTriggerPrimitiveFilter) & (Flag_BadPFMuonFilter) & (Flag_BadGlobalMuon) & (Flag_CloneGlobalMuon) & (METnoX_pt>200.) & (MET_dCaloMET<0.6) & (nJetSelection>0) & (nJetSelection==nJetVeto) & (LeadJetSelection_chHEF>0.1) & (LeadJetSelection_chHEF<0.95) & (MinDPhiJ1234METnoX<=0.5) & (nMuonSelection==1) & (MTW>=30.) & (MTW<125)"
             weight: "df.Weight_SingleMuonQCD"
-            hists: ["METnoX_pt"]
-        DoubleMuonQCD:
-            selection_name: "DoubleMuonQCD"
-            selection: "(parent!='EWKV2Jets' | nGenBosonSelection==1) & (Flag_goodVertices) & (Flag_globalSuperTightHalo2016Filter) & (Flag_HBHENoiseFilter) & (Flag_HBHENoiseIsoFilter) & (Flag_EcalDeadCellTriggerPrimitiveFilter) & (Flag_BadPFMuonFilter) & (Flag_BadGlobalMuon) & (Flag_CloneGlobalMuon) & (METnoX_pt>200.) & (MET_dCaloMET<0.6) & (nJetSelection>0) & (nJetSelection==nJetVeto) & (LeadJetSelection_pt>200.) & (LeadJetSelection_chHEF>0.1) & (LeadJetSelection_chHEF<0.95) & (MinDPhiJ1234METnoX<=0.5) & (nMuonSelection==2)"
-            weight: "df.Weight_DoubleMuonQCD"
-            hists: ["METnoX_pt"]
-        TripleMuonQCD:
-            selection_name: "TripleMuonQCD"
-            selection: "(parent!='EWKV2Jets' | nGenBosonSelection==1) & (Flag_goodVertices) & (Flag_globalSuperTightHalo2016Filter) & (Flag_HBHENoiseFilter) & (Flag_HBHENoiseIsoFilter) & (Flag_EcalDeadCellTriggerPrimitiveFilter) & (Flag_BadPFMuonFilter) & (Flag_BadGlobalMuon) & (Flag_CloneGlobalMuon) & (METnoX_pt>200.) & (MET_dCaloMET<0.6) & (nJetSelection>0) & (nJetSelection==nJetVeto) & (LeadJetSelection_pt>200.) & (LeadJetSelection_chHEF>0.1) & (LeadJetSelection_chHEF<0.95) & (MinDPhiJ1234METnoX<=0.5) & (nMuonSelection==3)"
-            weight: "df.Weight_TripleMuonQCD"
-            hists: ["METnoX_pt"]
-        SingleMuonTauQCD:
-            selection_name: "SingleMuonTauQCD"
-            selection: "(parent!='EWKV2Jets' | nGenBosonSelection==1) & (Flag_goodVertices) & (Flag_globalSuperTightHalo2016Filter) & (Flag_HBHENoiseFilter) & (Flag_HBHENoiseIsoFilter) & (Flag_EcalDeadCellTriggerPrimitiveFilter) & (Flag_BadPFMuonFilter) & (Flag_BadGlobalMuon) & (Flag_CloneGlobalMuon) & (METnoX_pt>200.) & (MET_dCaloMET<0.6) & (nJetSelection>0) & (nJetSelection==nJetVeto) & (LeadJetSelection_pt>200.) & (LeadJetSelection_chHEF>0.1) & (LeadJetSelection_chHEF<0.95) & (MinDPhiJ1234METnoX<=0.5) & (nMuonSelection==1) & (nTauSelection==1) & (nTauVeto==1)"
-            weight: "df.Weight_SingleMuonTauQCD"
-            hists: ["METnoX_pt"]
+            hists: ["LeadJetSelection_pt__METnoX_pt"]
+        DoubleMuon:
+            selection_name: "DoubleMuon"
+            selection: "(parent!='EWKV2Jets' | nGenBosonSelection==1) & (Flag_goodVertices) & (Flag_globalSuperTightHalo2016Filter) & (Flag_HBHENoiseFilter) & (Flag_HBHENoiseIsoFilter) & (Flag_EcalDeadCellTriggerPrimitiveFilter) & (Flag_BadPFMuonFilter) & (Flag_BadGlobalMuon) & (Flag_CloneGlobalMuon) & (METnoX_pt>200.) & (MET_dCaloMET<0.6) & (nJetSelection>0) & (nJetSelection==nJetVeto) & (LeadJetSelection_chHEF>0.1) & (LeadJetSelection_chHEF<0.95) & (MinDPhiJ1234METnoX>0.5) & (nMuonSelection==2) & (MLL>=71.) & (MLL<111.)"
+            weight: "df.Weight_DoubleMuon"
+            hists: ["LeadJetSelection_pt__METnoX_pt"]
+        SingleElectron:
+            selection_name: "SingleElectron"
+            selection: "(parent!='EWKV2Jets' | nGenBosonSelection==1) & (Flag_goodVertices) & (Flag_globalSuperTightHalo2016Filter) & (Flag_HBHENoiseFilter) & (Flag_HBHENoiseIsoFilter) & (Flag_EcalDeadCellTriggerPrimitiveFilter) & (Flag_BadPFMuonFilter) & (Flag_BadGlobalMuon) & (Flag_CloneGlobalMuon) & (METnoX_pt>200.) & (MET_dCaloMET<0.6) & (nJetSelection>0) & (nJetSelection==nJetVeto) & (LeadJetSelection_chHEF>0.1) & (LeadJetSelection_chHEF<0.95) & (MinDPhiJ1234METnoX>0.5) & (nElectronSelection==1) & (MTW>=30.) & (MTW<125) & (MET_pt>100.)"
+            weight: "df.Weight_SingleElectron"
+            hists: ["LeadJetSelection_pt__METnoX_pt"]
+        SingleElectronQCD:
+            selection_name: "SingleElectronQCD"
+            selection: "(parent!='EWKV2Jets' | nGenBosonSelection==1) & (Flag_goodVertices) & (Flag_globalSuperTightHalo2016Filter) & (Flag_HBHENoiseFilter) & (Flag_HBHENoiseIsoFilter) & (Flag_EcalDeadCellTriggerPrimitiveFilter) & (Flag_BadPFMuonFilter) & (Flag_BadGlobalMuon) & (Flag_CloneGlobalMuon) & (METnoX_pt>200.) & (MET_dCaloMET<0.6) & (nJetSelection>0) & (nJetSelection==nJetVeto) & (LeadJetSelection_chHEF>0.1) & (LeadJetSelection_chHEF<0.95) & (MinDPhiJ1234METnoX<=0.5) & (nElectronSelection==1) & (MTW>=30.) & (MTW<125) & (MET_pt>100.)"
+            weight: "df.Weight_SingleElectronQCD"
+            hists: ["LeadJetSelection_pt__METnoX_pt"]
+        DoubleElectron:
+            selection_name: "DoubleElectron"
+            selection: "(parent!='EWKV2Jets' | nGenBosonSelection==1) & (Flag_goodVertices) & (Flag_globalSuperTightHalo2016Filter) & (Flag_HBHENoiseFilter) & (Flag_HBHENoiseIsoFilter) & (Flag_EcalDeadCellTriggerPrimitiveFilter) & (Flag_BadPFMuonFilter) & (Flag_BadGlobalMuon) & (Flag_CloneGlobalMuon) & (METnoX_pt>200.) & (MET_dCaloMET<0.6) & (nJetSelection>0) & (nJetSelection==nJetVeto) & (LeadJetSelection_chHEF>0.1) & (LeadJetSelection_chHEF<0.95) & (MinDPhiJ1234METnoX>0.5) & (nElectronSelection==2) & (MLL>=71.) & (MLL<111.)"
+            weight: "df.Weight_DoubleElectron"
+            hists: ["LeadJetSelection_pt__METnoX_pt"]
+        SingleTau:
+            selection_name: "SingleTau"
+            selection: "(parent!='EWKV2Jets' | nGenBosonSelection==1) & (Flag_goodVertices) & (Flag_globalSuperTightHalo2016Filter) & (Flag_HBHENoiseFilter) & (Flag_HBHENoiseIsoFilter) & (Flag_EcalDeadCellTriggerPrimitiveFilter) & (Flag_BadPFMuonFilter) & (Flag_BadGlobalMuon) & (Flag_CloneGlobalMuon) & (METnoX_pt>200.) & (MET_dCaloMET<0.6) & (nJetSelection>0) & (nJetSelection==nJetVeto) & (LeadJetSelection_chHEF>0.1) & (LeadJetSelection_chHEF<0.95) & (MinDPhiJ1234METnoX>0.5) & (nTauSelection==1) & (nTauVeto==1)"
+            weight: "df.Weight_SingleTau"
+            hists: ["LeadJetSelection_pt__METnoX_pt"]
+        SingleMuonMu:
+            selection_name: "SingleMuonMu"
+            selection: "(parent!='EWKV2Jets' | nGenBosonSelection==1) & (Flag_goodVertices) & (Flag_globalSuperTightHalo2016Filter) & (Flag_HBHENoiseFilter) & (Flag_HBHENoiseIsoFilter) & (Flag_EcalDeadCellTriggerPrimitiveFilter) & (Flag_BadPFMuonFilter) & (Flag_BadGlobalMuon) & (Flag_CloneGlobalMuon) & (METnoX_pt>200.) & (MET_dCaloMET<0.6) & (nJetSelection>0) & (nJetSelection==nJetVeto) & (LeadJetSelection_chHEF>0.1) & (LeadJetSelection_chHEF<0.95) & (MinDPhiJ1234METnoX>0.5) & (nMuonSelection==1) & (MTW>=30.) & (MTW<125)"
+            weight: "df.Weight_SingleMuonMu"
+            hists: ["LeadJetSelection_pt__METnoX_pt"]
+        DoubleMuonMu:
+            selection_name: "DoubleMuonMu"
+            selection: "(parent!='EWKV2Jets' | nGenBosonSelection==1) & (Flag_goodVertices) & (Flag_globalSuperTightHalo2016Filter) & (Flag_HBHENoiseFilter) & (Flag_HBHENoiseIsoFilter) & (Flag_EcalDeadCellTriggerPrimitiveFilter) & (Flag_BadPFMuonFilter) & (Flag_BadGlobalMuon) & (Flag_CloneGlobalMuon) & (METnoX_pt>200.) & (MET_dCaloMET<0.6) & (nJetSelection>0) & (nJetSelection==nJetVeto) & (LeadJetSelection_chHEF>0.1) & (LeadJetSelection_chHEF<0.95) & (MinDPhiJ1234METnoX>0.5) & (nMuonSelection==2) & (MLL>=71.) & (MLL<111.)"
+            weight: "df.Weight_DoubleMuonMu"
+            hists: ["LeadJetSelection_pt__METnoX_pt"]
     hists:
-        METnoX_pt:
+        LeadJetSelection_pt__METnoX_pt:
             - table: "df: '{table_name}'"
-            - varname0: "df: 'METnoX_pt'"
+            - varname0: "df: 'LeadJetSelection_pt'"
+            - varname1: "df: 'METnoX_pt'"
             - selection: "df: '{selection_name}'"
-            - trigger: "df: df.trigger"
             - parent: "df: df.parent"
-            - binvar0: "df: np.floor(df.METnoX_pt/5.)*5"
+            - binvar0: "df: np.floor(df.LeadJetSelection_pt/20.)*20."
+            - binvar1: "df: np.floor(df.METnoX_pt/10.)*10."
             - count: "df: 1."
             - sum_w: "df: {weight}"
             - sum_ww: "df: df.sum_w**2"

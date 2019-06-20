@@ -1,693 +1,163 @@
 query:
-    groupby: ["table", "varname0", "selection", "parent", "binvar0"]
+    groupby: ["table", "varname0", "varname1", "selection", "parent", "binvar0", "binvar1"]
     tables:
         "central": "Events"
     aliases: {}
     eval:
-        - parent: "df: np.where( df.parent.isin(['WJetsToLNu', 'DYJetsToLL']), np.where( df.parent=='WJetsToLNu', np.where( df.LeptonIsElectron, np.full_like(df.parent, 'WJetsToENu'), np.where( df.LeptonIsMuon, np.full_like(df.parent, 'WJetsToMuNu'), np.where( df.LeptonIsTau, np.full_like(df.parent, 'WJetsToTauNu'), np.full_like(df.parent, 'WJetsToLNu'),),),), np.where( df.parent=='DYJetsToLL', np.where( df.LeptonIsElectron, np.full_like(df.parent, 'DYJetsToEE'), np.where( df.LeptonIsMuon, np.full_like(df.parent, 'DYJetsToMuMu'), np.where( df.LeptonIsTau, np.where( df.nGenTauL==0, np.full_like(df.parent, 'DYJetsToTauHTauH'), np.where( df.nGenTauL==1, np.full_like(df.parent, 'DYJetsToTauHTauL'), np.where( df.nGenTauL==2, np.full_like(df.parent, 'DYJetsToTauLTauL'), np.full_like(df.parent, 'DYJetsToTauTau'),),),), np.full_like(df.parent, 'DYJetsToLL'),),),), df.parent,),), df.parent,)"
         - Weight_Monojet: "df: df.WeightXsLumi*df.WeightQcdEwk*df.WeightPU*df.WeightPreFiring*df.WeightMETTrig*df.WeightOneMinusElectronVetoNoSelectionIdIsoVeto*df.WeightOneMinusElectronSelectionIdIsoTight*df.WeightOneMinusElectronVetoReco*df.WeightOneMinusMuonVetoNoSelectionIdLoose*df.WeightOneMinusMuonVetoNoSelectionIsoLoose*df.WeightOneMinusMuonSelectionIdTight*df.WeightOneMinusMuonSelectionIsoTight*df.WeightOneMinusTauSelectionIdTight*df.WeightOneMinusPhotonVetoIdLoose*df.WeightOneMinusPhotonVetoPixelSeedVeto*df.WeightOneMinusJetBVetoIdMedium"
-        - Weight_MonojetQCD: "df: df.WeightXsLumi*df.WeightQcdEwk*df.WeightPU*df.WeightPreFiring*df.WeightMETTrig*df.WeightOneMinusElectronVetoNoSelectionIdIsoVeto*df.WeightOneMinusElectronSelectionIdIsoTight*df.WeightOneMinusElectronVetoReco*df.WeightOneMinusMuonVetoNoSelectionIdLoose*df.WeightOneMinusMuonVetoNoSelectionIsoLoose*df.WeightOneMinusMuonSelectionIdTight*df.WeightOneMinusMuonSelectionIsoTight*df.WeightOneMinusTauSelectionIdTight*df.WeightOneMinusPhotonVetoIdLoose*df.WeightOneMinusPhotonVetoPixelSeedVeto*df.WeightOneMinusJetBVetoIdMedium"
         - Weight_SingleMuon: "df: df.WeightXsLumi*df.WeightQcdEwk*df.WeightPU*df.WeightPreFiring*df.WeightMETTrig*df.WeightOneMinusElectronVetoNoSelectionIdIsoVeto*df.WeightOneMinusElectronSelectionIdIsoTight*df.WeightOneMinusElectronVetoReco*df.WeightMuonSelectionIdTight*df.WeightMuonSelectionIsoTight*df.WeightOneMinusMuonVetoNoSelectionIdLoose*df.WeightOneMinusMuonVetoNoSelectionIsoLoose*df.WeightOneMinusTauSelectionIdTight*df.WeightOneMinusPhotonVetoIdLoose*df.WeightOneMinusPhotonVetoPixelSeedVeto*df.WeightOneMinusJetBVetoIdMedium"
-        - Weight_SingleMuonQCD: "df: df.WeightXsLumi*df.WeightQcdEwk*df.WeightPU*df.WeightPreFiring*df.WeightMETTrig*df.WeightOneMinusElectronVetoNoSelectionIdIsoVeto*df.WeightOneMinusElectronSelectionIdIsoTight*df.WeightOneMinusElectronVetoReco*df.WeightMuonSelectionIdTight*df.WeightMuonSelectionIsoTight*df.WeightOneMinusMuonVetoNoSelectionIdLoose*df.WeightOneMinusMuonVetoNoSelectionIsoLoose*df.WeightOneMinusTauSelectionIdTight*df.WeightOneMinusPhotonVetoIdLoose*df.WeightOneMinusPhotonVetoPixelSeedVeto*df.WeightOneMinusJetBVetoIdMedium"
         - Weight_DoubleMuon: "df: df.WeightXsLumi*df.WeightQcdEwk*df.WeightPU*df.WeightPreFiring*df.WeightMETTrig*df.WeightOneMinusElectronVetoNoSelectionIdIsoVeto*df.WeightOneMinusElectronSelectionIdIsoTight*df.WeightOneMinusElectronVetoReco*df.WeightMuonSelectionIdTight*df.WeightMuonSelectionIsoTight*df.WeightOneMinusMuonVetoNoSelectionIdLoose*df.WeightOneMinusMuonVetoNoSelectionIsoLoose*df.WeightOneMinusTauSelectionIdTight*df.WeightOneMinusPhotonVetoIdLoose*df.WeightOneMinusPhotonVetoPixelSeedVeto*df.WeightOneMinusJetBVetoIdMedium"
         - Weight_SingleElectron: "df: df.WeightXsLumi*df.WeightQcdEwk*df.WeightPU*df.WeightPreFiring*df.WeightSingleElectronTrig*df.WeightElectronSelectionIdIsoTight*df.WeightElectronSelectionReco*df.WeightOneMinusElectronVetoNoSelectionIdIsoVeto*df.WeightOneMinusElectronVetoNoSelectionReco*df.WeightOneMinusMuonVetoNoSelectionIdLoose*df.WeightOneMinusMuonVetoNoSelectionIsoLoose*df.WeightOneMinusMuonSelectionIdTight*df.WeightOneMinusMuonSelectionIsoTight*df.WeightOneMinusTauSelectionIdTight*df.WeightOneMinusPhotonVetoIdLoose*df.WeightOneMinusPhotonVetoPixelSeedVeto*df.WeightOneMinusJetBVetoIdMedium"
-        - Weight_SingleElectronQCD: "df: df.WeightXsLumi*df.WeightQcdEwk*df.WeightPU*df.WeightPreFiring*df.WeightSingleElectronTrig*df.WeightElectronSelectionIdIsoTight*df.WeightElectronSelectionReco*df.WeightOneMinusElectronVetoNoSelectionIdIsoVeto*df.WeightOneMinusElectronVetoNoSelectionReco*df.WeightOneMinusMuonVetoNoSelectionIdLoose*df.WeightOneMinusMuonVetoNoSelectionIsoLoose*df.WeightOneMinusMuonSelectionIdTight*df.WeightOneMinusMuonSelectionIsoTight*df.WeightOneMinusTauSelectionIdTight*df.WeightOneMinusPhotonVetoIdLoose*df.WeightOneMinusPhotonVetoPixelSeedVeto*df.WeightOneMinusJetBVetoIdMedium"
         - Weight_DoubleElectron: "df: df.WeightXsLumi*df.WeightQcdEwk*df.WeightPU*df.WeightPreFiring*df.WeightSingleElectronTrig*df.WeightElectronSelectionIdIsoTight*df.WeightElectronSelectionReco*df.WeightOneMinusElectronVetoNoSelectionIdIsoVeto*df.WeightOneMinusElectronVetoNoSelectionReco*df.WeightOneMinusMuonVetoNoSelectionIdLoose*df.WeightOneMinusMuonVetoNoSelectionIsoLoose*df.WeightOneMinusMuonSelectionIdTight*df.WeightOneMinusMuonSelectionIsoTight*df.WeightOneMinusTauSelectionIdTight*df.WeightOneMinusPhotonVetoIdLoose*df.WeightOneMinusPhotonVetoPixelSeedVeto*df.WeightOneMinusJetBVetoIdMedium"
         - Weight_SingleTau: "df: df.WeightXsLumi*df.WeightQcdEwk*df.WeightPU*df.WeightPreFiring*df.WeightMETTrig*df.WeightOneMinusElectronVetoNoSelectionIdIsoVeto*df.WeightOneMinusElectronSelectionIdIsoTight*df.WeightOneMinusElectronVetoReco*df.WeightOneMinusMuonVetoNoSelectionIdLoose*df.WeightOneMinusMuonVetoNoSelectionIsoLoose*df.WeightOneMinusMuonSelectionIdTight*df.WeightOneMinusMuonSelectionIsoTight*df.WeightTauSelectionIdTight*df.WeightOneMinusPhotonVetoIdLoose*df.WeightOneMinusPhotonVetoPixelSeedVeto*df.WeightOneMinusJetBVetoIdMedium"
-        - Weight_SingleMuonMu: "df: df.WeightXsLumi*df.WeightQcdEwk*df.WeightPU*df.WeightPreFiring*df.WeightSingleMuonTrig*df.WeightOneMinusElectronVetoNoSelectionIdIsoVeto*df.WeightOneMinusElectronSelectionIdIsoTight*df.WeightOneMinusElectronVetoReco*df.WeightMuonSelectionIdTight*df.WeightMuonSelectionIsoTight*df.WeightOneMinusMuonVetoNoSelectionIdLoose*df.WeightOneMinusMuonVetoNoSelectionIsoLoose*df.WeightOneMinusTauSelectionIdTight*df.WeightOneMinusPhotonVetoIdLoose*df.WeightOneMinusPhotonVetoPixelSeedVeto*df.WeightOneMinusJetBVetoIdMedium"
-        - Weight_DoubleMuonMu: "df: df.WeightXsLumi*df.WeightQcdEwk*df.WeightPU*df.WeightPreFiring*df.WeightSingleMuonTrig*df.WeightOneMinusElectronVetoNoSelectionIdIsoVeto*df.WeightOneMinusElectronSelectionIdIsoTight*df.WeightOneMinusElectronVetoReco*df.WeightMuonSelectionIdTight*df.WeightMuonSelectionIsoTight*df.WeightOneMinusMuonVetoNoSelectionIdLoose*df.WeightOneMinusMuonVetoNoSelectionIsoLoose*df.WeightOneMinusTauSelectionIdTight*df.WeightOneMinusPhotonVetoIdLoose*df.WeightOneMinusPhotonVetoPixelSeedVeto*df.WeightOneMinusJetBVetoIdMedium"
     cutflows:
+        Inclusive:
+            selection_name: "Inclusive"
+            selection: "run==run"
+            weight: "df.WeightXsLumi"
+            hists: ["Generator_id1__Generator_id2"]
         Monojet:
             selection_name: "Monojet"
             selection: "(parent!='EWKV2Jets' | nGenBosonSelection==1) & (Flag_goodVertices) & (Flag_globalSuperTightHalo2016Filter) & (Flag_HBHENoiseFilter) & (Flag_HBHENoiseIsoFilter) & (Flag_EcalDeadCellTriggerPrimitiveFilter) & (Flag_BadPFMuonFilter) & (Flag_BadGlobalMuon) & (Flag_CloneGlobalMuon) & (METnoX_pt>200.) & (MET_dCaloMET<0.6) & (nJetSelection>0) & (nJetSelection==nJetVeto) & (LeadJetSelection_pt>200.) & (LeadJetSelection_chHEF>0.1) & (LeadJetSelection_chHEF<0.95) & (MinDPhiJ1234METnoX>0.5)"
             weight: "df.Weight_Monojet"
-            hists: [
-                "METnoX_pt", "METnoX_phi", "MET_pt", "MET_phi", "CaloMET_pt",
-                "CaloMET_phi", "MET_dCaloMET", "MinDPhiJ1234METnoX",
-                "nJetVeto", "nJetSelection", "LeadJetSelection_pt",
-                "LeadJetSelection_eta", "LeadJetSelection_phi",
-                "LeadJetSelection_chHEF", "SecondJetSelection_pt",
-                "SecondJetSelection_eta", "SecondJetSelection_phi",
-                "LeadJetFwdSelection_pt", "LeadJetFwdSelection_eta",
-                "LeadJetFwdSelection_phi", "NearestJetSelectionMET_pt",
-                "NearestJetSelectionMET_eta", "NearestJetSelectionMET_phi",
-                "nMuonVeto", "nMuonSelection", "nElectronVeto",
-                "nElectronSelection", "nTauVeto", "nTauSelection",
-                "nPhotonVeto", "nPhotonSelection", "nBJetVeto", "PV_npvsGood",
-            ]
-        MonojetQCD:
-            selection_name: "MonojetQCD"
-            selection: "(parent!='EWKV2Jets' | nGenBosonSelection==1) & (Flag_goodVertices) & (Flag_globalSuperTightHalo2016Filter) & (Flag_HBHENoiseFilter) & (Flag_HBHENoiseIsoFilter) & (Flag_EcalDeadCellTriggerPrimitiveFilter) & (Flag_BadPFMuonFilter) & (Flag_BadGlobalMuon) & (Flag_CloneGlobalMuon) & (METnoX_pt>200.) & (MET_dCaloMET<0.6) & (nJetSelection>0) & (nJetSelection==nJetVeto) & (LeadJetSelection_pt>200.) & (LeadJetSelection_chHEF>0.1) & (LeadJetSelection_chHEF<0.95) & (MinDPhiJ1234METnoX<=0.5)"
-            weight: "df.Weight_MonojetQCD"
-            hists: [
-                "METnoX_pt", "METnoX_phi", "MET_pt", "MET_phi", "CaloMET_pt",
-                "CaloMET_phi", "MET_dCaloMET", "MinDPhiJ1234METnoX",
-                "nJetVeto", "nJetSelection", "LeadJetSelection_pt",
-                "LeadJetSelection_eta", "LeadJetSelection_phi",
-                "LeadJetSelection_chHEF", "SecondJetSelection_pt",
-                "SecondJetSelection_eta", "SecondJetSelection_phi",
-                "LeadJetFwdSelection_pt", "LeadJetFwdSelection_eta",
-                "LeadJetFwdSelection_phi", "NearestJetSelectionMET_pt",
-                "NearestJetSelectionMET_eta", "NearestJetSelectionMET_phi",
-                "nMuonVeto", "nMuonSelection", "nElectronVeto",
-                "nElectronSelection", "nTauVeto", "nTauSelection",
-                "nPhotonVeto", "nPhotonSelection", "nBJetVeto", "PV_npvsGood",
-            ]
+            hists: ["Generator_id1__Generator_id2"]
         SingleMuon:
             selection_name: "SingleMuon"
             selection: "(parent!='EWKV2Jets' | nGenBosonSelection==1) & (Flag_goodVertices) & (Flag_globalSuperTightHalo2016Filter) & (Flag_HBHENoiseFilter) & (Flag_HBHENoiseIsoFilter) & (Flag_EcalDeadCellTriggerPrimitiveFilter) & (Flag_BadPFMuonFilter) & (Flag_BadGlobalMuon) & (Flag_CloneGlobalMuon) & (METnoX_pt>200.) & (MET_dCaloMET<0.6) & (nJetSelection>0) & (nJetSelection==nJetVeto) & (LeadJetSelection_pt>200.) & (LeadJetSelection_chHEF>0.1) & (LeadJetSelection_chHEF<0.95) & (MinDPhiJ1234METnoX>0.5) & (nMuonSelection==1) & (MTW>=30.) & (MTW<125)"
             weight: "df.Weight_SingleMuon"
-            hists: [
-                "METnoX_pt", "METnoX_phi", "MET_pt", "MET_phi", "CaloMET_pt",
-                "CaloMET_phi", "MET_dCaloMET", "MinDPhiJ1234METnoX",
-                "nJetVeto", "nJetSelection", "LeadJetSelection_pt",
-                "LeadJetSelection_eta", "LeadJetSelection_phi",
-                "LeadJetSelection_chHEF", "SecondJetSelection_pt",
-                "SecondJetSelection_eta", "SecondJetSelection_phi",
-                "LeadJetFwdSelection_pt", "LeadJetFwdSelection_eta",
-                "LeadJetFwdSelection_phi", "NearestJetSelectionMET_pt",
-                "NearestJetSelectionMET_eta", "NearestJetSelectionMET_phi",
-                "nMuonVeto", "nMuonSelection", "LeadMuonSelection_pt",
-                "LeadMuonSelection_eta", "LeadMuonSelection_phi",
-                "MTW", "nElectronVeto", "nElectronSelection", "nTauVeto",
-                "nTauSelection", "nPhotonVeto", "nPhotonSelection",
-                "nBJetVeto", "PV_npvsGood",
-            ]
-        SingleMuonQCD:
-            selection_name: "SingleMuonQCD"
-            selection: "(parent!='EWKV2Jets' | nGenBosonSelection==1) & (Flag_goodVertices) & (Flag_globalSuperTightHalo2016Filter) & (Flag_HBHENoiseFilter) & (Flag_HBHENoiseIsoFilter) & (Flag_EcalDeadCellTriggerPrimitiveFilter) & (Flag_BadPFMuonFilter) & (Flag_BadGlobalMuon) & (Flag_CloneGlobalMuon) & (METnoX_pt>200.) & (MET_dCaloMET<0.6) & (nJetSelection>0) & (nJetSelection==nJetVeto) & (LeadJetSelection_pt>200.) & (LeadJetSelection_chHEF>0.1) & (LeadJetSelection_chHEF<0.95) & (MinDPhiJ1234METnoX<=0.5) & (nMuonSelection==1) & (MTW>=30.) & (MTW<125)"
-            weight: "df.Weight_SingleMuonQCD"
-            hists: [
-                "METnoX_pt", "METnoX_phi", "MET_pt", "MET_phi", "CaloMET_pt",
-                "CaloMET_phi", "MET_dCaloMET", "MinDPhiJ1234METnoX",
-                "nJetVeto", "nJetSelection", "LeadJetSelection_pt",
-                "LeadJetSelection_eta", "LeadJetSelection_phi",
-                "LeadJetSelection_chHEF", "SecondJetSelection_pt",
-                "SecondJetSelection_eta", "SecondJetSelection_phi",
-                "LeadJetFwdSelection_pt", "LeadJetFwdSelection_eta",
-                "LeadJetFwdSelection_phi", "NearestJetSelectionMET_pt",
-                "NearestJetSelectionMET_eta", "NearestJetSelectionMET_phi",
-                "nMuonVeto", "nMuonSelection", "LeadMuonSelection_pt",
-                "LeadMuonSelection_eta", "LeadMuonSelection_phi",
-                "MTW", "nElectronVeto", "nElectronSelection", "nTauVeto",
-                "nTauSelection", "nPhotonVeto", "nPhotonSelection",
-                "nBJetVeto", "PV_npvsGood",
-            ]
+            hists: ["Generator_id1__Generator_id2"]
         DoubleMuon:
             selection_name: "DoubleMuon"
             selection: "(parent!='EWKV2Jets' | nGenBosonSelection==1) & (Flag_goodVertices) & (Flag_globalSuperTightHalo2016Filter) & (Flag_HBHENoiseFilter) & (Flag_HBHENoiseIsoFilter) & (Flag_EcalDeadCellTriggerPrimitiveFilter) & (Flag_BadPFMuonFilter) & (Flag_BadGlobalMuon) & (Flag_CloneGlobalMuon) & (METnoX_pt>200.) & (MET_dCaloMET<0.6) & (nJetSelection>0) & (nJetSelection==nJetVeto) & (LeadJetSelection_pt>200.) & (LeadJetSelection_chHEF>0.1) & (LeadJetSelection_chHEF<0.95) & (MinDPhiJ1234METnoX>0.5) & (nMuonSelection==2) & (MLL>=71.) & (MLL<111.)"
             weight: "df.Weight_DoubleMuon"
-            hists: [
-                "METnoX_pt", "METnoX_phi", "MET_pt", "MET_phi", "CaloMET_pt",
-                "CaloMET_phi", "MET_dCaloMET", "MinDPhiJ1234METnoX",
-                "nJetVeto", "nJetSelection", "LeadJetSelection_pt",
-                "LeadJetSelection_eta", "LeadJetSelection_phi",
-                "LeadJetSelection_chHEF", "SecondJetSelection_pt",
-                "SecondJetSelection_eta", "SecondJetSelection_phi",
-                "LeadJetFwdSelection_pt", "LeadJetFwdSelection_eta",
-                "LeadJetFwdSelection_phi", "NearestJetSelectionMET_pt",
-                "NearestJetSelectionMET_eta", "NearestJetSelectionMET_phi",
-                "nMuonVeto", "nMuonSelection", "LeadMuonSelection_pt",
-                "LeadMuonSelection_eta", "LeadMuonSelection_phi",
-                "SecondMuonSelection_pt", "SecondMuonSelection_eta",
-                "SecondMuonSelection_phi", "MLL", "nElectronVeto",
-                "nElectronSelection", "nTauVeto", "nTauSelection",
-                "nPhotonVeto", "nPhotonSelection", "nBJetVeto", "PV_npvsGood",
-            ]
+            hists: ["Generator_id1__Generator_id2"]
         SingleElectron:
             selection_name: "SingleElectron"
             selection: "(parent!='EWKV2Jets' | nGenBosonSelection==1) & (Flag_goodVertices) & (Flag_globalSuperTightHalo2016Filter) & (Flag_HBHENoiseFilter) & (Flag_HBHENoiseIsoFilter) & (Flag_EcalDeadCellTriggerPrimitiveFilter) & (Flag_BadPFMuonFilter) & (Flag_BadGlobalMuon) & (Flag_CloneGlobalMuon) & (METnoX_pt>200.) & (MET_dCaloMET<0.6) & (nJetSelection>0) & (nJetSelection==nJetVeto) & (LeadJetSelection_pt>200.) & (LeadJetSelection_chHEF>0.1) & (LeadJetSelection_chHEF<0.95) & (MinDPhiJ1234METnoX>0.5) & (nElectronSelection==1) & (MTW>=30.) & (MTW<125) & (MET_pt>100.)"
             weight: "df.Weight_SingleElectron"
-            hists: [
-                "METnoX_pt", "METnoX_phi", "MET_pt", "MET_phi", "CaloMET_pt",
-                "CaloMET_phi", "MET_dCaloMET", "MinDPhiJ1234METnoX",
-                "nJetVeto", "nJetSelection", "LeadJetSelection_pt",
-                "LeadJetSelection_eta", "LeadJetSelection_phi",
-                "LeadJetSelection_chHEF", "SecondJetSelection_pt",
-                "SecondJetSelection_eta", "SecondJetSelection_phi",
-                "LeadJetFwdSelection_pt", "LeadJetFwdSelection_eta",
-                "LeadJetFwdSelection_phi", "NearestJetSelectionMET_pt",
-                "NearestJetSelectionMET_eta", "NearestJetSelectionMET_phi",
-                "nMuonVeto", "nMuonSelection", "nElectronVeto",
-                "nElectronSelection", "LeadElectronSelection_pt",
-                "LeadElectronSelection_eta", "LeadElectronSelection_phi",
-                "MTW", "nTauVeto", "nTauSelection", "nPhotonVeto",
-                "nPhotonSelection", "nBJetVeto", "PV_npvsGood",
-            ]
-        SingleElectronQCD:
-            selection_name: "SingleElectronQCD"
-            selection: "(parent!='EWKV2Jets' | nGenBosonSelection==1) & (Flag_goodVertices) & (Flag_globalSuperTightHalo2016Filter) & (Flag_HBHENoiseFilter) & (Flag_HBHENoiseIsoFilter) & (Flag_EcalDeadCellTriggerPrimitiveFilter) & (Flag_BadPFMuonFilter) & (Flag_BadGlobalMuon) & (Flag_CloneGlobalMuon) & (METnoX_pt>200.) & (MET_dCaloMET<0.6) & (nJetSelection>0) & (nJetSelection==nJetVeto) & (LeadJetSelection_pt>200.) & (LeadJetSelection_chHEF>0.1) & (LeadJetSelection_chHEF<0.95) & (MinDPhiJ1234METnoX<=0.5) & (nElectronSelection==1) & (MTW>=30.) & (MTW<125) & (MET_pt>100.)"
-            weight: "df.Weight_SingleElectronQCD"
-            hists: [
-                "METnoX_pt", "METnoX_phi", "MET_pt", "MET_phi", "CaloMET_pt",
-                "CaloMET_phi", "MET_dCaloMET", "MinDPhiJ1234METnoX",
-                "nJetVeto", "nJetSelection", "LeadJetSelection_pt",
-                "LeadJetSelection_eta", "LeadJetSelection_phi",
-                "LeadJetSelection_chHEF", "SecondJetSelection_pt",
-                "SecondJetSelection_eta", "SecondJetSelection_phi",
-                "LeadJetFwdSelection_pt", "LeadJetFwdSelection_eta",
-                "LeadJetFwdSelection_phi", "NearestJetSelectionMET_pt",
-                "NearestJetSelectionMET_eta", "NearestJetSelectionMET_phi",
-                "nMuonVeto", "nMuonSelection", "nElectronVeto",
-                "nElectronSelection", "LeadElectronSelection_pt",
-                "LeadElectronSelection_eta", "LeadElectronSelection_phi",
-                "MTW", "nTauVeto", "nTauSelection", "nPhotonVeto",
-                "nPhotonSelection", "nBJetVeto", "PV_npvsGood",
-            ]
+            hists: ["Generator_id1__Generator_id2"]
         DoubleElectron:
             selection_name: "DoubleElectron"
             selection: "(parent!='EWKV2Jets' | nGenBosonSelection==1) & (Flag_goodVertices) & (Flag_globalSuperTightHalo2016Filter) & (Flag_HBHENoiseFilter) & (Flag_HBHENoiseIsoFilter) & (Flag_EcalDeadCellTriggerPrimitiveFilter) & (Flag_BadPFMuonFilter) & (Flag_BadGlobalMuon) & (Flag_CloneGlobalMuon) & (METnoX_pt>200.) & (MET_dCaloMET<0.6) & (nJetSelection>0) & (nJetSelection==nJetVeto) & (LeadJetSelection_pt>200.) & (LeadJetSelection_chHEF>0.1) & (LeadJetSelection_chHEF<0.95) & (MinDPhiJ1234METnoX>0.5) & (nElectronSelection==2) & (MLL>=71.) & (MLL<111.)"
             weight: "df.Weight_DoubleElectron"
-            hists: [
-                "METnoX_pt", "METnoX_phi", "MET_pt", "MET_phi", "CaloMET_pt",
-                "CaloMET_phi", "MET_dCaloMET", "MinDPhiJ1234METnoX",
-                "nJetVeto", "nJetSelection", "LeadJetSelection_pt",
-                "LeadJetSelection_eta", "LeadJetSelection_phi",
-                "LeadJetSelection_chHEF", "SecondJetSelection_pt",
-                "SecondJetSelection_eta", "SecondJetSelection_phi",
-                "LeadJetFwdSelection_pt", "LeadJetFwdSelection_eta",
-                "LeadJetFwdSelection_phi", "NearestJetSelectionMET_pt",
-                "NearestJetSelectionMET_eta", "NearestJetSelectionMET_phi",
-                "nMuonVeto", "nMuonSelection", "nElectronVeto",
-                "nElectronSelection", "LeadElectronSelection_pt",
-                "LeadElectronSelection_eta", "LeadElectronSelection_phi",
-                "SecondElectronSelection_pt", "SecondElectronSelection_eta",
-                "SecondElectronSelection_phi", "MLL", "nTauVeto",
-                "nTauSelection", "nPhotonVeto", "nPhotonSelection",
-                "nBJetVeto", "PV_npvsGood",
-            ]
+            hists: ["Generator_id1__Generator_id2"]
         SingleTau:
             selection_name: "SingleTau"
             selection: "(parent!='EWKV2Jets' | nGenBosonSelection==1) & (Flag_goodVertices) & (Flag_globalSuperTightHalo2016Filter) & (Flag_HBHENoiseFilter) & (Flag_HBHENoiseIsoFilter) & (Flag_EcalDeadCellTriggerPrimitiveFilter) & (Flag_BadPFMuonFilter) & (Flag_BadGlobalMuon) & (Flag_CloneGlobalMuon) & (METnoX_pt>200.) & (MET_dCaloMET<0.6) & (nJetSelection>0) & (nJetSelection==nJetVeto) & (LeadJetSelection_pt>200.) & (LeadJetSelection_chHEF>0.1) & (LeadJetSelection_chHEF<0.95) & (MinDPhiJ1234METnoX>0.5) & (nTauSelection==1) & (nTauVeto==1)"
             weight: "df.Weight_SingleTau"
-            hists: [
-                "METnoX_pt", "METnoX_phi", "MET_pt", "MET_phi", "CaloMET_pt",
-                "CaloMET_phi", "MET_dCaloMET", "MinDPhiJ1234METnoX",
-                "nJetVeto", "nJetSelection", "LeadJetSelection_pt",
-                "LeadJetSelection_eta", "LeadJetSelection_phi",
-                "LeadJetSelection_chHEF", "SecondJetSelection_pt",
-                "SecondJetSelection_eta", "SecondJetSelection_phi",
-                "LeadJetFwdSelection_pt", "LeadJetFwdSelection_eta",
-                "LeadJetFwdSelection_phi", "NearestJetSelectionMET_pt",
-                "NearestJetSelectionMET_eta", "NearestJetSelectionMET_phi",
-                "nMuonVeto", "nMuonSelection", "nElectronVeto",
-                "nElectronSelection", "LeadTauSelection_pt",
-                "LeadTauSelection_eta", "LeadTauSelection_phi", "nTauVeto",
-                "nTauSelection", "nPhotonVeto", "nPhotonSelection",
-                "nBJetVeto", "PV_npvsGood",
-            ]
-        SingleMuonMu:
-            selection_name: "SingleMuonMu"
-            selection: "(parent!='EWKV2Jets' | nGenBosonSelection==1) & (Flag_goodVertices) & (Flag_globalSuperTightHalo2016Filter) & (Flag_HBHENoiseFilter) & (Flag_HBHENoiseIsoFilter) & (Flag_EcalDeadCellTriggerPrimitiveFilter) & (Flag_BadPFMuonFilter) & (Flag_BadGlobalMuon) & (Flag_CloneGlobalMuon) & (METnoX_pt>200.) & (MET_dCaloMET<0.6) & (nJetSelection>0) & (nJetSelection==nJetVeto) & (LeadJetSelection_pt>200.) & (LeadJetSelection_chHEF>0.1) & (LeadJetSelection_chHEF<0.95) & (MinDPhiJ1234METnoX>0.5) & (nMuonSelection==1) & (MTW>=30.) & (MTW<125)"
-            weight: "df.Weight_SingleMuonMu"
-            hists: [
-                "METnoX_pt", "METnoX_phi", "MET_pt", "MET_phi", "CaloMET_pt",
-                "CaloMET_phi", "MET_dCaloMET", "MinDPhiJ1234METnoX",
-                "nJetVeto", "nJetSelection", "LeadJetSelection_pt",
-                "LeadJetSelection_eta", "LeadJetSelection_phi",
-                "LeadJetSelection_chHEF", "SecondJetSelection_pt",
-                "SecondJetSelection_eta", "SecondJetSelection_phi",
-                "LeadJetFwdSelection_pt", "LeadJetFwdSelection_eta",
-                "LeadJetFwdSelection_phi", "NearestJetSelectionMET_pt",
-                "NearestJetSelectionMET_eta", "NearestJetSelectionMET_phi",
-                "nMuonVeto", "nMuonSelection", "LeadMuonSelection_pt",
-                "LeadMuonSelection_eta", "LeadMuonSelection_phi",
-                "MTW", "nElectronVeto", "nElectronSelection", "nTauVeto",
-                "nTauSelection", "nPhotonVeto", "nPhotonSelection",
-                "nBJetVeto", "PV_npvsGood",
-            ]
-        DoubleMuonMu:
-            selection_name: "DoubleMuonMu"
-            selection: "(parent!='EWKV2Jets' | nGenBosonSelection==1) & (Flag_goodVertices) & (Flag_globalSuperTightHalo2016Filter) & (Flag_HBHENoiseFilter) & (Flag_HBHENoiseIsoFilter) & (Flag_EcalDeadCellTriggerPrimitiveFilter) & (Flag_BadPFMuonFilter) & (Flag_BadGlobalMuon) & (Flag_CloneGlobalMuon) & (METnoX_pt>200.) & (MET_dCaloMET<0.6) & (nJetSelection>0) & (nJetSelection==nJetVeto) & (LeadJetSelection_pt>200.) & (LeadJetSelection_chHEF>0.1) & (LeadJetSelection_chHEF<0.95) & (MinDPhiJ1234METnoX>0.5) & (nMuonSelection==2) & (MLL>=71.) & (MLL<111.)"
-            weight: "df.Weight_DoubleMuonMu"
-            hists: [
-                "METnoX_pt", "METnoX_phi", "MET_pt", "MET_phi", "CaloMET_pt",
-                "CaloMET_phi", "MET_dCaloMET", "MinDPhiJ1234METnoX",
-                "nJetVeto", "nJetSelection", "LeadJetSelection_pt",
-                "LeadJetSelection_eta", "LeadJetSelection_phi",
-                "LeadJetSelection_chHEF", "SecondJetSelection_pt",
-                "SecondJetSelection_eta", "SecondJetSelection_phi",
-                "LeadJetFwdSelection_pt", "LeadJetFwdSelection_eta",
-                "LeadJetFwdSelection_phi", "NearestJetSelectionMET_pt",
-                "NearestJetSelectionMET_eta", "NearestJetSelectionMET_phi",
-                "nMuonVeto", "nMuonSelection", "LeadMuonSelection_pt",
-                "LeadMuonSelection_eta", "LeadMuonSelection_phi",
-                "SecondMuonSelection_pt", "SecondMuonSelection_eta",
-                "SecondMuonSelection_phi", "MLL", "nElectronVeto",
-                "nElectronSelection", "nTauVeto", "nTauSelection",
-                "nPhotonVeto", "nPhotonSelection", "nBJetVeto", "PV_npvsGood",
-            ]
+            hists: ["Generator_id1__Generator_id2"]
     hists:
-        METnoX_pt:
+        Generator_id1__Generator_id2:
             - table: "df: '{table_name}'"
-            - varname0: "df: 'METnoX_pt'"
+            - varname0: "df: 'Generator_id1'"
+            - varname1: "df: 'Generator_id2'"
             - selection: "df: '{selection_name}'"
             - parent: "df: df.parent"
-            - binvar0: "df: np.floor(df.METnoX_pt/5.)*5"
+            - binvar0: "df: np.floor(np.maximum(df.Generator_id1, df.Generator_id2))"
+            - binvar1: "df: np.floor(np.minimum(df.Generator_id1, df.Generator_id2))"
             - count: "df: 1."
             - sum_w: "df: {weight}"
             - sum_ww: "df: df.sum_w**2"
-        METnoX_phi:
-            - table: "df: '{table_name}'"
-            - varname0: "df: 'METnoX_phi'"
-            - selection: "df: '{selection_name}'"
-            - parent: "df: df.parent"
-            - binvar0: "df: np.floor(df.METnoX_phi/0.06283)*0.06283"
-            - count: "df: 1."
-            - sum_w: "df: {weight}"
-            - sum_ww: "df: df.sum_w**2"
-        MET_pt:
-            - table: "df: '{table_name}'"
-            - varname0: "df: 'MET_pt'"
-            - selection: "df: '{selection_name}'"
-            - parent: "df: df.parent"
-            - binvar0: "df: np.floor(df.MET_pt/5.)*5."
-            - count: "df: 1."
-            - sum_w: "df: {weight}"
-            - sum_ww: "df: df.sum_w**2"
-        MET_phi:
-            - table: "df: '{table_name}'"
-            - varname0: "df: 'MET_phi'"
-            - selection: "df: '{selection_name}'"
-            - parent: "df: df.parent"
-            - binvar0: "df: np.floor(df.MET_phi/0.06283)*0.06283"
-            - count: "df: 1."
-            - sum_w: "df: {weight}"
-            - sum_ww: "df: df.sum_w**2"
-        CaloMET_pt:
-            - table: "df: '{table_name}'"
-            - varname0: "df: 'CaloMET_pt'"
-            - selection: "df: '{selection_name}'"
-            - parent: "df: df.parent"
-            - binvar0: "df: np.floor(df.CaloMET_pt/5.)*5."
-            - count: "df: 1."
-            - sum_w: "df: {weight}"
-            - sum_ww: "df: df.sum_w**2"
-        CaloMET_phi:
-            - table: "df: '{table_name}'"
-            - varname0: "df: 'CaloMET_phi'"
-            - selection: "df: '{selection_name}'"
-            - parent: "df: df.parent"
-            - binvar0: "df: np.floor(df.CaloMET_phi/0.06283)*0.06283"
-            - count: "df: 1."
-            - sum_w: "df: {weight}"
-            - sum_ww: "df: df.sum_w**2"
-        MET_dCaloMET:
-            - table: "df: '{table_name}'"
-            - varname0: "df: 'MET_dCaloMET'"
-            - selection: "df: '{selection_name}'"
-            - parent: "df: df.parent"
-            - binvar0: "df: np.floor(df.MET_dCaloMET/0.02)*0.02"
-            - count: "df: 1."
-            - sum_w: "df: {weight}"
-            - sum_ww: "df: df.sum_w**2"
-        MinDPhiJ1234METnoX:
-            - table: "df: '{table_name}'"
-            - varname0: "df: 'MinDPhiJ1234METnoX'"
-            - selection: "df: '{selection_name}'"
-            - parent: "df: df.parent"
-            - binvar0: "df: np.floor(df.MinDPhiJ1234METnoX/0.05)*0.05"
-            - count: "df: 1."
-            - sum_w: "df: {weight}"
-            - sum_ww: "df: df.sum_w**2"
-        MTW:
-            - table: "df: '{table_name}'"
-            - varname0: "df: 'MTW'"
-            - selection: "df: '{selection_name}'"
-            - parent: "df: df.parent"
-            - binvar0: "df: np.floor(df.MTW/4.)*4."
-            - count: "df: 1."
-            - sum_w: "df: {weight}"
-            - sum_ww: "df: df.sum_w**2"
-        MLL:
-            - table: "df: '{table_name}'"
-            - varname0: "df: 'MLL'"
-            - selection: "df: '{selection_name}'"
-            - parent: "df: df.parent"
-            - binvar0: "df: np.floor(df.MLL/0.5)*0.5"
-            - count: "df: 1."
-            - sum_w: "df: {weight}"
-            - sum_ww: "df: df.sum_w**2"
-        nJetVeto:
-            - table: "df: '{table_name}'"
-            - varname0: "df: 'nJetVeto'"
-            - selection: "df: '{selection_name}'"
-            - parent: "df: df.parent"
-            - binvar0: "df: np.floor(df.nJetVeto+0.5)"
-            - count: "df: 1."
-            - sum_w: "df: {weight}"
-            - sum_ww: "df: df.sum_w**2"
-        nJetSelection:
-            - table: "df: '{table_name}'"
-            - varname0: "df: 'nJetSelection'"
-            - selection: "df: '{selection_name}'"
-            - parent: "df: df.parent"
-            - binvar0: "df: np.floor(df.nJetSelection+0.5)"
-            - count: "df: 1."
-            - sum_w: "df: {weight}"
-            - sum_ww: "df: df.sum_w**2"
-        LeadJetSelection_pt:
-            - table: "df: '{table_name}'"
-            - varname0: "df: 'LeadJetSelection_pt'"
-            - selection: "df: '{selection_name}'"
-            - parent: "df: df.parent"
-            - binvar0: "df: np.floor(df.LeadJetSelection_pt/5.)*5."
-            - count: "df: 1."
-            - sum_w: "df: {weight}"
-            - sum_ww: "df: df.sum_w**2"
-        LeadJetSelection_eta:
-            - table: "df: '{table_name}'"
-            - varname0: "df: 'LeadJetSelection_eta'"
-            - selection: "df: '{selection_name}'"
-            - parent: "df: df.parent"
-            - binvar0: "df: np.floor(df.LeadJetSelection_eta/0.1)*0.1"
-            - count: "df: 1."
-            - sum_w: "df: {weight}"
-            - sum_ww: "df: df.sum_w**2"
-        LeadJetSelection_phi:
-            - table: "df: '{table_name}'"
-            - varname0: "df: 'LeadJetSelection_phi'"
-            - selection: "df: '{selection_name}'"
-            - parent: "df: df.parent"
-            - binvar0: "df: np.floor(df.LeadJetSelection_phi/0.06283)*0.06283"
-            - count: "df: 1."
-            - sum_w: "df: {weight}"
-            - sum_ww: "df: df.sum_w**2"
-        LeadJetSelection_chHEF:
-            - table: "df: '{table_name}'"
-            - varname0: "df: 'LeadJetSelection_chHEF'"
-            - selection: "df: '{selection_name}'"
-            - parent: "df: df.parent"
-            - binvar0: "df: np.floor(df.LeadJetSelection_chHEF/0.01)*0.01"
-            - count: "df: 1."
-            - sum_w: "df: {weight}"
-            - sum_ww: "df: df.sum_w**2"
-        SecondJetSelection_pt:
-            - table: "df: '{table_name}'"
-            - varname0: "df: 'SecondJetSelection_pt'"
-            - selection: "df: '{selection_name}'"
-            - parent: "df: df.parent"
-            - binvar0: "df: np.floor(df.SecondJetSelection_pt/5.)*5."
-            - count: "df: 1."
-            - sum_w: "df: {weight}"
-            - sum_ww: "df: df.sum_w**2"
-        SecondJetSelection_eta:
-            - table: "df: '{table_name}'"
-            - varname0: "df: 'SecondJetSelection_eta'"
-            - selection: "df: '{selection_name}'"
-            - parent: "df: df.parent"
-            - binvar0: "df: np.floor(df.SecondJetSelection_eta/0.1)*0.1"
-            - count: "df: 1."
-            - sum_w: "df: {weight}"
-            - sum_ww: "df: df.sum_w**2"
-        SecondJetSelection_phi:
-            - table: "df: '{table_name}'"
-            - varname0: "df: 'SecondJetSelection_phi'"
-            - selection: "df: '{selection_name}'"
-            - parent: "df: df.parent"
-            - binvar0: "df: np.floor(df.SecondJetSelection_phi/0.06283)*0.06283"
-            - count: "df: 1."
-            - sum_w: "df: {weight}"
-            - sum_ww: "df: df.sum_w**2"
-        LeadJetFwdSelection_pt:
-            - table: "df: '{table_name}'"
-            - varname0: "df: 'LeadJetFwdSelection_pt'"
-            - selection: "df: '{selection_name}'"
-            - parent: "df: df.parent"
-            - binvar0: "df: np.floor(df.LeadJetFwdSelection_pt)"
-            - count: "df: 1."
-            - sum_w: "df: {weight}"
-            - sum_ww: "df: df.sum_w**2"
-        LeadJetFwdSelection_eta:
-            - table: "df: '{table_name}'"
-            - varname0: "df: 'LeadJetFwdSelection_eta'"
-            - selection: "df: '{selection_name}'"
-            - parent: "df: df.parent"
-            - binvar0: "df: np.floor(df.LeadJetFwdSelection_eta/0.1)*0.1"
-            - count: "df: 1."
-            - sum_w: "df: {weight}"
-            - sum_ww: "df: df.sum_w**2"
-        LeadJetFwdSelection_phi:
-            - table: "df: '{table_name}'"
-            - varname0: "df: 'LeadJetFwdSelection_phi'"
-            - selection: "df: '{selection_name}'"
-            - parent: "df: df.parent"
-            - binvar0: "df: np.floor(df.LeadJetFwdSelection_phi/0.06283)*0.06283"
-            - count: "df: 1."
-            - sum_w: "df: {weight}"
-            - sum_ww: "df: df.sum_w**2"
-        NearestJetSelectionMET_pt:
-            - table: "df: '{table_name}'"
-            - varname0: "df: 'NearestJetSelectionMET_pt'"
-            - selection: "df: '{selection_name}'"
-            - parent: "df: df.parent"
-            - binvar0: "df: np.floor(df.NearestJetSelectionMET_pt)"
-            - count: "df: 1."
-            - sum_w: "df: {weight}"
-            - sum_ww: "df: df.sum_w**2"
-        NearestJetSelectionMET_eta:
-            - table: "df: '{table_name}'"
-            - varname0: "df: 'NearestJetSelectionMET_eta'"
-            - selection: "df: '{selection_name}'"
-            - parent: "df: df.parent"
-            - binvar0: "df: np.floor(df.NearestJetSelectionMET_eta/0.1)*0.1"
-            - count: "df: 1."
-            - sum_w: "df: {weight}"
-            - sum_ww: "df: df.sum_w**2"
-        NearestJetSelectionMET_phi:
-            - table: "df: '{table_name}'"
-            - varname0: "df: 'NearestJetSelectionMET_phi'"
-            - selection: "df: '{selection_name}'"
-            - parent: "df: df.parent"
-            - binvar0: "df: np.floor(df.NearestJetSelectionMET_phi/0.06283)*0.06283"
-            - count: "df: 1."
-            - sum_w: "df: {weight}"
-            - sum_ww: "df: df.sum_w**2"
-        nMuonVeto:
-            - table: "df: '{table_name}'"
-            - varname0: "df: 'nMuonVeto'"
-            - selection: "df: '{selection_name}'"
-            - parent: "df: df.parent"
-            - binvar0: "df: np.floor(df.nMuonVeto+0.5)"
-            - count: "df: 1."
-            - sum_w: "df: {weight}"
-            - sum_ww: "df: df.sum_w**2"
-        nMuonSelection:
-            - table: "df: '{table_name}'"
-            - varname0: "df: 'nMuonSelection'"
-            - selection: "df: '{selection_name}'"
-            - parent: "df: df.parent"
-            - binvar0: "df: np.floor(df.nMuonSelection+0.5)"
-            - count: "df: 1."
-            - sum_w: "df: {weight}"
-            - sum_ww: "df: df.sum_w**2"
-        LeadMuonSelection_pt:
-            - table: "df: '{table_name}'"
-            - varname0: "df: 'LeadMuonSelection_pt'"
-            - selection: "df: '{selection_name}'"
-            - parent: "df: df.parent"
-            - binvar0: "df: np.floor(df.LeadMuonSelection_pt/5.)*5."
-            - count: "df: 1."
-            - sum_w: "df: {weight}"
-            - sum_ww: "df: df.sum_w**2"
-        LeadMuonSelection_eta:
-            - table: "df: '{table_name}'"
-            - varname0: "df: 'LeadMuonSelection_eta'"
-            - selection: "df: '{selection_name}'"
-            - parent: "df: df.parent"
-            - binvar0: "df: np.floor(df.LeadMuonSelection_eta/0.1)*0.1"
-            - count: "df: 1."
-            - sum_w: "df: {weight}"
-            - sum_ww: "df: df.sum_w**2"
-        LeadMuonSelection_phi:
-            - table: "df: '{table_name}'"
-            - varname0: "df: 'LeadMuonSelection_phi'"
-            - selection: "df: '{selection_name}'"
-            - parent: "df: df.parent"
-            - binvar0: "df: np.floor(df.LeadMuonSelection_phi/0.06283)*0.06283"
-            - count: "df: 1."
-            - sum_w: "df: {weight}"
-            - sum_ww: "df: df.sum_w**2"
-        SecondMuonSelection_pt:
-            - table: "df: '{table_name}'"
-            - varname0: "df: 'SecondMuonSelection_pt'"
-            - selection: "df: '{selection_name}'"
-            - parent: "df: df.parent"
-            - binvar0: "df: np.floor(df.SecondMuonSelection_pt/5.)*5."
-            - count: "df: 1."
-            - sum_w: "df: {weight}"
-            - sum_ww: "df: df.sum_w**2"
-        SecondMuonSelection_eta:
-            - table: "df: '{table_name}'"
-            - varname0: "df: 'SecondMuonSelection_eta'"
-            - selection: "df: '{selection_name}'"
-            - parent: "df: df.parent"
-            - binvar0: "df: np.floor(df.SecondMuonSelection_eta/0.1)*0.1"
-            - count: "df: 1."
-            - sum_w: "df: {weight}"
-            - sum_ww: "df: df.sum_w**2"
-        SecondMuonSelection_phi:
-            - table: "df: '{table_name}'"
-            - varname0: "df: 'SecondMuonSelection_phi'"
-            - selection: "df: '{selection_name}'"
-            - parent: "df: df.parent"
-            - binvar0: "df: np.floor(df.SecondMuonSelection_phi/0.06283)*0.06283"
-            - count: "df: 1."
-            - sum_w: "df: {weight}"
-            - sum_ww: "df: df.sum_w**2"
-        nElectronVeto:
-            - table: "df: '{table_name}'"
-            - varname0: "df: 'nElectronVeto'"
-            - selection: "df: '{selection_name}'"
-            - parent: "df: df.parent"
-            - binvar0: "df: np.floor(df.nElectronVeto+0.5)"
-            - count: "df: 1."
-            - sum_w: "df: {weight}"
-            - sum_ww: "df: df.sum_w**2"
-        nElectronSelection:
-            - table: "df: '{table_name}'"
-            - varname0: "df: 'nElectronSelection'"
-            - selection: "df: '{selection_name}'"
-            - parent: "df: df.parent"
-            - binvar0: "df: np.floor(df.nElectronSelection+0.5)"
-            - count: "df: 1."
-            - sum_w: "df: {weight}"
-            - sum_ww: "df: df.sum_w**2"
-        LeadElectronSelection_pt:
-            - table: "df: '{table_name}'"
-            - varname0: "df: 'LeadElectronSelection_pt'"
-            - selection: "df: '{selection_name}'"
-            - parent: "df: df.parent"
-            - binvar0: "df: np.floor(df.LeadElectronSelection_pt/5.)*5."
-            - count: "df: 1."
-            - sum_w: "df: {weight}"
-            - sum_ww: "df: df.sum_w**2"
-        LeadElectronSelection_eta:
-            - table: "df: '{table_name}'"
-            - varname0: "df: 'LeadElectronSelection_eta'"
-            - selection: "df: '{selection_name}'"
-            - parent: "df: df.parent"
-            - binvar0: "df: np.floor(df.LeadElectronSelection_eta/0.1)*0.1"
-            - count: "df: 1."
-            - sum_w: "df: {weight}"
-            - sum_ww: "df: df.sum_w**2"
-        LeadElectronSelection_phi:
-            - table: "df: '{table_name}'"
-            - varname0: "df: 'LeadElectronSelection_phi'"
-            - selection: "df: '{selection_name}'"
-            - parent: "df: df.parent"
-            - binvar0: "df: np.floor(df.LeadElectronSelection_phi/0.06283)*0.06283"
-            - count: "df: 1."
-            - sum_w: "df: {weight}"
-            - sum_ww: "df: df.sum_w**2"
-        SecondElectronSelection_pt:
-            - table: "df: '{table_name}'"
-            - varname0: "df: 'SecondElectronSelection_pt'"
-            - selection: "df: '{selection_name}'"
-            - parent: "df: df.parent"
-            - binvar0: "df: np.floor(df.SecondElectronSelection_pt/5.)*5."
-            - count: "df: 1."
-            - sum_w: "df: {weight}"
-            - sum_ww: "df: df.sum_w**2"
-        SecondElectronSelection_eta:
-            - table: "df: '{table_name}'"
-            - varname0: "df: 'SecondElectronSelection_eta'"
-            - selection: "df: '{selection_name}'"
-            - parent: "df: df.parent"
-            - binvar0: "df: np.floor(df.SecondElectronSelection_eta/0.1)*0.1"
-            - count: "df: 1."
-            - sum_w: "df: {weight}"
-            - sum_ww: "df: df.sum_w**2"
-        SecondElectronSelection_phi:
-            - table: "df: '{table_name}'"
-            - varname0: "df: 'SecondElectronSelection_phi'"
-            - selection: "df: '{selection_name}'"
-            - parent: "df: df.parent"
-            - binvar0: "df: np.floor(df.SecondElectronSelection_phi/0.06283)*0.06283"
-            - count: "df: 1."
-            - sum_w: "df: {weight}"
-            - sum_ww: "df: df.sum_w**2"
-        nTauVeto:
-            - table: "df: '{table_name}'"
-            - varname0: "df: 'nTauVeto'"
-            - selection: "df: '{selection_name}'"
-            - parent: "df: df.parent"
-            - binvar0: "df: np.floor(df.nTauVeto+0.5)"
-            - count: "df: 1."
-            - sum_w: "df: {weight}"
-            - sum_ww: "df: df.sum_w**2"
-        nTauSelection:
-            - table: "df: '{table_name}'"
-            - varname0: "df: 'nTauSelection'"
-            - selection: "df: '{selection_name}'"
-            - parent: "df: df.parent"
-            - binvar0: "df: np.floor(df.nTauSelection+0.5)"
-            - count: "df: 1."
-            - sum_w: "df: {weight}"
-            - sum_ww: "df: df.sum_w**2"
-        LeadTauSelection_pt:
-            - table: "df: '{table_name}'"
-            - varname0: "df: 'LeadTauSelection_pt'"
-            - selection: "df: '{selection_name}'"
-            - parent: "df: df.parent"
-            - binvar0: "df: np.floor(df.LeadTauSelection_pt/5.)*5."
-            - count: "df: 1."
-            - sum_w: "df: {weight}"
-            - sum_ww: "df: df.sum_w**2"
-        LeadTauSelection_eta:
-            - table: "df: '{table_name}'"
-            - varname0: "df: 'LeadTauSelection_eta'"
-            - selection: "df: '{selection_name}'"
-            - parent: "df: df.parent"
-            - binvar0: "df: np.floor(df.LeadTauSelection_eta/0.1)*0.1"
-            - count: "df: 1."
-            - sum_w: "df: {weight}"
-            - sum_ww: "df: df.sum_w**2"
-        LeadTauSelection_phi:
-            - table: "df: '{table_name}'"
-            - varname0: "df: 'LeadTauSelection_phi'"
-            - selection: "df: '{selection_name}'"
-            - parent: "df: df.parent"
-            - binvar0: "df: np.floor(df.LeadTauSelection_phi/0.06283)*0.06283"
-            - count: "df: 1."
-            - sum_w: "df: {weight}"
-            - sum_ww: "df: df.sum_w**2"
-        nPhotonVeto:
-            - table: "df: '{table_name}'"
-            - varname0: "df: 'nPhotonVeto'"
-            - selection: "df: '{selection_name}'"
-            - parent: "df: df.parent"
-            - binvar0: "df: np.floor(df.nPhotonVeto+0.5)"
-            - count: "df: 1."
-            - sum_w: "df: {weight}"
-            - sum_ww: "df: df.sum_w**2"
-        nPhotonSelection:
-            - table: "df: '{table_name}'"
-            - varname0: "df: 'nPhotonSelection'"
-            - selection: "df: '{selection_name}'"
-            - parent: "df: df.parent"
-            - binvar0: "df: np.floor(df.nPhotonSelection+0.5)"
-            - count: "df: 1."
-            - sum_w: "df: {weight}"
-            - sum_ww: "df: df.sum_w**2"
-        nBJetVeto:
-            - table: "df: '{table_name}'"
-            - varname0: "df: 'nBJetVeto'"
-            - selection: "df: '{selection_name}'"
-            - parent: "df: df.parent"
-            - binvar0: "df: np.floor(df.nBJetVeto+0.5)"
-            - count: "df: 1."
-            - sum_w: "df: {weight}"
-            - sum_ww: "df: df.sum_w**2"
-        PV_npvsGood:
-            - table: "df: '{table_name}'"
-            - varname0: "df: 'PV_npvsGood'"
-            - selection: "df: '{selection_name}'"
-            - parent: "df: df.parent"
-            - binvar0: "df: np.floor(df.PV_npvsGood+0.5)"
-            - count: "df: 1."
-            - sum_w: "df: {weight}"
-            - sum_ww: "df: df.sum_w**2"
+            - sum_w_LHEPdfWeight0: "df: df.sum_w*df.LHEPdfWeight0"
+            - sum_w_LHEPdfWeight1: "df: df.sum_w*df.LHEPdfWeight1"
+            - sum_w_LHEPdfWeight2: "df: df.sum_w*df.LHEPdfWeight2"
+            - sum_w_LHEPdfWeight3: "df: df.sum_w*df.LHEPdfWeight3"
+            - sum_w_LHEPdfWeight4: "df: df.sum_w*df.LHEPdfWeight4"
+            - sum_w_LHEPdfWeight5: "df: df.sum_w*df.LHEPdfWeight5"
+            - sum_w_LHEPdfWeight6: "df: df.sum_w*df.LHEPdfWeight6"
+            - sum_w_LHEPdfWeight7: "df: df.sum_w*df.LHEPdfWeight7"
+            - sum_w_LHEPdfWeight8: "df: df.sum_w*df.LHEPdfWeight8"
+            - sum_w_LHEPdfWeight9: "df: df.sum_w*df.LHEPdfWeight9"
+            - sum_w_LHEPdfWeight10: "df: df.sum_w*df.LHEPdfWeight10"
+            - sum_w_LHEPdfWeight11: "df: df.sum_w*df.LHEPdfWeight11"
+            - sum_w_LHEPdfWeight12: "df: df.sum_w*df.LHEPdfWeight12"
+            - sum_w_LHEPdfWeight13: "df: df.sum_w*df.LHEPdfWeight13"
+            - sum_w_LHEPdfWeight14: "df: df.sum_w*df.LHEPdfWeight14"
+            - sum_w_LHEPdfWeight15: "df: df.sum_w*df.LHEPdfWeight15"
+            - sum_w_LHEPdfWeight16: "df: df.sum_w*df.LHEPdfWeight16"
+            - sum_w_LHEPdfWeight17: "df: df.sum_w*df.LHEPdfWeight17"
+            - sum_w_LHEPdfWeight18: "df: df.sum_w*df.LHEPdfWeight18"
+            - sum_w_LHEPdfWeight19: "df: df.sum_w*df.LHEPdfWeight19"
+            - sum_w_LHEPdfWeight20: "df: df.sum_w*df.LHEPdfWeight20"
+            - sum_w_LHEPdfWeight21: "df: df.sum_w*df.LHEPdfWeight21"
+            - sum_w_LHEPdfWeight22: "df: df.sum_w*df.LHEPdfWeight22"
+            - sum_w_LHEPdfWeight23: "df: df.sum_w*df.LHEPdfWeight23"
+            - sum_w_LHEPdfWeight24: "df: df.sum_w*df.LHEPdfWeight24"
+            - sum_w_LHEPdfWeight25: "df: df.sum_w*df.LHEPdfWeight25"
+            - sum_w_LHEPdfWeight26: "df: df.sum_w*df.LHEPdfWeight26"
+            - sum_w_LHEPdfWeight27: "df: df.sum_w*df.LHEPdfWeight27"
+            - sum_w_LHEPdfWeight28: "df: df.sum_w*df.LHEPdfWeight28"
+            - sum_w_LHEPdfWeight29: "df: df.sum_w*df.LHEPdfWeight29"
+            - sum_w_LHEPdfWeight30: "df: df.sum_w*df.LHEPdfWeight30"
+            - sum_w_LHEPdfWeight31: "df: df.sum_w*df.LHEPdfWeight31"
+            - sum_w_LHEPdfWeight32: "df: df.sum_w*df.LHEPdfWeight32"
+            - sum_w_LHEPdfWeight33: "df: df.sum_w*df.LHEPdfWeight33"
+            - sum_w_LHEPdfWeight34: "df: df.sum_w*df.LHEPdfWeight34"
+            - sum_w_LHEPdfWeight35: "df: df.sum_w*df.LHEPdfWeight35"
+            - sum_w_LHEPdfWeight36: "df: df.sum_w*df.LHEPdfWeight36"
+            - sum_w_LHEPdfWeight37: "df: df.sum_w*df.LHEPdfWeight37"
+            - sum_w_LHEPdfWeight38: "df: df.sum_w*df.LHEPdfWeight38"
+            - sum_w_LHEPdfWeight39: "df: df.sum_w*df.LHEPdfWeight39"
+            - sum_w_LHEPdfWeight40: "df: df.sum_w*df.LHEPdfWeight40"
+            - sum_w_LHEPdfWeight41: "df: df.sum_w*df.LHEPdfWeight41"
+            - sum_w_LHEPdfWeight42: "df: df.sum_w*df.LHEPdfWeight42"
+            - sum_w_LHEPdfWeight43: "df: df.sum_w*df.LHEPdfWeight43"
+            - sum_w_LHEPdfWeight44: "df: df.sum_w*df.LHEPdfWeight44"
+            - sum_w_LHEPdfWeight45: "df: df.sum_w*df.LHEPdfWeight45"
+            - sum_w_LHEPdfWeight46: "df: df.sum_w*df.LHEPdfWeight46"
+            - sum_w_LHEPdfWeight47: "df: df.sum_w*df.LHEPdfWeight47"
+            - sum_w_LHEPdfWeight48: "df: df.sum_w*df.LHEPdfWeight48"
+            - sum_w_LHEPdfWeight49: "df: df.sum_w*df.LHEPdfWeight49"
+            - sum_w_LHEPdfWeight50: "df: df.sum_w*df.LHEPdfWeight50"
+            - sum_w_LHEPdfWeight51: "df: df.sum_w*df.LHEPdfWeight51"
+            - sum_w_LHEPdfWeight52: "df: df.sum_w*df.LHEPdfWeight52"
+            - sum_w_LHEPdfWeight53: "df: df.sum_w*df.LHEPdfWeight53"
+            - sum_w_LHEPdfWeight54: "df: df.sum_w*df.LHEPdfWeight54"
+            - sum_w_LHEPdfWeight55: "df: df.sum_w*df.LHEPdfWeight55"
+            - sum_w_LHEPdfWeight56: "df: df.sum_w*df.LHEPdfWeight56"
+            - sum_w_LHEPdfWeight57: "df: df.sum_w*df.LHEPdfWeight57"
+            - sum_w_LHEPdfWeight58: "df: df.sum_w*df.LHEPdfWeight58"
+            - sum_w_LHEPdfWeight59: "df: df.sum_w*df.LHEPdfWeight59"
+            - sum_w_LHEPdfWeight60: "df: df.sum_w*df.LHEPdfWeight60"
+            - sum_w_LHEPdfWeight61: "df: df.sum_w*df.LHEPdfWeight61"
+            - sum_w_LHEPdfWeight62: "df: df.sum_w*df.LHEPdfWeight62"
+            - sum_w_LHEPdfWeight63: "df: df.sum_w*df.LHEPdfWeight63"
+            - sum_w_LHEPdfWeight64: "df: df.sum_w*df.LHEPdfWeight64"
+            - sum_w_LHEPdfWeight65: "df: df.sum_w*df.LHEPdfWeight65"
+            - sum_w_LHEPdfWeight66: "df: df.sum_w*df.LHEPdfWeight66"
+            - sum_w_LHEPdfWeight67: "df: df.sum_w*df.LHEPdfWeight67"
+            - sum_w_LHEPdfWeight68: "df: df.sum_w*df.LHEPdfWeight68"
+            - sum_w_LHEPdfWeight69: "df: df.sum_w*df.LHEPdfWeight69"
+            - sum_w_LHEPdfWeight70: "df: df.sum_w*df.LHEPdfWeight70"
+            - sum_w_LHEPdfWeight71: "df: df.sum_w*df.LHEPdfWeight71"
+            - sum_w_LHEPdfWeight72: "df: df.sum_w*df.LHEPdfWeight72"
+            - sum_w_LHEPdfWeight73: "df: df.sum_w*df.LHEPdfWeight73"
+            - sum_w_LHEPdfWeight74: "df: df.sum_w*df.LHEPdfWeight74"
+            - sum_w_LHEPdfWeight75: "df: df.sum_w*df.LHEPdfWeight75"
+            - sum_w_LHEPdfWeight76: "df: df.sum_w*df.LHEPdfWeight76"
+            - sum_w_LHEPdfWeight77: "df: df.sum_w*df.LHEPdfWeight77"
+            - sum_w_LHEPdfWeight78: "df: df.sum_w*df.LHEPdfWeight78"
+            - sum_w_LHEPdfWeight79: "df: df.sum_w*df.LHEPdfWeight79"
+            - sum_w_LHEPdfWeight80: "df: df.sum_w*df.LHEPdfWeight80"
+            - sum_w_LHEPdfWeight81: "df: df.sum_w*df.LHEPdfWeight81"
+            - sum_w_LHEPdfWeight82: "df: df.sum_w*df.LHEPdfWeight82"
+            - sum_w_LHEPdfWeight83: "df: df.sum_w*df.LHEPdfWeight83"
+            - sum_w_LHEPdfWeight84: "df: df.sum_w*df.LHEPdfWeight84"
+            - sum_w_LHEPdfWeight85: "df: df.sum_w*df.LHEPdfWeight85"
+            - sum_w_LHEPdfWeight86: "df: df.sum_w*df.LHEPdfWeight86"
+            - sum_w_LHEPdfWeight87: "df: df.sum_w*df.LHEPdfWeight87"
+            - sum_w_LHEPdfWeight88: "df: df.sum_w*df.LHEPdfWeight88"
+            - sum_w_LHEPdfWeight89: "df: df.sum_w*df.LHEPdfWeight89"
+            - sum_w_LHEPdfWeight90: "df: df.sum_w*df.LHEPdfWeight90"
+            - sum_w_LHEPdfWeight91: "df: df.sum_w*df.LHEPdfWeight91"
+            - sum_w_LHEPdfWeight92: "df: df.sum_w*df.LHEPdfWeight92"
+            - sum_w_LHEPdfWeight93: "df: df.sum_w*df.LHEPdfWeight93"
+            - sum_w_LHEPdfWeight94: "df: df.sum_w*df.LHEPdfWeight94"
+            - sum_w_LHEPdfWeight95: "df: df.sum_w*df.LHEPdfWeight95"
+            - sum_w_LHEPdfWeight96: "df: df.sum_w*df.LHEPdfWeight96"
+            - sum_w_LHEPdfWeight97: "df: df.sum_w*df.LHEPdfWeight97"
+            - sum_w_LHEPdfWeight98: "df: df.sum_w*df.LHEPdfWeight98"
+            - sum_w_LHEPdfWeight99: "df: df.sum_w*df.LHEPdfWeight99"
 files:
     - "/vols/cms/sdb15/Analysis/ZinvWidth/databases/201906_Jun/14_sortpt/MC/result_00000.h5"
     - "/vols/cms/sdb15/Analysis/ZinvWidth/databases/201906_Jun/14_sortpt/MC/result_00001.h5"
