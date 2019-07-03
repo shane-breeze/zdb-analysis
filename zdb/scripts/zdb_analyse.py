@@ -7,15 +7,15 @@ def parse_args():
     parser.add_argument("config", help="Path to yaml file")
     parser.add_argument(
         "-m", "--mode", default="multiprocessing", type=str,
-        help="Parallelisation: 'multiprocessing', 'sge', 'htcondor'",
+        help="Parallelisation: 'multiprocessing', 'sge', 'condor'",
     )
     parser.add_argument(
         "-j", "--ncores", default=0, type=int,
         help="Number of cores for 'multiprocessing' jobs",
     )
     parser.add_argument(
-        "--sge-opts", default="-q hep.q", type=str,
-        help="Options to pass onto qsub",
+        "--batch-opts", default="", type=str,
+        help="Options to pass onto the batch",
     )
     parser.add_argument(
         "-n", "--nfiles", default=-1, type=int,

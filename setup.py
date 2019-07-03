@@ -8,14 +8,17 @@ with open("requirements.txt", 'r') as fh:
 
 setuptools.setup(
     name="zdb-analysis",
-    version="0.0.1",
+    version="0.1.0",
     author="Shane Breeze",
     author_email="sdb15@ic.ac.uk",
-    scripts=["zinv/scripts/analyse.py"],
-    description="Databases + Z inv analysis",
+    scripts=[
+        "zdb/scripts/zdb_analyse.py",
+        "zdb/scripts/zdb_resume.py",
+        "zdb/scripts/zdb_skim.py",
+    ],
+    description="Pandas + Z inv analysis",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/shane-breeze/zdb-analysis",
     packages=setuptools.find_packages(),
     install_requires=requirements,
     setup_requires=["pytest-runner"],

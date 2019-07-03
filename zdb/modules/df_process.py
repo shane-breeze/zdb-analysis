@@ -3,7 +3,7 @@ import pickle
 import numpy as np
 import pandas as pd
 import copy
-import tqdm
+from tqdm.auto import tqdm
 
 def df_merge(df1, df2):
     if df1 is None or df1.empty:
@@ -15,7 +15,7 @@ def df_merge(df1, df2):
     return df1.reindex(reindex).fillna(0.) + df2.reindex(reindex).fillna(0.)
 
 def df_open_merge(paths, quiet=False):
-    pbar = tqdm.tqdm(total=len(paths), desc="Merged", dynamic_ncols=True, disable=quiet)
+    pbar = tqdm(total=len(paths), desc="Merged", dynamic_ncols=True, disable=quiet)
     obj_out = pd.DataFrame()
     for path in paths:
         with lz4.frame.open(path, 'rb') as f:
