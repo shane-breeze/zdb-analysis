@@ -1,7 +1,6 @@
 import numpy as np
 import pandas as pd
 import pysge
-import conpy
 import yaml
 import functools
 
@@ -56,6 +55,7 @@ def analyse(
             )
         df = df_open_merge(merge_results)
     elif mode=="condor":
+        import conpy
         results = conpy.condor_submit(
             "zdb", "_ccsp_temp/", tasks=tasks, options=batch_opts,
             sleep=5, request_resubmission_options=True,
