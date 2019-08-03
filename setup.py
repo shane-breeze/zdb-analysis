@@ -8,7 +8,7 @@ with open("requirements.txt", 'r') as fh:
 
 setuptools.setup(
     name="zdb-analysis",
-    version="0.1.2",
+    version="0.1.3",
     author="Shane Breeze",
     author_email="sdb15@ic.ac.uk",
     scripts=[

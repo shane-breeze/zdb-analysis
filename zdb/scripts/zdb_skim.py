@@ -4,8 +4,6 @@ import numpy as np
 import pandas as pd
 import pysge
 import oyaml as yaml
-import functools
-import tqdm
 
 from zdb.modules.df_skim import df_skim
 
@@ -21,8 +19,8 @@ def parse_args():
         help="Number of cores for 'multiprocessing' jobs",
     )
     parser.add_argument(
-        "--sge-opts", default="-q hep.q", type=str,
-        help="Options to pass onto qsub",
+        "--batch-opts", default="", type=str,
+        help="Options to pass onto the batch submission",
     )
     parser.add_argument(
         "-n", "--nfiles", default=-1, type=int,
@@ -51,7 +49,7 @@ def main():
 
     grouped_files = [list(x) for x in np.array_split(files, njobs)]
     tasks = [
-            {"task": df_skim, "args": (fs,cfg,options.output.format(idx)), "kwargs": {}}
+        {"task": df_skim, "args": (fs,cfg,options.output.format(idx)), "kwargs": {}}
         for idx, fs in enumerate(grouped_files)
     ]
 
