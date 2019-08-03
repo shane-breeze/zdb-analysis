@@ -23,7 +23,7 @@ def skim(
 
     grouped_files = [list(x) for x in np.array_split(files, njobs)]
     tasks = [
-        {"task": df_skim, "args": (fs, cfg.options, output.format(idx)), "kwargs": {}}
+        {"task": df_skim, "args": (fs, cfg, output.format(idx)), "kwargs": {}}
         for fs in grouped_files
     ]
 
