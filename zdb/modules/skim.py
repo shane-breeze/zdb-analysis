@@ -24,7 +24,7 @@ def skim(
     grouped_files = [list(x) for x in np.array_split(files, njobs)]
     tasks = [
         {"task": df_skim, "args": (fs, cfg, output.format(idx)), "kwargs": {}}
-        for fs in grouped_files
+        for idx, fs in enumerate(grouped_files)
     ]
 
     if mode=="multiprocessing" and ncores==0:
