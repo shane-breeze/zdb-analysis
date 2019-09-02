@@ -65,8 +65,9 @@ def parallel_draw(draw, jobs, options):
         pysge.mp_submit(tasks, ncores=options.ncores)
     elif options.mode=="sge":
         pysge.sge_submit(
-            "zdb-draw", "_ccsp_temp/", tasks=tasks, options=options.sge_opts,
+            tasks, "zdb-draw", "_ccsp_temp/", options=options.sge_opts,
             sleep=5, request_resubmission_options=True,
+            return_files=True,
         )
 
 def main():

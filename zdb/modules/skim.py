@@ -1,3 +1,4 @@
+import os
 import numpy as np
 import pandas as pd
 import oyaml as yaml
@@ -8,6 +9,10 @@ def skim(
     config, mode="multiprocessing", ncores=0, nfiles=-1, batch_opts="",
     output=None,
 ):
+    outdir = os.path.dirname(output)
+    if not os.path.exists(outdir):
+        os.mkdirs(outdir)
+
     njobs = ncores
 
     #setup jobs
@@ -22,6 +27,7 @@ def skim(
         njobs = len(files)
 
     grouped_files = [list(x) for x in np.array_split(files, njobs)]
+
     tasks = [
         {"task": df_skim, "args": (fs, cfg, output.format(idx)), "kwargs": {}}
         for idx, fs in enumerate(grouped_files)
@@ -33,8 +39,9 @@ def skim(
         results = pysge.mp_submit(tasks, ncores=ncores)
     elif mode=="sge":
         results = pysge.sge_submit(
-            "zdb", "_ccsp_temp/", tasks=tasks, options=batch_opts,
+            tasks, "zdb", "_ccsp_temp/", options=batch_opts,
             sleep=5, request_resubmission_options=True,
+            return_files=True,
         )
     elif mode=="condor":
         import conpy

@@ -8,7 +8,7 @@ from zdb.modules.df_process import df_process, df_merge, df_open_merge
 
 def analyse(
     config, mode="multiprocesing", ncores=0, nfiles=-1, batch_opts="",
-    output=None, merge_locally=True,
+    output=None,
 ):
     njobs = ncores
 
@@ -37,43 +37,18 @@ def analyse(
         df = functools.reduce(lambda x, y: df_merge(x, y), results)
     elif mode=="sge":
         results = pysge.sge_submit(
-            "zdb", "_ccsp_temp/", tasks=tasks, options=batch_opts,
+            tasks, "zdb", "_ccsp_temp/", options=batch_opts,
             sleep=5, request_resubmission_options=True,
+            return_files=True,
         )
-
-        grouped_args = [list(x) for x in np.array_split(results, 50)]
-        tasks = [
-            {"task": df_open_merge, "args": (args,), "kwargs": {"quiet": True}}
-            for args in grouped_args
-        ]
-        if merge_locally:
-            merge_results = results[:]
-        else:
-            merge_results = pysge.sge_submit(
-                "zdb-merge", "_ccsp_temp/", tasks=tasks, options=batch_opts,
-                sleep=5, request_resubmission_options=True,
-            )
-        df = df_open_merge(merge_results)
+        df = df_open_merge(results)
     elif mode=="condor":
         import conpy
         results = conpy.condor_submit(
             "zdb", "_ccsp_temp/", tasks=tasks, options=batch_opts,
             sleep=5, request_resubmission_options=True,
         )
-
-        grouped_args = [list(x) for x in np.array_split(results, 50)]
-        tasks = [
-            {"task": df_open_merge, "args": (args,), "kwargs": {"quiet": True}}
-            for args in grouped_args
-        ]
-        if merge_locally:
-            merge_results = results[:]
-        else:
-            merge_results = conpy.condor_submit(
-                "zdb-merge", "_ccsp_temp/", tasks=tasks, options=batch_opts,
-                sleep=5, request_resubmission_options=True,
-            )
-        df = df_open_merge(merge_results)
+        df = df_open_merge(results)
     else:
         df = pd.DataFrame()
 

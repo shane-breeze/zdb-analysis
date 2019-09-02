@@ -10,10 +10,11 @@ def df_skim(paths, cfg, outpath):
                 tdf.loc[:, "sample"] = tdf["sample"].astype("str")
                 tdf.loc[:, "parent"] = tdf["parent"].astype("str")
 
-                tdf.to_hdf(
-                    outpath, table_name, mode='a', format='table', append=True,
-                    complevel=9, complib='blosc:lz4hc',
-                    min_itemsize={"sample": 50, "parent": 50},
-                )
+                if not tdf.empty:
+                    tdf.to_hdf(
+                        outpath, table_name, mode='a', format='table',
+                        append=True, complevel=9, complib='blosc:lz4hc',
+                        min_itemsize={"sample": 50, "parent": 50},
+                    )
 
     return True

@@ -29,37 +29,43 @@ def df_process(paths, cfg):
     out_df = pd.DataFrame()
 
     for path in paths:
-        store = pd.HDFStore(path)
-        for table_label, table_name in cfg["tables"].items():
-            hist_cfg = {"table_name": table_label}
+        with pd.HDFStore(path) as store:
+            for table_label, table_name in cfg["tables"].items():
+                hist_cfg = {"table_name": table_label}
 
-            for df in store.select(table_name, iterator=True, chunksize=100000):
+                for df in store.select(
+                    table_name, iterator=True, chunksize=100000,
+                ):
 
-                # pre-eval
-                for evs in cfg["eval"]:
-                    for key, val in evs.items():
-                        df[key] = eval("lambda "+val)(df)
+                    # pre-eval
+                    for evs in cfg["eval"]:
+                        for key, val in evs.items():
+                            df[key] = eval("lambda "+val)(df)
 
-                for cutflow_name, cutflow_cfg in cfg["cutflows"].items():
-                    hist_cfg.update(cutflow_cfg)
+                    for cutflow_name, cutflow_cfg in cfg["cutflows"].items():
+                        hist_cfg.update(cutflow_cfg)
 
-                    # apply selection
-                    sdf = df.loc[df.eval(cutflow_cfg["selection"])]
+                        # apply selection
+                        sdf = df.loc[df.eval(cutflow_cfg["selection"])]
 
-                    for hist_label in cutflow_cfg["hists"]:
-                        hdf = sdf.copy()
+                        for hist_label in cutflow_cfg["hists"]:
+                            hdf = sdf.copy()
 
-                        # hist evals
-                        evals = cfg["hists"][hist_label]
-                        for evs in evals:
-                            for key, val in evs.items():
-                                hdf[key] = eval("lambda "+val.format(**hist_cfg))(hdf)
+                            # hist evals
+                            evals = cfg["hists"][hist_label]
+                            for evs in evals:
+                                for key, val in evs.items():
+                                    hdf[key] = eval(
+                                        "lambda "+val.format(**hist_cfg)
+                                    )(hdf)
 
-                        # add hist
-                        columns = [list(ev.keys())[0] for ev in evals]
-                        out_df = df_merge(
-                            out_df,
-                            hdf.loc[:,columns].groupby(cfg["groupby"]).sum(),
-                        )
-        store.close()
+                            # add hist
+                            columns = [list(ev.keys())[0] for ev in evals]
+                            out_df = df_merge(
+                                out_df,
+                                (
+                                    hdf.loc[:,columns]
+                                    .groupby(cfg["groupby"]).sum()
+                                ),
+                            )
     return out_df
