@@ -68,8 +68,8 @@ def main():
     print(df)
     path, table = options.output.split(":")
     df.to_hdf(
-            path, table, format='table', append=False, complevel=9,
-        complib='blosc:lz4hc',
+        path, table, format='table', append=False, complevel=9,
+        complib='zlib',
     )
 
 if __name__ == "__main__":

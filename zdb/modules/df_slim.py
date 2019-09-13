@@ -15,7 +15,7 @@ def df_slim(paths, cfg, outpath):
 
                 tdf.to_hdf(
                     outpath, table_name, mode='a', format='table', append=True,
-                    complevel=9, complib='blosc:lz4hc',
+                    complevel=9, complib='zlib',
                 )
 
     return True

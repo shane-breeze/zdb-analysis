@@ -2,7 +2,7 @@ import lz4.frame
 import pickle
 import numpy as np
 import pandas as pd
-import copy
+import os
 from tqdm.auto import tqdm
 
 def df_merge(df1, df2):
@@ -25,16 +25,20 @@ def df_open_merge(paths, quiet=False):
     pbar.close()
     return obj_out
 
-def df_process(paths, cfg):
+def df_process(paths, cfg, chunksize=500000, quiet=False):
     out_df = pd.DataFrame()
 
-    for path in paths:
+    pbar_path = tqdm(paths, disable=quiet, unit="file")
+    for path in pbar_path:
+        pbar_path.set_description(os.path.basename(path))
         with pd.HDFStore(path) as store:
-            for table_label, table_name in cfg["tables"].items():
+            pbar_tab = tqdm(cfg["tables"].items(), disable=quiet, unit="table")
+            for table_label, table_name in pbar_tab:
+                pbar_tab.set_description(table_name)
                 hist_cfg = {"table_name": table_label}
 
                 for df in store.select(
-                    table_name, iterator=True, chunksize=100000,
+                    table_name, iterator=True, chunksize=chunksize,
                 ):
 
                     # pre-eval
