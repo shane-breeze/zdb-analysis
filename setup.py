@@ -8,7 +8,7 @@ with open("requirements.txt", 'r') as fh:
 
 setuptools.setup(
     name="zdb-analysis",
-    version="0.1.6",
+    version="0.1.7",
     author="Shane Breeze",
     author_email="sdb15@ic.ac.uk",
     scripts=[
@@ -24,7 +24,6 @@ setuptools.setup(
     setup_requires=["pytest-runner"],
     tests_require=["pytest"],
     classifiers=(
-        "Programming Language :: Python :: 2",
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
