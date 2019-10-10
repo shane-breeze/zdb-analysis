@@ -1,10 +1,28 @@
 import os
+import shutil
 import copy
 import numpy as np
 import pandas as pd
 import oyaml as yaml
 import pysge
 from zdb.modules.df_skim import df_skim
+
+def job(filename, cfg, outname, chunksize=250000):
+    switched = False
+    if "TMPDIR" in os.environ:
+        os.chdir(os.environ["TMPDIR"])
+        shutil.copyfile(filename, "tmp.h5")
+        inf = "tmp.h5"
+        outf = "res.h5"
+        switched = True
+    else:
+        inf = filename
+        outf = outname
+
+    result = df_skim(filename, cfg, outf, chunksize=chunksize)
+    if switched:
+        shutil.copyfile(outf, outname)
+    return result
 
 def submit_tasks(tasks, mode, ncores, batch_opts):
     if mode=="multiprocessing" and ncores==0:
@@ -49,7 +67,7 @@ def skim(
     grouped_files = [list(x) for x in np.array_split(files, njobs)]
 
     tasks = [
-        {"task": df_skim, "args": (fs, cfg, output.format(idx)), "kwargs": {"chunksize": chunksize}}
+        {"task": job, "args": (fs, cfg, output.format(idx)), "kwargs": {"chunksize": chunksize}}
         for idx, fs in enumerate(grouped_files)
     ]
     submit_tasks(tasks, mode, ncores, batch_opts)
@@ -86,7 +104,7 @@ def multi_skim(
         grouped_files = [list(x) for x in np.array_split(files, njobs)]
 
         tasks = [{
-            "task": df_skim,
+            "task": job,
             "args": (fs, copy.deepcopy(cfg), output.format(idx)),
             "kwargs": {"chunksize": chunksize},
         } for idx, fs in enumerate(grouped_files)]

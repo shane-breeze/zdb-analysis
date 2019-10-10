@@ -31,6 +31,12 @@ def analyse(
     config, mode="multiprocesing", ncores=0, nfiles=-1, batch_opts="",
     output=None, chunksize=500000, merge_opts={},
 ):
+    if len(output.split(":"))!=2:
+        raise ValueError(
+            "The output kwarg should be None or a string with the format "
+            "'{file_name}:{table_name}' instead of "+"{}".format(output)
+        )
+
     njobs = ncores
 
     # setup jobs
@@ -55,7 +61,7 @@ def analyse(
         df = functools.reduce(lambda x, y: df_merge(x, y), results)
     else:
         # grouped multi-merge
-        merge_njobs = merge_opts.get("njobs", 100)
+        merge_njobs = merge_opts.get("ncores", 100)
         grouped_merges = [list(x) for x in np.array_split(results, merge_njobs)]
         tasks = [{
             "task": df_open_merge,
@@ -63,7 +69,6 @@ def analyse(
             "kwargs": {},
         } for r in grouped_merges]
         merge_mode = merge_opts.get("mode", "multiprocessing")
-        merge_ncores = merge_opts.get("ncores", 0)
         if merge_mode=="multiprocessing" and ncores==0:
             semimerged_results = pysge.local_submit(tasks)
             df = functools.reduce(lambda x, y: df_merge(x, y), results)
@@ -108,6 +113,13 @@ def multi_analyse(
     configs, mode="multiprocesing", ncores=0, nfiles=-1, batch_opts="",
     outputs=None, chunksize=500000, merge_opts={},
 ):
+    for output in outputs:
+        if len(output.split(":"))!=2:
+            raise ValueError(
+                "The output kwarg should be None or a string with the format "
+                "'{file_name}:{table_name}' instead of "+"{}".format(output)
+            )
+
     all_tasks, sizes = [], []
     for config in configs:
         njobs = ncores

@@ -3,6 +3,7 @@ import pickle
 import numpy as np
 import pandas as pd
 import os
+import shutil
 from tqdm.auto import tqdm
 
 def df_merge(df1, df2):
@@ -28,10 +29,23 @@ def df_open_merge(paths, quiet=False):
 def df_process(paths, cfg, chunksize=500000, quiet=False):
     out_df = pd.DataFrame()
 
+    # switch to TMPDIR
+    copy_files = False
+    if "TMPDIR" in os.environ:
+        os.chdir(os.environ["TMPDIR"])
+        copy_files = True
+
     pbar_path = tqdm(paths, disable=quiet, unit="file")
     for path in pbar_path:
+
+        # copy files
+        inf = path
+        if copy_files:
+            inf = "tmp.h5"
+            shutil.copyfile(path, inf)
+
         pbar_path.set_description(os.path.basename(path))
-        with pd.HDFStore(path) as store:
+        with pd.HDFStore(inf, 'r') as store:
             pbar_tab = tqdm(cfg["tables"].items(), disable=quiet, unit="table")
             for table_label, table_name in pbar_tab:
                 pbar_tab.set_description(table_name)
