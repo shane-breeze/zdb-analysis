@@ -68,13 +68,13 @@ def generate_html(dirname, outdir, title="images"):
 
     with doc:
         with tags.ul(id="myUL"):
-            for category in os.listdir(dirname):
+            for category in sorted(os.listdir(dirname)):
                 tags.li(tags.a(category, href=category))
 
     with open(os.path.join(outdir, "index.html"), 'w') as f:
         f.write(doc.render())
 
-    pbar1 = tqdm(os.listdir(dirname), dynamic_ncols=False)
+    pbar1 = tqdm(sorted(os.listdir(dirname)), dynamic_ncols=False)
     for category in pbar1:
         pbar1.set_description(category)
         if not os.path.exists(os.path.join(outdir, category)):
@@ -87,13 +87,13 @@ def generate_html(dirname, outdir, title="images"):
         with subdoc:
             tags.a("back", href="..")
             with tags.ul(id="myUL"):
-                for subcat in os.listdir(os.path.join(dirname, category)):
+                for subcat in sorted(os.listdir(os.path.join(dirname, category))):
                     tags.li(tags.a(subcat, href=subcat))
 
         with open(os.path.join(outdir, category, "index.html"), 'w') as f:
             f.write(subdoc.render())
 
-        pbar2 = tqdm(os.listdir(os.path.join(dirname, category)), dynamic_ncols=False)
+        pbar2 = tqdm(sorted(os.listdir(os.path.join(dirname, category))), dynamic_ncols=False)
         for subcat in pbar2:
             pbar2.set_description(subcat)
             if not os.path.exists(os.path.join(outdir, category, subcat)):
@@ -104,7 +104,7 @@ def generate_html(dirname, outdir, title="images"):
                 tags.style(style2)
 
             imgs = []
-            pbar3 = tqdm(os.listdir(os.path.join(dirname, category, subcat)), dynamic_ncols=False)
+            pbar3 = tqdm(sorted(os.listdir(os.path.join(dirname, category, subcat))), dynamic_ncols=False)
             for img in pbar3:
                 pbar3.set_description(img)
                 imgpng = img.replace(".pdf", ".png")
