@@ -11,8 +11,9 @@ def job(filename, cfg, outname, chunksize=250000):
     switched = False
     if "TMPDIR" in os.environ:
         os.chdir(os.environ["TMPDIR"])
-        shutil.copyfile(filename, "tmp.h5")
-        inf = "tmp.h5"
+        #shutil.copyfile(filename, "tmp.h5")
+        #inf = "tmp.h5"
+        inf = filename
         outf = "res.h5"
         switched = True
     else:
